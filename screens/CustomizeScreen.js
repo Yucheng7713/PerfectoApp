@@ -3,8 +3,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import {Icon, Button, Container, Header, Content, Left, Right, Body, Title} from 'native-base'
 
-type Props = {};
-
 export default class CustomizeScreen extends Component<Props> {
   static navigationOptions = {
     drawerIcon: (

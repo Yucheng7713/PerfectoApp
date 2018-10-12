@@ -2,8 +2,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import {Icon, Button, Container, Header, Content, Body, Title, Left, Right} from 'native-base'
+import { onSignOut } from "../src/auth";
 
-type Props = {};
 export default class ProfileScreen extends Component<Props> {
   static navigationOptions = {
     drawerIcon: (
@@ -24,10 +24,15 @@ export default class ProfileScreen extends Component<Props> {
         <Content contentContainerStyle={{
           flex: 1,
           alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#2c57a6'
+          justifyContent: 'center'
         }}>
           <Text style={styles.instructions}>User Profile Screen</Text>
+          <View style={styles.logoutButtonLayout}>
+            <Button style={ styles.logoutButtonStyle }
+            onPress={() => { onSignOut().then(() => this.props.navigation.navigate("SignedOut")); }}>
+              <Text style={{ color: 'white' }}>Logout</Text>
+            </Button>
+          </View>
         </Content>
       </Container>
     );
@@ -38,5 +43,17 @@ export default class ProfileScreen extends Component<Props> {
 const styles = StyleSheet.create({
   instructions: {
     color: "#f5fcff"
-  }
+  },
+  logoutButtonLayout: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 20
+  },
+  logoutButtonStyle: {
+    width: '33%',
+    backgroundColor: 'rgba(22, 22, 22, 0.3)',
+    justifyContent: 'center'
+  },
 });

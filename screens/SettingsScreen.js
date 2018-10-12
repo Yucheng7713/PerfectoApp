@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import {Icon, Button, Container, Header, Content, Body, Title, Left, Right} from 'native-base'
 
-type Props = {};
 export default class SettingsScreen extends Component<Props> {
   static navigationOptions = {
     drawerIcon: (
