@@ -1,9 +1,13 @@
 // Required components from React, React Navigation, and Native Base
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
-import {Icon, Button, Container, Header, Content, Left, Right, Body, Title} from 'native-base'
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { Icon, Button, Container, Header, Content, Left, Right, Body, Title } from 'native-base';
 
 export default class CustomizeScreen extends Component<Props> {
+
+  async componentDidMount() {
+    // Do sth when the view is loaded
+  }
   static navigationOptions = {
     drawerIcon: (
       <Image source={require("../assets/SideBarIcons/customize-icon.png")} style={{height: 24, width: 24}} />

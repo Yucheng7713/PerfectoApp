@@ -1,7 +1,7 @@
 // Required components from React, React Navigation, and Native Base
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ImageBackground } from 'react-native';
-import {Button, Container, Content, Form, Item as FormItem, Input, Title} from 'native-base'
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { Button, Container, Content, Form, Item as FormItem, Input, Title } from 'native-base'
 import { onSignIn } from "../src/auth";
 
 export default class SignIn extends Component<Props> {

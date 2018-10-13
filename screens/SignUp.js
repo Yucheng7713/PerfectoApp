@@ -1,7 +1,7 @@
 // Required components from React, React Navigation, and Native Base
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ImageBackground} from 'react-native';
-import {Icon, Button, Container, Header, Content, Left, Right, Body, Title} from 'native-base'
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { Icon, Button, Container, Header, Content, Left, Right, Body, Title } from 'native-base'
 
 export default class SignUp extends Component<Props> {
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

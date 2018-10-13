@@ -1,8 +1,9 @@
 // Required components from React, React Navigation, and Native Base
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
-import {Icon, Button, Container, Header, Content, Body, Title, Left, Right} from 'native-base'
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { Icon, Button, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
 import { onSignOut } from "../src/auth";
+import { StackActions, NavigationActions } from 'react-navigation';
 
 export default class ProfileScreen extends Component<Props> {
   static navigationOptions = {
@@ -10,6 +11,7 @@ export default class ProfileScreen extends Component<Props> {
       <Image source={require("../assets/SideBarIcons/profile-icon.png")} style={{height: 24, width: 24}} />
     )
   }
+
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
@@ -29,7 +31,10 @@ export default class ProfileScreen extends Component<Props> {
           <Text style={styles.instructions}>User Profile Screen</Text>
           <View style={styles.logoutButtonLayout}>
             <Button style={ styles.logoutButtonStyle }
-            onPress={() => { onSignOut().then(() => this.props.navigation.navigate("SignedOut")); }}>
+              onPress={() => { onSignOut().then(() => {
+                this.props.navigation.dispatch(resetAction);
+              });
+            }}>
               <Text style={{ color: 'white' }}>Logout</Text>
             </Button>
           </View>
@@ -38,6 +43,11 @@ export default class ProfileScreen extends Component<Props> {
     );
   }
 }
+
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'SignedOut' })],
+});
 
 // Styling components
 const styles = StyleSheet.create({

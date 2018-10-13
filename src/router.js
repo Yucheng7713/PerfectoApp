@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import { Platform, Image } from 'react-native';
 import {Container, Content, Header, Body, Icon } from 'native-base';
-import { createBottomTabNavigator, createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator, createDrawerNavigator, DrawerItems, DrawerActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Import all screens as classes
@@ -60,7 +60,12 @@ const CustomDrawerContentComponent = (props) => (
       </Body>
     </Header>
     <Content>
-      <DrawerItems {...props} />
+      <DrawerItems {...props}
+      onItemPress={(route, focused)=>{
+        console.log(route);
+        props.navigation.dispatch(DrawerActions.closeDrawer());
+        props.onItemPress(route);
+      }} />
     </Content>
   </Container>
 );
