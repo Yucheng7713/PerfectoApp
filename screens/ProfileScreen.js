@@ -1,9 +1,7 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image } from 'react-native';
-import { Icon, Button, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
-import { onSignOut } from "../src/auth";
-import { StackActions, NavigationActions } from 'react-navigation';
+import { Platform, Text, View, Image } from 'react-native';
+import { Icon, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
 
 export default class ProfileScreen extends Component<Props> {
   static navigationOptions = {
@@ -28,42 +26,9 @@ export default class ProfileScreen extends Component<Props> {
           alignItems: 'center',
           justifyContent: 'center'
         }}>
-          <Text style={styles.instructions}>User Profile Screen</Text>
-          <View style={styles.logoutButtonLayout}>
-            <Button style={ styles.logoutButtonStyle }
-              onPress={() => { onSignOut().then(() => {
-                this.props.navigation.dispatch(resetAction);
-              });
-            }}>
-              <Text style={{ color: 'white' }}>Logout</Text>
-            </Button>
-          </View>
+          <Text style={ { color: "#f5fcff" } }>User Profile Screen</Text>
         </Content>
       </Container>
     );
   }
 }
-
-const resetAction = StackActions.reset({
-  index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'SignedOut' })],
-});
-
-// Styling components
-const styles = StyleSheet.create({
-  instructions: {
-    color: "#f5fcff"
-  },
-  logoutButtonLayout: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 20
-  },
-  logoutButtonStyle: {
-    width: '33%',
-    backgroundColor: 'rgba(22, 22, 22, 0.3)',
-    justifyContent: 'center'
-  },
-});

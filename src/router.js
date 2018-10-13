@@ -1,9 +1,10 @@
 // Required components from React, React Navigation, and Native Base
 import React, {Component} from 'react';
-import { Platform, Image } from 'react-native';
-import {Container, Content, Header, Body, Icon } from 'native-base';
-import { createBottomTabNavigator, createStackNavigator, createDrawerNavigator, DrawerItems, DrawerActions } from 'react-navigation';
+import { Platform, Image, Text } from 'react-native';
+import {Container, Content, Header, Body, Icon, Footer, Button } from 'native-base';
+import { createBottomTabNavigator, createStackNavigator, createDrawerNavigator, DrawerItems, DrawerActions, StackActions, NavigationActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { onSignOut } from "./auth";
 
 // Import all screens as classes
 import CustomizeScreen from '../screens/CustomizeScreen';
@@ -64,8 +65,24 @@ const CustomDrawerContentComponent = (props) => (
         props.onItemPress(route);
       }} />
     </Content>
+    <Footer style={ { height: 150, backgroundColor: 'white' } }>
+      <Body style={ { justifyContent: 'center' } }>
+        <Button style={ { width: '33%',backgroundColor: 'rgba(22, 22, 22, 0.3)', justifyContent: 'center'} }
+          onPress={() => { onSignOut().then(() => {
+            props.navigation.dispatch(resetAction);
+          });
+        }}>
+          <Text style={{ color: 'white' }}>Logout</Text>
+        </Button>
+      </Body>
+    </Footer>
   </Container>
 );
+
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'SignedOut' })],
+});
 
 // Home page with drawer navgation menu
 export const DrawerMenuNavigation = createDrawerNavigator({
@@ -104,6 +121,7 @@ export const createRootNavigator = (signedIn = false) => {
       initialRouteName: signedIn ? "SignedIn" : "SignedOut",
       mode: 'modal',
       headerMode: 'none',
+      gesturesEnabled: false
     }
   );
 }

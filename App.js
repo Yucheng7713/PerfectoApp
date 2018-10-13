@@ -19,6 +19,7 @@ export default class App extends Component<Props> {
     	// do stuff while splash screen is shown
       // After having done stuff (such as async tasks) hide the splash screen
       SplashScreen.hide();
+      // Check if user has already signed in
       isSignedIn()
       .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
       .catch(err => alert("An error occurred"));
