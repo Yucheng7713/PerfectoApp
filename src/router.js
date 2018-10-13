@@ -13,7 +13,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import SignInScreen from '../screens/SignIn';
 import SignUpScreen from '../screens/SignUp';
 
-// Sign In/Up tab page
+// Sign In/Up tab navigation screen
 export const SignInTabNavigation = createBottomTabNavigator({
   SignIn: SignInScreen,
   SignUp: SignUpScreen
@@ -27,9 +27,6 @@ export const SignInTabNavigation = createBottomTabNavigator({
         } else if (routeName === 'SignUp') {
           iconName = `ios-person-add`;
         }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
         return <Ionicons name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
       },
       initialRouteName: 'SignIn',
@@ -93,8 +90,7 @@ export const DrawerMenuNavigation = createDrawerNavigator({
   drawerToggleRoute: 'DrawerToggle'
 });
 
-
-
+// Root navigator - for Home drawer screen and login / signin screen
 export const createRootNavigator = (signedIn = false) => {
   return createStackNavigator(
     {
