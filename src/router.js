@@ -58,7 +58,7 @@ export const OrderCoffeeNavigation = createStackNavigator({
   },
   KioskMap: {
     screen: FindKioskScreen,
-  }
+  },
 },{
   initialRouteName: 'Menu',
   mode: 'modal',
@@ -88,7 +88,7 @@ const CustomDrawerContentComponent = (props) => (
         <Button style={ { width: '33%',backgroundColor: 'rgba(22, 22, 22, 0.3)', justifyContent: 'center'} }
           onPress={() => { onSignOut().then(() => {
             props.navigation.dispatch(resetAction);
-            props.navigation.dispatch(logoutAction);
+            // props.navigation.dispatch(logoutAction);
           });
         }}>
           <Text style={{ color: 'white' }}>Logout</Text>
@@ -100,8 +100,9 @@ const CustomDrawerContentComponent = (props) => (
 
 const resetAction = StackActions.reset({
   index: 0,
+  key: null,
   actions: [
-    NavigationActions.navigate({ routeName: 'Menu' })
+    NavigationActions.navigate({ routeName: 'SignedOut' })
   ],
 });
 
