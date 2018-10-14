@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { Platform, Text, View, Image } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
 import { Icon, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
 
 export default class ProfileScreen extends Component<Props> {
@@ -24,11 +24,20 @@ export default class ProfileScreen extends Component<Props> {
         <Content contentContainerStyle={{
           flex: 1,
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          backgroundColor: '#27b465'
         }}>
-          <Text style={ { color: "#f5fcff" } }>User Profile Screen</Text>
+          <Text style={ styles.instructions }>User Profile Screen</Text>
         </Content>
       </Container>
     );
   }
 }
+
+// Styling components
+const styles = StyleSheet.create({
+  instructions: {
+    color: "#f5fcff",
+    fontSize: 20,
+  }
+});
