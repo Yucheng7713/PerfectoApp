@@ -9,6 +9,8 @@ import { onSignOut } from "./auth";
 // Import all screens as classes
 import CustomizeScreen from '../screens/CustomizeScreen';
 import RecipesScreen from '../screens/RecipesScreen';
+import OrderScreen from '../screens/OrderScreen';
+import FindKioskScreen from '../screens/FindKioskScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import SignInScreen from '../screens/SignIn';
@@ -47,6 +49,23 @@ export const SignInTabNavigation = createBottomTabNavigator({
     },
 });
 
+export const OrderCoffeeNavigation = createStackNavigator({
+  Menu: {
+    screen: OrderScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  KioskMap: {
+    screen: FindKioskScreen,
+  }
+},{
+  initialRouteName: 'Menu',
+  mode: 'modal',
+  headerMode: 'screen',
+  gesturesEnabled: false,
+});
+
 // Side Drawer Navigator Layout Customization
 const CustomDrawerContentComponent = (props) => (
   <Container>
@@ -60,7 +79,6 @@ const CustomDrawerContentComponent = (props) => (
     <Content>
       <DrawerItems {...props}
       onItemPress={(route, focused)=>{
-        console.log(route);
         props.navigation.dispatch(DrawerActions.closeDrawer());
         props.onItemPress(route);
       }} />
@@ -70,6 +88,7 @@ const CustomDrawerContentComponent = (props) => (
         <Button style={ { width: '33%',backgroundColor: 'rgba(22, 22, 22, 0.3)', justifyContent: 'center'} }
           onPress={() => { onSignOut().then(() => {
             props.navigation.dispatch(resetAction);
+            props.navigation.dispatch(logoutAction);
           });
         }}>
           <Text style={{ color: 'white' }}>Logout</Text>
@@ -81,22 +100,58 @@ const CustomDrawerContentComponent = (props) => (
 
 const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'SignedOut' })],
+  actions: [
+    NavigationActions.navigate({ routeName: 'Menu' })
+  ],
 });
+
+const logoutAction = NavigationActions.navigate({
+  routeName: 'SignedOut',
+  params: {}
+});
+
 
 // Home page with drawer navgation menu
 export const DrawerMenuNavigation = createDrawerNavigator({
   Customize: {
-    screen: CustomizeScreen
+    screen: CustomizeScreen,
+    navigationOptions: {
+      drawerIcon: (
+        <Image source={require("../assets/SideBarIcons/customize-icon.png")} style={{height: 24, width: 24}} />
+      )
+    }
   },
   Recipes: {
-    screen: RecipesScreen
+    screen: RecipesScreen,
+    navigationOptions: {
+      drawerIcon: (
+        <Image source={require("../assets/SideBarIcons/recipe-icon.png")} style={{height: 24, width: 24}} />
+      )
+    }
+  },
+  Order: {
+    screen: OrderCoffeeNavigation,
+    navigationOptions: {
+      drawerIcon: (
+        <Image source={require("../assets/SideBarIcons/order-icon.png")} style={{height: 24, width: 24}} />
+      )
+    }
   },
   Profile : {
-    screen: ProfileScreen
+    screen: ProfileScreen,
+    navigationOptions: {
+      drawerIcon: (
+        <Image source={require("../assets/SideBarIcons/profile-icon.png")} style={{height: 24, width: 24}} />
+      )
+    }
   },
   Settings : {
-    screen: SettingsScreen
+    screen: SettingsScreen,
+    navigationOptions: {
+      drawerIcon: (
+        <Image source={require("../assets/SideBarIcons/settings-icon.png")} style={{height: 24, width: 24}} />
+      )
+    }
   }
 },{
   initialRouteName: 'Customize',

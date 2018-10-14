@@ -36,6 +36,7 @@ export default class SettingsScreen extends Component<Props> {
 // Styling components
 const styles = StyleSheet.create({
   instructions: {
-    color: "#f5fcff"
+    color: "#f5fcff",
+    fontSize: 20,
   }
 });

@@ -4,11 +4,6 @@ import { Platform, StyleSheet, Text, View, Image } from 'react-native';
 import { Icon, Button, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
 
 export default class RecipesScreen extends Component<Props> {
-  static navigationOptions = {
-    drawerIcon: (
-      <Image source={require("../assets/SideBarIcons/recipe-icon.png")} style={{height: 24, width: 24}} />
-    )
-  }
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
@@ -36,6 +31,7 @@ export default class RecipesScreen extends Component<Props> {
 // Styling components
 const styles = StyleSheet.create({
   instructions: {
-    color: "#f5fcff"
+    color: "#f5fcff",
+    fontSize: 20,
   }
 });
