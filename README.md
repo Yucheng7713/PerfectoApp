@@ -51,20 +51,21 @@ react-native run-ios
 
   - If it is your first time to run the code, you might get an error indicating "CFBundleIdentifier not found", there are 
   several solutions available :
-  A. Setting Xcode
+  
+A. Setting Xcode
     1. Go to PerfectoApp -> ios -> PerfectoApp.xcodeproj.
     2. Go to File -> Project Settings -> Click Advanced...
     3. Select Custom -> Relative to Workspace.
     5. Change the Products path to "build/Build/Products", Intermidates path to "build/Build/Intermediates.noindex".
     6. Click Done -> Done.
-  B. Remove Node modules and re-install them :
+B. Remove Node modules and re-install them :
     1. Go to project's directory and run "rm -rf node_modules".
     2. Run "npm install".
-  C. Remove ios build and re-build it :
+C. Remove ios build and re-build it :
     1. Go to project's directory and run "rm -rf ios/build".
     2. Terminate your react packager which you run in Step 5.
     2. Run "react-native run-ios".
-  D. Upgrade React native ( Use with caution!!! )
+D. Upgrade React native ( Use with caution!!! )
     1. Go to project's directory and run "react-native upgrade".
     2. Note that several upgraded questions will pop up asking if you want to replace the given path,
        do not replace the files under ios or the configuration in native project will be overridded. 
