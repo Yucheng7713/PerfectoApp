@@ -1,7 +1,7 @@
-# PerfectoApp
+### PerfectoApp
 CSCI577a - Software Development - Team 05 - Perfecto Coffee
 
-##Prerequisites :
+## Prerequisites :
 - Follow the instructions in https://facebook.github.io/react-native/docs/getting-started.html, choose 
   "Building Projects with Native Code" then select your development OS and targeted OS.
 - It is recommended to set up a sample project as a warm-up practice to make sure your environment is operating seamlessly.
@@ -29,7 +29,7 @@ react-native link
 
 5. Navigate to the directory and run React native Metro Bundler( Default on port 8081 )
 Note : Re-run it when any new Node package is added.
-### - For Mac OS:
+# - For Mac OS:
 ```
 npm start
 ```
@@ -38,38 +38,41 @@ If it gets stuck at 75.6% while loading the dependencies ( after start running t
 react-native start --reset-cache
 ```
 
-### - For Windows:
+# - For Windows:
 ```
 ### Not filled yet ###
 ```
 
 6. Run the project with the command below: ( It may take couple minutes for the first execution. )
-### - For Mac OS:
+# - For Mac OS:
 ```
 react-native run-ios
 ```
 
-  - If it is your first time to run the code, you might get an error indicating "CFBundleIdentifier not found", there are 
+- If it is your first time to run the code, you might get an error indicating "CFBundleIdentifier not found", there are 
   several solutions available :
   
-A. Setting Xcode
+- Setting Xcode
     1. Go to PerfectoApp -> ios -> PerfectoApp.xcodeproj.
     2. Go to File -> Project Settings -> Click Advanced...
     3. Select Custom -> Relative to Workspace.
     5. Change the Products path to "build/Build/Products", Intermidates path to "build/Build/Intermediates.noindex".
     6. Click Done -> Done.
-B. Remove Node modules and re-install them :
+    
+- Remove Node modules and re-install them :
     1. Go to project's directory and run "rm -rf node_modules".
     2. Run "npm install".
-C. Remove ios build and re-build it :
+    
+- Remove ios build and re-build it :
     1. Go to project's directory and run "rm -rf ios/build".
     2. Terminate your react packager which you run in Step 5.
     2. Run "react-native run-ios".
-D. Upgrade React native ( Use with caution!!! )
+    
+- Upgrade React native ( Use with caution!!! )
     1. Go to project's directory and run "react-native upgrade".
     2. Note that several upgraded questions will pop up asking if you want to replace the given path,
        do not replace the files under ios or the configuration in native project will be overridded. 
-
+       
   - A trubleshooting doc is provided on React Native website : 
     - https://facebook.github.io/react-native/docs/troubleshooting#content
 
