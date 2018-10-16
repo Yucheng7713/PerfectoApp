@@ -1,4 +1,4 @@
-### PerfectoApp
+# PerfectoApp
 CSCI577a - Software Development - Team 05 - Perfecto Coffee
 
 ## Prerequisites :
@@ -29,7 +29,7 @@ react-native link
 
 5. Navigate to the directory and run React native Metro Bundler( Default on port 8081 )
 Note : Re-run it when any new Node package is added.
-# - For Mac OS:
+### - For Mac OS:
 ```
 npm start
 ```
@@ -38,13 +38,13 @@ If it gets stuck at 75.6% while loading the dependencies ( after start running t
 react-native start --reset-cache
 ```
 
-# - For Windows:
+### - For Windows:
 ```
 ### Not filled yet ###
 ```
 
 6. Run the project with the command below: ( It may take couple minutes for the first execution. )
-# - For Mac OS:
+### - For Mac OS:
 ```
 react-native run-ios
 ```
