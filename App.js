@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
       .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
       .catch(err => alert("An error occurred"));
   }
-
+  // Rendering root navigator and views
   render() {
     const { checkedSignIn, signedIn } = this.state;
     if(!checkedSignIn) {
