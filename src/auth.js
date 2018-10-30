@@ -3,11 +3,11 @@ import { LoginManager, AccessToken } from "react-native-fbsdk";
 
 export const LOGGED_IN = "loggedin-status";
 // Constantly stored local username and password
-export const STATIC_NAME = "yucheng8168";
+export const STATIC_USERID = "yucheng8168";
 export const STATIC_PASSWORD = "steven0824";
 
 export const onSignIn = (username, password) => {
-  if(username === STATIC_NAME && password === STATIC_PASSWORD) {
+  if(username === STATIC_USERID && password === STATIC_PASSWORD) {
     AsyncStorage.setItem(LOGGED_IN, 'true');
     return true;
   }
@@ -15,6 +15,7 @@ export const onSignIn = (username, password) => {
 }
 export const onSignOut = () => {
   LoginManager.logOut();
+  AsyncStorage.removeItem('USER_FB_INFO');
   return AsyncStorage.removeItem(LOGGED_IN);
 };
 
