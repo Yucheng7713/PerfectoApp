@@ -6,7 +6,7 @@ CSCI577a - Software Development - Team 05 - Perfecto Coffee
   choose "Building Projects with Native Code" then select your development OS and targeted OS.
 - It is recommended to set up a sample project as a warm-up practice to make sure your environment is operating seamlessly.
 - Download and install Facebook SDK and unzip it to ~/Documents/FacebookSDK.
-- Setting up Cocoapods for integrating Google Map API.
+- Install and set up Cocoapods for integrating Google Map API.
 
 ## Getting Started - For Mac OSX
 1. Click "fork" to get a fork of the original repository
@@ -39,45 +39,58 @@ If it a bundle error occurs, try the below command instead :
 react-native start --reset-cache
 ```
 
-6. Cd to /ios directory and install pod
-```
-pod install
-```
-Note: If pod install does not work, remove Podfile.lock.
-
-7. Open PerfectoApp.xcworkspace, Change the build directory :
+6. Open PerfectoApp.xcworkspace, Change the build directory :
     1. Go to PerfectoApp -> ios -> PerfectoApp.xcodeproj.
     2. Go to File -> Project Settings -> Click Advanced...
     3. Select Custom -> Relative to Workspace.
     4. Change the Products path to "build/Build/Products", Intermidates path to "build/Build/Intermediates.noindex".
     5. Click Done -> Done.
 
-8. Run the project with the command below: ( It may take couple minutes for the first execution. )
+7. Install the file ios_setup.js by executing the following command in a command prompt at your project's root folder.
+```
+curl -O https://raw.githubusercontent.com/facebook/react-native-fbsdk/master/bin/ios_setup.js
+```
+
+8. Install the plist package, the xcode package, and the adm-zip package, by executing the following command.
+```
+node ios_setup.js 273929963245701 PerfectoExpress
+```
+!! For those who hasn't joined the Facebook app but want to run the project, please ask for invitation.
+
+9. Cd to /ios directory and install pod
+!! Note: If pod install does not work, remove Podfile.lock.
+```
+pod install
+```
+
+10. Link the react native libraries again
+```
+react-native link
+```
+
+11. Build and run the project in PerfectoApp.xcworkspace: ( It may take couple minutes for the first execution. )
+!! You can either build and run the project in terminal, but it is recommend to build it with Xcode for first time in that way you are able to identify any possible error and solve it.
+For building the project in terminal, run the command below:
 ```
 react-native run-ios
 ```
+
 ## Troubleshooting
-- If it is your first time to run the code, you might get an error indicating "CFBundleIdentifier not found", there are
-  several solutions available :
 
-  1.Remove Node modules and re-install them :
-      1. Go to project's directory and run "rm -rf node_modules".
-      2. Run "npm install".
+- If you get any error related to "SplashScreen", this is probably because you miss the library in your xcworkspace
 
-  2.Remove ios build and re-build it :
-      1. Go to project's directory and run "rm -rf ios/build".
-      2. Terminate your react packager which you run in Step 5.
-      3. Run "react-native run-ios".
+      1. Right click the folder "Libraries" -> Choose Add File to "PerfectoApp"...
+      
+      2. Go to node_modules -> react-native-splashscreen -> ios -> Select SplashScreen.xcodeproj
+      
+      3. Go to project overview of PerfectoApp -> Under "Targets" select "PerfectoApp"
+      
+      4. Choose "General" -> "Linked Frameworks and Libraries" -> Add "libSplashScreen.a"
 
-  3.Upgrade React native ( Use with caution!!! )
-      1. Go to project's directory and run "react-native upgrade".
-      2. Note that several upgraded questions will pop up asking if you want to replace the given path,
-         do not replace the files under ios or the configuration in native project will be overridded.
-         
 - If you confront "GoogleMapsBase not found on xCode"
   
-  1. In PerfectoApp.xcworkspace, Click on project -> Click on target PerfectoApp -> Build Settings -> Framework Search Paths 
-     -> Add $(SRCROOT)/Pods -> set it to recursive by clicking selector on the right.
+      1. In PerfectoApp.xcworkspace, Click on project -> Click on target PerfectoApp -> Build Settings -> Framework Search
+         Paths -> Add $(SRCROOT)/Pods -> set it to recursive by clicking selector on the right.
 
 - A trubleshooting doc is provided on React Native website : https://facebook.github.io/react-native/docs/troubleshooting#content
 
