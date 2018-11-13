@@ -1,0 +1,36 @@
+dependencies: \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTBaseTextInputView.m \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTBaseTextInputView.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTView.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputDelegate.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputViewProtocol.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAccessibilityManager.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUIManager.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTViewManager.h \
+  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTInputAccessoryView.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTInputAccessoryViewContent.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/RCTTextAttributes.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/RCTTextTransform.h \
+  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/Text/TextInput/RCTTextSelection.h
