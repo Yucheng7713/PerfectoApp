@@ -16,11 +16,6 @@ import SettingsScreen from './DrawerScreens/SettingsScreen';
 const CustomDrawerContentComponent = (props) => (
   <Container>
     <Header style={ customDrawerStyles.sectionBackground }>
-      <Body>
-        <Image
-        style={ customDrawerStyles.profileStyle }
-        source={ require("../assets/Profile/default-profile.png") } />
-      </Body>
     </Header>
     <Content>
       <DrawerItems { ...props }
@@ -46,7 +41,7 @@ const CustomDrawerContentComponent = (props) => (
 // Side Drawer Navigator Layout Styling
 const customDrawerStyles = StyleSheet.create({
   sectionBackground: {
-    height: 150,
+    height: 50,
     backgroundColor: 'white'
   },
   profileStyle: {

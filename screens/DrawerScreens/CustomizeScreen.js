@@ -1,10 +1,48 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Icon, Container, Header, Content, Left, Right, Body, Title } from 'native-base';
+import { createStackNavigator } from 'react-navigation';
+import { Root, Icon, Container, Header, Content, Left, Right, Body, Title } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+
+import BaseScreen from './Customizing/BaseFlavors';
+import MilkScreen from './Customizing/MilkPreference';
+import ExtraScreen from './Customizing/ExtraAdd';
+//import ReviewScreen from './Customizing/Review';
+
+export const CustomizeStespNavigation = createStackNavigator({
+  BaseFlavor: {
+    screen: BaseScreen,
+    navigationOptions: {
+      gesturesEnabled: false,
+    }
+  },
+  Milk: {
+    screen: MilkScreen,
+    navigationOptions: {
+      gesturesEnabled: false,
+    }
+  },
+  Extra: {
+    screen: ExtraScreen,
+    navigationOptions: {
+      gesturesEnabled: false,
+    }
+  }
+},{
+  initialRouteName: 'BaseFlavor',
+  mode: 'card',
+  headerMode: 'none'
+});
 
 // Component configuration for customize screen -> layout, state...
 export default class CustomizeScreen extends Component<Props> {
+  static router = CustomizeStespNavigation.router;
+
+  componentDidMount() {
+
+  }
+
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
@@ -16,9 +54,9 @@ export default class CustomizeScreen extends Component<Props> {
           <Body><Title style={ styles.titleStyle }>Customization</Title></Body>
           <Right></Right>
         </Header>
-        <Content contentContainerStyle={ styles.containerStyle }>
-          <Text style={ styles.instructions }>Customize Screen</Text>
-        </Content>
+        <Root>
+          <CustomizeStespNavigation navigation={this.props.navigation}/>
+        </Root>
       </Container>
     );
   }
@@ -26,10 +64,6 @@ export default class CustomizeScreen extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
-  instructions: {
-    color: "#f5fcff",
-    fontSize: 20,
-  },
   titleStyle: {
     width: 150
   },

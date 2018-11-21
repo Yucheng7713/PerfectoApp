@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
   inputField: {
     paddingRight: 20,
     paddingTop: 20
-
   },
   loginButtonLayout: {
     flex: 1,

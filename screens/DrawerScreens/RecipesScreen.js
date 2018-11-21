@@ -1,42 +1,41 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { Icon, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import { Root, Icon, Button, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
 
-// Component configuration for recipe screen -> layout, state data
+import ListView from './RecipeInventory/ListScreen';
+import DetailView from './RecipeInventory/DetailScreen';
+
+export const RecipeInventoryNavigation = createStackNavigator({
+  RecipeList: {
+    screen: ListView,
+  },
+  RecipeDetail: {
+    screen: DetailView,
+  }
+},{
+  initialRouteName: 'RecipeList',
+  headerMode: 'none',
+});
+
 export default class RecipesScreen extends Component<Props> {
+  static router = RecipeInventoryNavigation.router;
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
       <Container>
         <Header>
           <Left>
-            <Icon name='ios-menu' onPress={() => { this.props.navigation.openDrawer(); } }/>
+            <Icon name='ios-menu' onPress={() => {this.props.navigation.openDrawer(); } }/>
           </Left>
-          <Body><Title style={ styles.titleStyle }>Recipes</Title></Body>
+          <Body><Title style={{width: 150}}>Recipes</Title></Body>
           <Right></Right>
         </Header>
-        <Content contentContainerStyle={ styles.containerStyle }>
-          <Text style={ styles.instructions }>Recipes Screen</Text>
-        </Content>
+        <Root>
+          <RecipeInventoryNavigation navigation={this.props.navigation}/>
+        </Root>
       </Container>
     );
   }
 }
-
-// Styling components
-const styles = StyleSheet.create({
-  instructions: {
-    color: "#f5fcff",
-    fontSize: 20,
-  },
-  titleStyle: {
-    width: 150
-  },
-  containerStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fdba2b'
-  }
-});

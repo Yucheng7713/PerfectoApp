@@ -9,6 +9,10 @@ export const STATIC_PASSWORD = "steven0824";
 export const onSignIn = (username, password) => {
   if(username === STATIC_USERID && password === STATIC_PASSWORD) {
     AsyncStorage.setItem(LOGGED_IN, 'true');
+    // Store recipes locally
+    AsyncStorage.setItem("Recipes",JSON.stringify({
+      'customList': []
+    }));
     return true;
   }
   return false;
@@ -16,6 +20,8 @@ export const onSignIn = (username, password) => {
 export const onSignOut = () => {
   LoginManager.logOut();
   AsyncStorage.removeItem('USER_FB_INFO');
+  // Store recipes locally
+  AsyncStorage.removeItem('Recipes');
   return AsyncStorage.removeItem(LOGGED_IN);
 };
 

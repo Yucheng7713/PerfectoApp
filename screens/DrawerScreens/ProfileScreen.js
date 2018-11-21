@@ -18,7 +18,7 @@ export default class ProfileScreen extends Component<Props> {
     AsyncStorage.getItem('USER_FB_INFO', (error,value) => {
         if (!error) { //If there are no errors
             //handle result
-            console.log(value);
+            // console.log(value);
             if (value !== null) {
               var json = JSON.parse(value);
               this.setState({
