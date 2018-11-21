@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/detail/MallocImpl.cpp \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/detail/Malloc.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/Portability.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/portability/Config.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/CPortability.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/detail/MallocImpl.cpp \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/detail/Malloc.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/Portability.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/portability/Config.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/third-party/folly-2016.10.31.00/folly/CPortability.h

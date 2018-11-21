@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/jschelpers/systemJSCWrapper.cpp \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/jschelpers/JSCWrapper.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/jschelpers/systemJSCWrapper.cpp \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/jschelpers/JSCWrapper.h

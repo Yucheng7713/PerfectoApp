@@ -6,16 +6,16 @@
 	<integer>9</integer>
 	<key>logs</key>
 	<dict>
-		<key>B496E0C4-75DF-40A3-B043-2BEAC4DF80FE</key>
+		<key>1F003784-02FD-43EF-BD77-A4B15F8584C7</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
 			<key>documentTypeString</key>
 			<string>&lt;nil&gt;</string>
 			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
 			<key>fileName</key>
-			<string>B496E0C4-75DF-40A3-B043-2BEAC4DF80FE.xcactivitylog</string>
+			<string>1F003784-02FD-43EF-BD77-A4B15F8584C7.xcactivitylog</string>
 			<key>highLevelStatus</key>
 			<string>W</string>
 			<key>schemeIdentifier-containerName</key>
@@ -27,13 +27,42 @@
 			<key>signature</key>
 			<string>Building workspace PerfectoApp with scheme PerfectoApp and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>563758191.07284296</real>
+			<real>564451350.03052402</real>
 			<key>timeStoppedRecording</key>
-			<real>563758232.13198602</real>
+			<real>564451353.37258101</real>
 			<key>title</key>
 			<string>Building workspace PerfectoApp with scheme PerfectoApp and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>B496E0C4-75DF-40A3-B043-2BEAC4DF80FE</string>
+			<string>1F003784-02FD-43EF-BD77-A4B15F8584C7</string>
+		</dict>
+		<key>B6797393-E7B3-49DF-961E-F4BB8862D969</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>B6797393-E7B3-49DF-961E-F4BB8862D969.xcactivitylog</string>
+			<key>highLevelStatus</key>
+			<string>W</string>
+			<key>schemeIdentifier-containerName</key>
+			<string>PerfectoApp project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>PerfectoApp</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace PerfectoApp with scheme PerfectoApp and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>564451408.65236294</real>
+			<key>timeStoppedRecording</key>
+			<real>564451411.73067105</real>
+			<key>title</key>
+			<string>Building workspace PerfectoApp with scheme PerfectoApp and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>B6797393-E7B3-49DF-961E-F4BB8862D969</string>
 		</dict>
 	</dict>
 </dict>

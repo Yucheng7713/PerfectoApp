@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.cpp \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.cpp \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.h

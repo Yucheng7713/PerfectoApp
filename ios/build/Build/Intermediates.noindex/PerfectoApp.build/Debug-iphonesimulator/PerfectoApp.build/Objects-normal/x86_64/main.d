@@ -1,2 +1,2 @@
-dependencies: /Users/housenshuutome/PerfectoApp/ios/PerfectoApp/main.m \
-  /Users/housenshuutome/PerfectoApp/ios/PerfectoApp/AppDelegate.h
+dependencies: /Users/yuch/Desktop/PerfectoApp/ios/PerfectoApp/main.m \
+  /Users/yuch/Desktop/PerfectoApp/ios/PerfectoApp/AppDelegate.h

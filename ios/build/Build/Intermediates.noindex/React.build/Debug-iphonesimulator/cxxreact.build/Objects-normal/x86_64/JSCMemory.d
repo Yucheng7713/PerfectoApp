@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/JSCMemory.cpp \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/JSCMemory.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/JSCMemory.cpp \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/JSCMemory.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h

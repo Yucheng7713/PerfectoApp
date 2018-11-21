@@ -1,20 +1,20 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTFrameAnimation.m \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTFrameAnimation.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTAnimationDriver.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
-  /Users/housenshuutome/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/RCTAnimationUtils.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTFrameAnimation.m \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTFrameAnimation.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTAnimationDriver.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/yuch/Desktop/PerfectoApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/RCTAnimationUtils.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h

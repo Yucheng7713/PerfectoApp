@@ -1,4 +1,4 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/ios/Pods/Folly/folly/Unicode.cpp \
-  /Users/housenshuutome/PerfectoApp/ios/Pods/Target\ Support\ Files/Folly/Folly-prefix.pch \
-  /Users/housenshuutome/PerfectoApp/ios/Pods/Folly/folly/Unicode.h
+  /Users/yuch/Desktop/PerfectoApp/ios/Pods/Folly/folly/Unicode.cpp \
+  /Users/yuch/Desktop/PerfectoApp/ios/Pods/Target\ Support\ Files/Folly/Folly-prefix.pch \
+  /Users/yuch/Desktop/PerfectoApp/ios/Pods/Folly/folly/Unicode.h

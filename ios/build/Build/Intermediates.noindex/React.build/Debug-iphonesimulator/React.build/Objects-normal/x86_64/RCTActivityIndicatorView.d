@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/React/Views/RCTActivityIndicatorView.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/React/Views/RCTActivityIndicatorView.h

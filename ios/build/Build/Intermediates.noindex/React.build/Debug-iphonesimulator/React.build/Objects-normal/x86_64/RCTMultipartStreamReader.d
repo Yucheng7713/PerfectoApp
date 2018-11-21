@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/React/Base/RCTMultipartStreamReader.m \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/React/Base/RCTMultipartStreamReader.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/React/Base/RCTMultipartStreamReader.m \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/React/Base/RCTMultipartStreamReader.h

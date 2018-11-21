@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/ReactMarker.cpp \
-  /Users/housenshuutome/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/ReactMarker.h
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/ReactMarker.cpp \
+  /Users/yuch/Desktop/PerfectoApp/node_modules/react-native/ReactCommon/cxxreact/ReactMarker.h
