@@ -355,7 +355,11 @@ export default class PreferenceScreen extends Component<Props> {
             </List>
           </Card>
         </Content>
-        <View style={{ flexDirection: "row", justifyContent: 'center', width: '100%', paddingBottom: 10}}>
+        <View style={{
+          flexDirection: "row",
+          justifyContent: 'center',
+          width: '100%',
+          paddingBottom: 30}}>
             <Button
               style={{ justifyContent: 'center', width: '50%', backgroundColor: 'rgba(22, 22, 22, 0.3)'}}
               onPress={ () => { this.onPress }}>
@@ -364,18 +368,11 @@ export default class PreferenceScreen extends Component<Props> {
             <Button
               style={{ justifyContent: 'center', width: '50%', backgroundColor: '#3a7aff'}}
               onPress={ () => {
-                this.saveRecipe(); 
+                this.saveRecipe();
               } }>
               <Text style={{ color: '#ffffff'}}>Order</Text>
             </Button>
         </View>
-        <TouchableOpacity onPress={ () => { this.onPress }}>
-          <Footer style={ styles.bottomTabStyle }>
-              <Body style={ styles.bottomTabBodyStyle }>
-                <Title>Choose a pick up location</Title>
-              </Body>
-          </Footer>
-        </TouchableOpacity>
       </Container>
     );
   }

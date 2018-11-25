@@ -79,7 +79,7 @@ export const DrawerMenuNavigation = createDrawerNavigator({
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/customize-icon.png")} style={{height: 24, width: 24}} />
       ),
-      title: "Home"
+      title: "Home",
     }
   },
   Recipes: {
@@ -97,7 +97,7 @@ export const DrawerMenuNavigation = createDrawerNavigator({
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/order-icon.png")} style={{height: 24, width: 24}} />
       ),
-      title: "Order History"
+      title: "Place Order"
     }
   },
   Profile : {
@@ -124,7 +124,7 @@ export const DrawerMenuNavigation = createDrawerNavigator({
   drawerPosition: 'left',
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
-  drawerToggleRoute: 'DrawerToggle'
+  drawerToggleRoute: 'DrawerToggle',
 });
 
 // Main export component

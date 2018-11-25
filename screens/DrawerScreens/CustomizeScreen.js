@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Root, Icon, Container, Header, Content, Left, Right, Body, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -59,6 +59,7 @@ export const CustomizeStespNavigation = createStackNavigator({
 
 // Component configuration for customize screen -> layout, state...
 export default class CustomizeScreen extends Component<Props> {
+  
   static router = CustomizeStespNavigation.router;
 
   componentDidMount() {
