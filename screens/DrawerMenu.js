@@ -78,7 +78,8 @@ export const DrawerMenuNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/customize-icon.png")} style={{height: 24, width: 24}} />
-      )
+      ),
+      title: "Home"
     }
   },
   Recipes: {
@@ -86,7 +87,8 @@ export const DrawerMenuNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/recipe-icon.png")} style={{height: 24, width: 24}} />
-      )
+      ),
+      title: "My Recipes"
     }
   },
   Order: {
@@ -94,7 +96,8 @@ export const DrawerMenuNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/order-icon.png")} style={{height: 24, width: 24}} />
-      )
+      ),
+      title: "Order History"
     }
   },
   Profile : {
@@ -102,7 +105,8 @@ export const DrawerMenuNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/profile-icon.png")} style={{height: 24, width: 24}} />
-      )
+      ),
+      title: "Profile"
     }
   },
   Settings : {
@@ -110,7 +114,8 @@ export const DrawerMenuNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/settings-icon.png")} style={{height: 24, width: 24}} />
-      )
+      ),
+      title: "Settings"
     }
   }
 },{

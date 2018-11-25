@@ -3,68 +3,6 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Text, TouchableOpacity, Image, FlatList, AsyncStorage} from 'react-native';
 import { Icon, Container, Header, Footer, Content, Left, Right, Body, Title, List, ListItem } from 'native-base';
 
-export const base_JSON = [
-  {
-    "Title": "Caffe Americano",
-    "IMG_path": "americano_1"
-  },
-  {
-    "Title": "Blonde Roast",
-    "IMG_path": "americano_2"
-  },
-  {
-    "Title": "Dark Roast",
-    "IMG_path": "americano_3"
-  },
-  {
-    "Title": "Special Roast",
-    "IMG_path": "americano_4"
-  },
-  {
-    "Title": "Vanilla Latte",
-    "IMG_path": "latte_1"
-  },
-  {
-    "Title": "Caramel Latte",
-    "IMG_path": "latte_2"
-  },
-  {
-    "Title": "Mocha Latte",
-    "IMG_path": "latte_3"
-  },
-  {
-    "Title": "Flat White",
-    "IMG_path": "latte_4"
-  },
-  {
-    "Title": "Cinnamon Latte",
-    "IMG_path": "latte_5"
-  },
-  {
-    "Title": "Signature Latte",
-    "IMG_path": "latte_6"
-  },
-  {
-    "Title": "Vanilla Cappuccino",
-    "IMG_path": "cappuccino_1"
-  },
-  {
-    "Title": "Caramel Cappuccino",
-    "IMG_path": "cappuccino_2"
-  },
-  {
-    "Title": "Cinnamon Cappuccino",
-    "IMG_path": "cappuccino_3"
-  },
-  {
-    "Title": "Dark Mocha",
-    "IMG_path": "mocha_1"
-  },
-  {
-    "Title": "Blonde Mocha",
-    "IMG_path": "mocha_2"
-  }
-];
 
 // Component configuration for ordering screen -> layout, state...
 export default class OrderList extends Component<Props> {
@@ -109,7 +47,7 @@ export default class OrderList extends Component<Props> {
           <Left>
             <Icon name='ios-menu' onPress={ () => { this.props.navigation.openDrawer(); } }/>
           </Left>
-          <Body><Title style={ styles.titleStyle }>Order page</Title></Body>
+          <Body><Title style={ styles.titleStyle }>Order History</Title></Body>
           <Right></Right>
         </Header>
         <ScrollView>

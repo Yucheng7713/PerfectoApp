@@ -40,7 +40,7 @@ export default class ListScreen extends Component<Props> {
             <ListItem
             style={{flexDirection: 'row'}}
             button
-            onPress={() => this.goToDetial(item)}>
+            onPress={() => this.onPress }>
               <Image style={{ width: 40, height: 40, borderRadius: 20 }} source={ {uri : item.img } } />
               <Title>   { item.name }</Title>
               <Left></Left>

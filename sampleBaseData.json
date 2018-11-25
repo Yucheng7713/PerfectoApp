@@ -1,0 +1,215 @@
+{
+  baseFlavors: ["Americano", "Latte", "Cappuccino", "Mocha"],
+  bases: {
+    "Americano" : [
+      {
+        "Title": "Caffe Americano",
+        "IMG_path": "americano_1",
+        "Milk": null,
+        "Flavors": []
+      },
+      {
+        "Title": "Blonde Roast",
+        "IMG_path": "americano_2",
+        "Milk": null,
+        "Flavors": []
+      },
+      {
+        "Title": "Dark Roast",
+        "IMG_path": "americano_3",
+        "Milk": null,
+        "Flavors": []
+      },
+      {
+        "Title": "Special Roast",
+        "IMG_path": "americano_4",
+        "Milk": null,
+        "Flavors": []
+      }
+    ],
+    "Latte": [
+      {
+        "Title": "Vanilla Latte",
+        "IMG_path": "latte_1",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 1,
+          "Temp": "Steamed",
+          "Cream": 0.5
+        },
+        "Flavors": [
+          {
+            "name": "Caramel",
+            "value": 1
+          },
+          {
+            "name": "Vanilla",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "Title": "Caramel Latte",
+        "IMG_path": "latte_2",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 1,
+          "Temp": "Steamed",
+          "Cream": 1
+        },
+        "Flavors": [
+          {
+            "name": "Caramel",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "Title": "Mocha Latte",
+        "IMG_path": "latte_3",
+        "Milk": {
+          "Type" : "Skim",
+          "Portion" : 0.5,
+          "Temp": "Extra Hot",
+          "Cream": 1
+        },
+        "Flavors": [
+          {
+            "name": "Chocolate",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "Title": "Flat White",
+        "IMG_path": "latte_4",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 1,
+          "Temp": "Steamed",
+          "Cream": 0.5
+        },
+        "Flavors": []
+      },
+      {
+        "Title": "Cinnamon Latte",
+        "IMG_path": "latte_5",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 0.5,
+          "Temp": "Steamed",
+          "Cream": 1
+        },
+        "Flavors": [
+          {
+            "name": "Caramel",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "Title": "Signature Latte",
+        "IMG_path": "latte_6",
+        "Milk": {
+          "Type" : "Soy",
+          "Portion" : 1,
+          "Temp": "Warm",
+          "Cream": 0.5
+        },
+        "Flavors": []
+      }
+    ],
+    "Cappuccino": [
+      {
+        "Title": "Vanilla Cappuccino",
+        "IMG_path": "cappuccino_1",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 2,
+          "Temp": "Steamed",
+          "Cream": 2
+        },
+        "Flavors": [
+          {
+            "name": "Vanilla",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "Title": "Caramel Cappuccino",
+        "IMG_path": "cappuccino_2",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 2,
+          "Temp": "Steamed",
+          "Cream": 2
+        },
+        "Flavors": [
+          {
+            "name": "Caramel",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "Title": "Cinnamon Cappuccino",
+        "IMG_path": "cappuccino_3",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 2,
+          "Temp": "Steamed",
+          "Cream": 2
+        },
+        "Flavors": [
+          {
+            "name": "Caramel",
+            "value": 1
+          },
+          {
+            "name": "Chocolate",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "Mocha": [
+      {
+        "Title": "Dark Mocha",
+        "IMG_path": "mocha_1",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 1,
+          "Temp": "Warm",
+          "Cream": 1
+        },
+        "Flavors": [
+          {
+            "name": "Chocolate",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "Title": "Blonde Mocha",
+        "IMG_path": "mocha_2",
+        "Milk": {
+          "Type" : "Whole",
+          "Portion" : 2,
+          "Temp": "Warm",
+          "Cream": 1
+        },
+        "Flavors": [
+          {
+            "name": "Chocolate",
+            "value": 3
+          },
+          {
+            "name": "Vanilla",
+            "value": 2
+          },
+        ]
+      }
+    ]
+  }
+};

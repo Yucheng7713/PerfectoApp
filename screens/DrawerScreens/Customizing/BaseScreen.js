@@ -4,91 +4,21 @@ import { StyleSheet, Text, ScrollView, Image, TouchableOpacity } from 'react-nat
 import { Icon, Button, Container, Header, Content, Body, Title, Left, Right, Tab, Tabs, ScrollableTab } from 'native-base'
 import { Col, Row, Grid } from 'react-native-easy-grid';
 // Mocked Base Flavors JSON object
-export const Test_Base_JSON = {
-  baseFlavors: ["Americano", "Latte", "Cappuccino", "Mocha"],
-  bases: {
-    "Americano" : [
-      {
-        "Title": "Caffe Americano",
-        "IMG_path": "americano_1"
-      },
-      {
-        "Title": "Blonde Roast",
-        "IMG_path": "americano_2"
-      },
-      {
-        "Title": "Dark Roast",
-        "IMG_path": "americano_3"
-      },
-      {
-        "Title": "Special Roast",
-        "IMG_path": "americano_4"
-      }
-    ],
-    "Latte": [
-      {
-        "Title": "Vanilla Latte",
-        "IMG_path": "latte_1"
-      },
-      {
-        "Title": "Caramel Latte",
-        "IMG_path": "latte_2"
-      },
-      {
-        "Title": "Mocha Latte",
-        "IMG_path": "latte_3"
-      },
-      {
-        "Title": "Flat White",
-        "IMG_path": "latte_4"
-      },
-      {
-        "Title": "Cinnamon Latte",
-        "IMG_path": "latte_5"
-      },
-      {
-        "Title": "Signature Latte",
-        "IMG_path": "latte_6"
-      }
-    ],
-    "Cappuccino": [
-      {
-        "Title": "Vanilla Cappuccino",
-        "IMG_path": "cappuccino_1"
-      },
-      {
-        "Title": "Caramel Cappuccino",
-        "IMG_path": "cappuccino_2"
-      },
-      {
-        "Title": "Cinnamon Cappuccino",
-        "IMG_path": "cappuccino_3"
-      }
-    ],
-    "Mocha": [
-      {
-        "Title": "Dark Mocha",
-        "IMG_path": "mocha_1"
-      },
-      {
-        "Title": "Blonde Mocha",
-        "IMG_path": "mocha_2"
-      }
-    ]
-  }
-};
+var mockupData = require("../../../sampleBaseData.json");
 
 // Component configuration for customize screen -> layout, state...
-export default class BaseFlavors extends Component<Props> {
+export default class BaseScreen extends Component<Props> {
   // Props initialization
   constructor(props) {
     super(props);
     this.state = {
-      bases: Test_Base_JSON['baseFlavors'],
-      base_json: Test_Base_JSON['bases'],
+      bases: mockupData['baseFlavors'],
+      base_json: mockupData['bases'],
       chosen_base: {
         name: "",
-        img: ""
+        img: "",
+        milk: null,
+        flavors: null,
       }
     }
   }
@@ -97,7 +27,9 @@ export default class BaseFlavors extends Component<Props> {
   chooseBase = (coffeebase) => {
     this.state.chosen_base.name = coffeebase['Title'];
     this.state.chosen_base.img = coffeebase['IMG_path'];
-    this.props.navigation.navigate("Milk", {
+    this.state.chosen_base.milk = coffeebase['Milk'];
+    this.state.chosen_base.flavors = coffeebase['Flavors'];
+    this.props.navigation.navigate('Preference', {
       baseOptions: this.state.chosen_base
     });
   }
@@ -159,6 +91,13 @@ export default class BaseFlavors extends Component<Props> {
     }
     return (
       <Container>
+        <Header>
+          <Left>
+            <Icon name='ios-menu' onPress={ () => { this.props.navigation.openDrawer(); } }/>
+          </Left>
+          <Body><Title style={ styles.titleStyle }>PerfectoCafe</Title></Body>
+          <Right></Right>
+        </Header>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
           { baseGenres }
         </Tabs>
@@ -169,6 +108,15 @@ export default class BaseFlavors extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
+  titleStyle: {
+    width: 150
+  },
+  containerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#4f6d7a'
+  },
   columnStyle: {
     flex: 1,
     alignItems: "center"
@@ -180,6 +128,6 @@ const styles = StyleSheet.create({
   },
   baseTextStyle: {
     paddingTop: 10,
-    paddingBottom: 60,
+    paddingBottom: 40,
   }
 });

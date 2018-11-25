@@ -5,22 +5,42 @@ import { createStackNavigator } from 'react-navigation';
 import { Root, Icon, Container, Header, Content, Left, Right, Body, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
-import BaseScreen from './Customizing/BaseFlavors';
-import MilkScreen from './Customizing/MilkPreference';
-import ExtraScreen from './Customizing/ExtraAdd';
-//import ReviewScreen from './Customizing/Review';
+import BaseScreen from './Customizing/BaseScreen';
+import PreferenceScreen from './Customizing/PreferenceScreen';
+import MilkScreen from './Customizing/MilkScreen';
+import FlavorScreen from './Customizing/FlavorScreen';
+import SugarScreen from './Customizing/SugarScreen';
+import ExtraScreen from './Customizing/ExtraScreen';
 
 export const CustomizeStespNavigation = createStackNavigator({
-  BaseFlavor: {
+  BaseCoffee: {
     screen: BaseScreen,
     navigationOptions: {
-      gesturesEnabled: false,
+      header: null,
     }
   },
-  Milk: {
+  Preference: {
+    screen: PreferenceScreen,
+    navigationOptions: {
+      gesturesEnabled: false
+    }
+  },
+  Milk : {
     screen: MilkScreen,
     navigationOptions: {
-      gesturesEnabled: false,
+      gesturesEnabled: false
+    }
+  },
+  Flavor : {
+    screen: FlavorScreen,
+    navigationOptions: {
+      gesturesEnabled: false
+    }
+  },
+  Sugar : {
+    screen: SugarScreen,
+    navigationOptions: {
+      gesturesEnabled: false
     }
   },
   Extra: {
@@ -28,11 +48,13 @@ export const CustomizeStespNavigation = createStackNavigator({
     navigationOptions: {
       gesturesEnabled: false,
     }
-  }
+  },
 },{
-  initialRouteName: 'BaseFlavor',
+  initialRouteName: 'BaseCoffee',
   mode: 'card',
-  headerMode: 'none'
+  headerMode: 'float',
+  headerBackTitle: null,
+  gesturesEnabled: false,
 });
 
 // Component configuration for customize screen -> layout, state...
@@ -42,18 +64,10 @@ export default class CustomizeScreen extends Component<Props> {
   componentDidMount() {
 
   }
-
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Icon name='ios-menu' onPress={ () => { this.props.navigation.openDrawer(); } }/>
-          </Left>
-          <Body><Title style={ styles.titleStyle }>Customization</Title></Body>
-          <Right></Right>
-        </Header>
         <Root>
           <CustomizeStespNavigation navigation={this.props.navigation}/>
         </Root>
@@ -64,9 +78,6 @@ export default class CustomizeScreen extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
-  titleStyle: {
-    width: 150
-  },
   containerStyle: {
     flex: 1,
     alignItems: 'center',
