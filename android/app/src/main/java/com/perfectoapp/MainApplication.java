@@ -1,7 +1,8 @@
 package com.perfectoapp;
 
 import android.app.Application;
-
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 import com.facebook.react.ReactApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -15,7 +16,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
 
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
+  
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -28,7 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new MapsPackage(),
             new SplashScreenReactPackage(),
-            new FBSDKPackage()
+            new FBSDKPackage(mCallbackManager)
       );
     }
 

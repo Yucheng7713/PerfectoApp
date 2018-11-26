@@ -10,6 +10,14 @@
       android:icon="@mipmap/ic_launcher"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <!-- WARNING: This is an iOS Google Maps API key 'value'; will need to be replaced with an Android key to work properly -->
+      <meta-data 
+         android:name="com.google.android.geo.API_KEY" 
+         android:value="AIzaSyC0I93h-cUUav-cATqMQ4G1mPuEAuYjx14"/>
+      <meta-data 
+         android:name="com.facebook.sdk.ApplicationId" 
+         android:value="@string/facebook_app_id"/>
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
