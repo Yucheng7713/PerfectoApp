@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image, FlatList, AsyncStorage } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, FlatList, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Icon, Button, Container, Header, Content, Body, Title, Left, Right, List, ListItem } from 'native-base';
 
 export default class ListScreen extends Component<Props> {
@@ -12,6 +12,7 @@ export default class ListScreen extends Component<Props> {
   }
 
   componentDidMount() {
+    // Retrieve user customized reciped list
     AsyncStorage.getItem("Recipes", (error,res) => {
           if (!error) {
               //handle result
@@ -23,6 +24,7 @@ export default class ListScreen extends Component<Props> {
     });
   }
 
+  // Navigate to the detail of the chosen recipe
   goToDetial = (recipeDetial) => {
     this.props.navigation.navigate("RecipeDetail", {
       detailInfo: recipeDetial
@@ -33,6 +35,18 @@ export default class ListScreen extends Component<Props> {
   render() {
     return (
       <Container>
+          <Header>
+            <Left>
+              <TouchableOpacity
+              style={{ paddingLeft: 10 }}
+              onPress={ () => { this.props.navigation.openDrawer(); } }>
+                <Image
+                source={require('../../../assets/SideBarIcons/home-icon.png')} />
+              </TouchableOpacity>
+            </Left>
+            <Body><Title style={{width: 150}}>My Recipes</Title></Body>
+            <Right></Right>
+          </Header>
           <FlatList
           data={ this.state.data }
           keyExtractor={item => item.base }
@@ -40,7 +54,7 @@ export default class ListScreen extends Component<Props> {
             <ListItem
             style={{flexDirection: 'row'}}
             button
-            onPress={() => this.onPress }>
+            onPress={() => this.goToDetial(item) }>
               <Image style={{ width: 40, height: 40, borderRadius: 20 }} source={ {uri : item.img } } />
               <Title>   { item.name }</Title>
               <Left></Left>

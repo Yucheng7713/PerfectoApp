@@ -93,9 +93,14 @@ export default class BaseScreen extends Component<Props> {
       <Container>
         <Header>
           <Left>
-            <Icon name='ios-menu' onPress={ () => { this.props.navigation.openDrawer(); } }/>
+            <TouchableOpacity
+            style={{ paddingLeft: 10 }}
+            onPress={ () => { this.props.navigation.openDrawer(); } }>
+              <Image
+              source={require('../../../assets/SideBarIcons/home-icon.png')} />
+            </TouchableOpacity>
           </Left>
-          <Body><Title style={ styles.titleStyle }>PerfectoCafe</Title></Body>
+          <Body><Title style={ styles.titleStyle }>PerfectoCoffee</Title></Body>
           <Right></Right>
         </Header>
         <Tabs renderTabBar={()=> <ScrollableTab />}>

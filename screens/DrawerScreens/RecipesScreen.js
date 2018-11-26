@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Root, Icon, Button, Container, Header, Content, Body, Title, Left, Right } from 'native-base'
 
@@ -10,13 +10,21 @@ import DetailView from './RecipeInventory/DetailScreen';
 export const RecipeInventoryNavigation = createStackNavigator({
   RecipeList: {
     screen: ListView,
+    navigationOptions: {
+      header: null,
+    }
   },
   RecipeDetail: {
     screen: DetailView,
+    navigationOptions: {
+      gesturesEnabled: false
+    }
   }
 },{
   initialRouteName: 'RecipeList',
-  headerMode: 'none',
+  mode: 'card',
+  headerBackTitle: null,
+  headerMode: 'float',
 });
 
 export default class RecipesScreen extends Component<Props> {
@@ -25,13 +33,6 @@ export default class RecipesScreen extends Component<Props> {
   render() {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Icon name='ios-menu' onPress={() => {this.props.navigation.openDrawer(); } }/>
-          </Left>
-          <Body><Title style={{width: 150}}>Recipes</Title></Body>
-          <Right></Right>
-        </Header>
         <Root>
           <RecipeInventoryNavigation navigation={this.props.navigation}/>
         </Root>

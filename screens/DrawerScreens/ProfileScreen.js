@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image , AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Image , AsyncStorage, TouchableOpacity } from 'react-native';
 import { Icon, Container, Header, Content, Body, Title, Left, Right, List, ListItem  } from 'native-base'
 
 // Component configuration for profile screen -> layout, state data
@@ -42,7 +42,12 @@ export default class ProfileScreen extends Component<Props> {
       <Container>
         <Header>
           <Left>
-            <Icon name='ios-menu' onPress={ () => { this.props.navigation.openDrawer(); } }/>
+            <TouchableOpacity
+            style={{ paddingLeft: 10 }}
+            onPress={ () => { this.props.navigation.openDrawer(); } }>
+              <Image
+              source={require('../../assets/SideBarIcons/home-icon.png')} />
+            </TouchableOpacity>
           </Left>
           <Body><Title style={ styles.titleStyle }>User Profile</Title></Body>
           <Right></Right>
