@@ -22,7 +22,7 @@ export const OrderCoffeeNavigation = createStackNavigator({
       title: "Select a Kiosk",
       gesturesEnabled: false,
       headerBackImage: (
-        <Icon name='ios-arrow-down' />
+        <Icon style={{ paddingLeft: 10 }} name='ios-arrow-down' />
       )
     }
   }

@@ -1,7 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, AlertIOS, AsyncStorage } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem } from 'native-base';
 import Collapsible from 'react-native-collapsible';
 
