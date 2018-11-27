@@ -92,5 +92,14 @@ react-native run-ios
       1. In PerfectoApp.xcworkspace, Click on project -> Click on target PerfectoApp -> Build Settings -> Framework Search
          Paths -> Add $(SRCROOT)/Pods -> set it to recursive by clicking selector on the right.
 
-- A trubleshooting doc is provided on React Native website : https://facebook.github.io/react-native/docs/troubleshooting#content
+- A troubleshooting doc is provided on React Native website : https://facebook.github.io/react-native/docs/troubleshooting#content
 
+## Getting Started - For Android
+1. Follow steps 1-5 on "Getting Started - For Mac OSX".
+
+2. Assuming the pre-requisite setup and installations have been completed, open Android Studio, navigate to the Android Virtual Device (AVD) Manager, and launch an Android emulator.
+
+3. Build the project via commandline by running the command below:
+```
+react-native run-android
+```
