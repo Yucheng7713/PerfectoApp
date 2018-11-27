@@ -97,6 +97,7 @@ export default class BaseScreen extends Component<Props> {
             style={{ paddingLeft: 10 }}
             onPress={ () => { this.props.navigation.openDrawer(); } }>
               <Image
+              style={ styles.homeIconStyles }
               source={require('../../../assets/SideBarIcons/home-icon.png')} />
             </TouchableOpacity>
           </Left>
@@ -115,6 +116,10 @@ export default class BaseScreen extends Component<Props> {
 const styles = StyleSheet.create({
   titleStyle: {
     width: 150
+  },
+  homeIconStyles: {
+    width: 25,
+    height: 25
   },
   containerStyle: {
     flex: 1,

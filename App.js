@@ -6,9 +6,12 @@ import { createRootNavigator } from './src/router'
 import { isSignedIn } from './src/auth';
 
 export default class App extends Component<Props> {
-  state = {
-    signedIn: false,
-    checkedSignIn: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false
+    }
   }
   // When the app is initiate -> Show welcome splash screen and check sign in state
   componentDidMount() {

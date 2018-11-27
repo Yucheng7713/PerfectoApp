@@ -10,27 +10,6 @@ export default class PreferenceScreen extends Component<Props> {
   // Header title and back button customization
   static navigationOptions = ({ navigation, screenProps}) => ({
     title: navigation.state.params.baseOptions.name,
-    headerLeft: (
-      <TouchableOpacity onPress={() => {
-        AlertIOS.alert(
-          'Change Flavor',
-          null,
-          [
-            {
-              text: 'Cancel',
-              onPress: this.onPress,
-              style: 'cancel',
-            },
-            {
-              text: 'Change',
-              onPress: () => navigation.goBack(),
-            },
-          ]
-        );
-      }}>
-          <Title style={{ color: '#017afe', marginLeft: 10 }}>Change</Title>
-      </TouchableOpacity>
-    ),
   });
 
   // Parameters initialization

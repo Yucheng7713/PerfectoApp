@@ -3,13 +3,17 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Alert, AsyncStorage } from 'react-native';
 import { Button, Container, Content, Form, Item as FormItem, Input, Title } from 'native-base';
 import { LoginButton, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
-import { onSignIn, STATIC_USERID, STATIC_PASSWORD } from "../../src/auth";
+import { onSignIn, FBSignIn, STATIC_USERID, STATIC_PASSWORD } from "../../src/auth";
 
 export default class SignIn extends Component<Props> {
   // Login data state
-  state = {
-    userid: 'NEED_TO_BE_PROVIDED',
-    password: 'NEED_TO_BE_PROVIDED',
+  constructor(props) {
+    super(props);
+    let loginAPI = "http://18.223.142.153:1337/api/v1/entrance/login";
+    this.state = {
+      userid: 'NEED_TO_BE_PROVIDED',
+      password: 'NEED_TO_BE_PROVIDED',
+    };
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
@@ -23,7 +27,7 @@ export default class SignIn extends Component<Props> {
           <Title style={ styles.welcomeBackStyle}> Welcome Back ! </Title>
           <Form style={ styles.inputField }>
             <FormItem>
-              <Input placeholder="Username"
+              <Input placeholder="Email"
               placeholderTextColor="#808080"
               onChangeText={ (textValue) => this.state.userid = textValue }/>
             </FormItem>
@@ -41,10 +45,10 @@ export default class SignIn extends Component<Props> {
                   this.props.navigation.navigate("SignedIn");
                 } else {
                   Alert.alert(
-                    'Invalid login information',
-                    'Username & Password unmatched',
+                    'Login failed',
+                    'Invalid login info',
                     [
-                      { text: 'OK', onPress: () => console.log('OK Pressed') }
+                      { text: 'OK', onPress: () => this.onPress }
                     ],
                     { cancelable: false }
                   )
@@ -93,6 +97,10 @@ export default class SignIn extends Component<Props> {
     if (error) {
       console.log('Fetching Facebook profile data error: ' + error.toString());
     } else {
+      // Sign in function
+      // if(FBSignIn(result)) {
+      //   this.props.navigation.navigate("SignedIn");
+      // }
       // Fetch user Facebook info - place static data as test
       this.setState({
         userid: STATIC_USERID,

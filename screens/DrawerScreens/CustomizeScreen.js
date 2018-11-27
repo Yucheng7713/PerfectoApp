@@ -49,6 +49,12 @@ export const CustomizeStespNavigation = createStackNavigator({
       gesturesEnabled: false,
     }
   },
+  // Order: {
+  //   screen: OrderScreen,
+  //   navigationOptions: {
+  //     gesturesEnabled: false,
+  //   }
+  // }
 },{
   initialRouteName: 'BaseCoffee',
   mode: 'card',
@@ -59,7 +65,7 @@ export const CustomizeStespNavigation = createStackNavigator({
 
 // Component configuration for customize screen -> layout, state...
 export default class CustomizeScreen extends Component<Props> {
-  
+
   static router = CustomizeStespNavigation.router;
 
   componentDidMount() {

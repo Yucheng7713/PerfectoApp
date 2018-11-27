@@ -41,6 +41,7 @@ export default class ListScreen extends Component<Props> {
               style={{ paddingLeft: 10 }}
               onPress={ () => { this.props.navigation.openDrawer(); } }>
                 <Image
+                style={ { width: 25, height: 25} }
                 source={require('../../../assets/SideBarIcons/home-icon.png')} />
               </TouchableOpacity>
             </Left>

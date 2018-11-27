@@ -1,7 +1,7 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text, TouchableOpacity, Image, FlatList, AsyncStorage} from 'react-native';
-import { Icon, Container, Header, Footer, Content, Left, Right, Body, Title, List, ListItem } from 'native-base';
+import { StyleSheet, ScrollView, Text, TouchableOpacity, Image, FlatList, AsyncStorage, View} from 'react-native';
+import { Icon, Container, Header, Footer, Content, Left, Right, Body, Title, List, ListItem, Button } from 'native-base';
 var mockupData = require("../../../sampleBaseData.json");
 
 // Component configuration for ordering screen -> layout, state...
@@ -26,6 +26,57 @@ export default class OrderList extends Component<Props> {
     });
   }
 
+  // postJSONRecall() {
+    // console.log("Post json to backend!");
+    // fetch("http://18.223.142.153:1337/api/v1/entrance/login", {
+    //   method: 'PUT',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     emailAddress: "test4@usc.edu",
+    //     password: "test4fae",
+    //   }),
+    // })
+    // .then(function(res){
+    //   console.log(res);
+    // })
+    // .catch((error) => {
+    //   console.error(error);
+    // });
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", "http://18.223.142.153:1337/api/v1/entrance/signup", true);
+    //
+    // //Send the proper header information along with the request
+    // xhr.setRequestHeader("Content-Type", "application/json");
+    // xhr.onreadystatechange = function() { // Call a function when the state changes.
+    //     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+    //         console.log("Request made!!!");
+    //     }
+    // }
+    // xhr.send(JSON.stringify({
+    //   "emailAddress": "test2@usc.edu",
+    //   "password": "test"
+    // }));
+    // xhr.send(new Int8Array());
+    // xhr.send(document);
+  // }
+
+  // getJSONRecall() {
+  //   console.log("Get json from backend!");
+  //   return fetch('http://18.223.142.153:1337/api/v1/entrance/signup')
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     console.log(responseJson);
+  //     // return responseJson;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }
+
   baseMenuGenerator() {
     // var bases = [];
     // for(var i = 0; i < mockupData.baseFlavors.length; i ++) {
@@ -49,6 +100,7 @@ export default class OrderList extends Component<Props> {
             style={{ paddingLeft: 10 }}
             onPress={ () => { this.props.navigation.openDrawer(); } }>
               <Image
+              style={ { width: 25, height: 25} }
               source={require('../../../assets/SideBarIcons/home-icon.png')} />
             </TouchableOpacity>
           </Left>
