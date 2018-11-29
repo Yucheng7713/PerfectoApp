@@ -4,7 +4,8 @@ import { StyleSheet, Text, ScrollView, Image, TouchableOpacity } from 'react-nat
 import { Icon, Button, Container, Header, Content, Body, Title, Left, Right, Tab, Tabs, ScrollableTab } from 'native-base'
 import { Col, Row, Grid } from 'react-native-easy-grid';
 // Mocked Base Flavors JSON object
-var mockupData = require("../../../sampleBaseData.json");
+// var mockupData = require("../../../sampleBaseData.json");
+var mockupData = require("../../../mockupBaseData.json");
 
 // Component configuration for customize screen -> layout, state...
 export default class BaseScreen extends Component<Props> {
@@ -17,8 +18,11 @@ export default class BaseScreen extends Component<Props> {
       chosen_base: {
         name: "",
         img: "",
+        price: 0,
         milk: null,
         flavors: null,
+        sweetners: null,
+        extra: null
       }
     }
   }
@@ -27,8 +31,11 @@ export default class BaseScreen extends Component<Props> {
   chooseBase = (coffeebase) => {
     this.state.chosen_base.name = coffeebase['Title'];
     this.state.chosen_base.img = coffeebase['IMG_path'];
+    this.state.chosen_base.price = coffeebase['Price'];
     this.state.chosen_base.milk = coffeebase['Milk'];
     this.state.chosen_base.flavors = coffeebase['Flavors'];
+    this.state.chosen_base.sweetners = coffeebase['Sweetners'];
+    this.state.chosen_base.extra = coffeebase['Extra'];
     this.props.navigation.navigate('Preference', {
       baseOptions: this.state.chosen_base
     });

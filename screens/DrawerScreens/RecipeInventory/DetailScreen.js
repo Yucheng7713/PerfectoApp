@@ -38,7 +38,7 @@ export default class DetailScreen extends Component<Props> {
   }
 
   componentDidMount() {
-    console.log(this.state.extraAvailable);
+    
   }
 
   // Share the link using the share dialog.
@@ -177,10 +177,12 @@ export default class DetailScreen extends Component<Props> {
                   <Left><Title>Portion</Title></Left>
                   <Text>{ this.state.chosenRecipe.milkPortion } oz</Text>
                 </ListItem>
-                <ListItem>
-                  <Left><Title>Temp</Title></Left>
-                  <Text>{ this.state.chosenRecipe.milkTemp }</Text>
-                </ListItem>
+                { this.state.chosenRecipe.milkTemp &&
+                  <ListItem>
+                    <Left><Title>Temp</Title></Left>
+                    <Text>{ this.state.chosenRecipe.milkTemp }</Text>
+                  </ListItem>
+                }
                 <ListItem>
                   <Left><Title>Cream</Title></Left>
                   <Text>{ this.state.chosenRecipe.foam }</Text>

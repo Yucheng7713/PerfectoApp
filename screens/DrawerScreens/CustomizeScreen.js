@@ -11,6 +11,33 @@ import MilkScreen from './Customizing/MilkScreen';
 import FlavorScreen from './Customizing/FlavorScreen';
 import SugarScreen from './Customizing/SugarScreen';
 import ExtraScreen from './Customizing/ExtraScreen';
+import ConfirmScreen from './Customizing/ConfirmScreen';
+import MapScreen from './Customizing/MapScreen';
+
+const orderConfirmation = createStackNavigator({
+  Confirm: {
+    screen: ConfirmScreen,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  },
+  Map: {
+    screen: MapScreen,
+    navigationOptions: {
+      title: "Choose Pickup Location",
+      gesturesEnabled: false,
+      headerBackImage: (
+        <Icon style={ { color: '#017afe', marginLeft: 20 } } name='ios-arrow-down' />
+      )
+    }
+  },
+},{
+  initialRouteName: 'Confirm',
+  mode: 'modal',
+  headerMode: 'screen',
+  gesturesEnabled: false,
+});
 
 export const CustomizeStespNavigation = createStackNavigator({
   BaseCoffee: {
@@ -49,12 +76,13 @@ export const CustomizeStespNavigation = createStackNavigator({
       gesturesEnabled: false,
     }
   },
-  // Order: {
-  //   screen: OrderScreen,
-  //   navigationOptions: {
-  //     gesturesEnabled: false,
-  //   }
-  // }
+  Order: {
+    screen: orderConfirmation,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  }
 },{
   initialRouteName: 'BaseCoffee',
   mode: 'card',

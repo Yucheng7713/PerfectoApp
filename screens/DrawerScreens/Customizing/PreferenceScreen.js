@@ -1,6 +1,7 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, AlertIOS, AsyncStorage } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem } from 'native-base';
 import Collapsible from 'react-native-collapsible';
 
@@ -19,6 +20,7 @@ export default class PreferenceScreen extends Component<Props> {
      this.listItemCollapse = this.listItemCollapse.bind(this); // Listitem collapse function
      this.state = {
        recipeName: this.props.navigation.state.params.baseOptions.name,
+       price: this.props.navigation.state.params.baseOptions.price,
        nameEditable: false,
        cupSize: "Small",
        sizeSmallSelected: true,
@@ -34,7 +36,9 @@ export default class PreferenceScreen extends Component<Props> {
        flavors: [],
        originalFlavors: [],
        sweetners: [],
-       extra: []
+       originalSweetners: [],
+       extra: [],
+       originalExtra: []
      }
   }
 
@@ -57,6 +61,16 @@ export default class PreferenceScreen extends Component<Props> {
       flavors: chosenBase.flavors,
       originalFlavors: chosenBase.flavors,
     });
+    // Set sweetner options
+    this.setState({
+      sweetners: chosenBase.sweetners,
+      originalSweetners: chosenBase.sweetners,
+    });
+    // Set extra options
+    this.setState({
+      extra: chosenBase.extra,
+      originalExtra: chosenBase.extra,
+    });
   }
 
   // Rename function
@@ -67,7 +81,7 @@ export default class PreferenceScreen extends Component<Props> {
     });
   }
 
-  // Update the milk preferences state from MilkScreen
+  // Update the milk preferences state from MilkScreen, FlavorScreen, SugarScreen and ExtraScreen
   componentWillReceiveProps(nextProps) {
     let modifiedRecipe = nextProps.navigation.state.params;
     if(modifiedRecipe.prevScreen == "Milk") {
@@ -97,7 +111,9 @@ export default class PreferenceScreen extends Component<Props> {
     return (
       <Body style={{ paddingTop: 5 }}>
         <Text>{ this.state.milkChoice } Milk { this.state.milkPortion } oz</Text>
-        <Text>{ this.state.milkTemp }</Text>
+        { this.state.milkTemp &&
+          <Text>{ this.state.milkTemp }</Text>
+        }
         <Text>Cream { this.state.foamPortion } oz</Text>
       </Body>
     );
@@ -212,7 +228,41 @@ export default class PreferenceScreen extends Component<Props> {
 
   // Order function
   orderRecipe() {
-
+    let baseRecipe = this.props.navigation.state.params.baseOptions;
+    if(this.state.recipeName === "") {
+      this.state.recipeName = baseRecipe.name;
+    } else {
+      // Form the customized recipe object
+      // const customizedRecipe = {
+      //     name: this.state.recipeName,
+      //     base: baseRecipe.name,
+      //     img: baseRecipe.img,
+      //     size: this.state.cupSize,
+      //     milkChoice: this.state.milkChoice,
+      //     milkPortion: this.state.milkPortion,
+      //     milkTemp: this.state.milkTemp,
+      //     foam: this.state.foamPortion,
+      //     flavors: this.state.flavors,
+      //     sweetners: this.state.sweetners,
+      //     extra: this.state.extra
+      // };
+      this.props.navigation.navigate('Order',{
+        order: {
+          name: this.state.recipeName,
+          base: baseRecipe.name,
+          img: baseRecipe.img,
+          price: this.state.price,
+          size: this.state.cupSize,
+          milkChoice: this.state.milkChoice,
+          milkPortion: this.state.milkPortion,
+          milkTemp: this.state.milkTemp,
+          foam: this.state.foamPortion,
+          flavors: this.state.flavors,
+          sweetners: this.state.sweetners,
+          extra: this.state.extra
+        }
+      });
+    }
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
@@ -337,16 +387,17 @@ export default class PreferenceScreen extends Component<Props> {
           flexDirection: "row",
           justifyContent: 'center',
           width: '100%',
-          paddingBottom: 30}}>
+          paddingBottom: 20}}>
             <Button
               style={{ justifyContent: 'center', width: '50%', backgroundColor: 'rgba(22, 22, 22, 0.3)'}}
-              onPress={ () => { this.onPress }}>
-              <Text style={{ color: '#ffffff'}}>Share</Text>
+              onPress={ () => { this.saveRecipe() }}>
+              <Text style={{ color: '#ffffff'}}>Save</Text>
             </Button>
             <Button
               style={{ justifyContent: 'center', width: '50%', backgroundColor: '#3a7aff'}}
               onPress={ () => {
-                this.saveRecipe();
+                // this.saveRecipe();
+                this.orderRecipe();
               } }>
               <Text style={{ color: '#ffffff'}}>Order</Text>
             </Button>
@@ -358,6 +409,10 @@ export default class PreferenceScreen extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
+  instructions: {
+    color: "#f5fcff",
+    fontSize: 20,
+  },
   listItemStyle: {
     paddingTop: 20,
     paddingBottom: 20,

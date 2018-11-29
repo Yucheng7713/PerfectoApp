@@ -91,13 +91,13 @@ export const DrawerMenuNavigation = createDrawerNavigator({
       title: "My Recipes"
     }
   },
-  Order: {
+  History: {
     screen: OrderScreen,
     navigationOptions: {
       drawerIcon: (
         <Image source={require("../assets/SideBarIcons/order-icon.png")} style={{height: 24, width: 24}} />
       ),
-      title: "Place Order"
+      title: "Order History"
     }
   },
   Profile : {

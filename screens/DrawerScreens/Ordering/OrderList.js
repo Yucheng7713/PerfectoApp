@@ -104,7 +104,7 @@ export default class OrderList extends Component<Props> {
               source={require('../../../assets/SideBarIcons/home-icon.png')} />
             </TouchableOpacity>
           </Left>
-          <Body><Title style={ styles.titleStyle }>Order</Title></Body>
+          <Body><Title style={ styles.titleStyle }>Order History</Title></Body>
           <Right></Right>
         </Header>
         <ScrollView>
@@ -112,13 +112,6 @@ export default class OrderList extends Component<Props> {
             { this.baseMenuGenerator() }
           </List>
         </ScrollView>
-        <Footer style={ styles.bottomTabStyle }>
-          <TouchableOpacity onPress={ () => { this.props.navigation.navigate('KioskMap'); }}>
-            <Body style={ styles.bottomTabBodyStyle }>
-              <Text style= { styles.instructions }>Choose a kiosk to pick up</Text>
-            </Body>
-          </TouchableOpacity>
-        </Footer>
       </Container>
     );
   }

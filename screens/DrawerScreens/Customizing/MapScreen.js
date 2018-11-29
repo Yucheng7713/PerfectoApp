@@ -6,7 +6,7 @@ import MapView, { Marker} from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 // Component configuration for find kiosk screen -> layout, state data
-export default class FindKioskScreen extends Component<Props> {
+export default class MapScreen extends Component<Props> {
   state = {
     placeName: 'Current Location',
     places: [],
@@ -14,9 +14,9 @@ export default class FindKioskScreen extends Component<Props> {
       latitude: 37.78825,
       longitude: -122.4324,
       latitudeDelta: 0.01,
-      longitudeDelta: 
-        Dimensions.get("window").width / 
-        Dimensions.get("window").height * 
+      longitudeDelta:
+        Dimensions.get("window").width /
+        Dimensions.get("window").height *
         0.01
     },
     locationChosen: true
@@ -29,9 +29,9 @@ export default class FindKioskScreen extends Component<Props> {
           latitude: pos.coords.latitude,
           longitude: pos.coords.longitude,
           latitudeDelta: 0.01,
-          longitudeDelta: 
-          Dimensions.get("window").width / 
-          Dimensions.get("window").height * 
+          longitudeDelta:
+          Dimensions.get("window").width /
+          Dimensions.get("window").height *
           0.01
         }
       });
@@ -49,7 +49,7 @@ export default class FindKioskScreen extends Component<Props> {
 
     if(this.state.locationChosen){
       //marker = <MapView.Marker />
-      marker = <Marker 
+      marker = <Marker
         title='My Location'
         coordinate={this.state.focusedLocation}
       ></Marker>
@@ -66,30 +66,30 @@ export default class FindKioskScreen extends Component<Props> {
             fetchDetails={true}
             renderDescription={row => row.description} // custom description render
             onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-            console.log(data, details);  
+            console.log(data, details);
             this.setState({
                 placeName: data.description, //selected address
                 focusedLocation: {
                   latitude: details.geometry.location.lat,
                   longitude: details.geometry.location.lng,
                   latitudeDelta: 0.01,
-                  longitudeDelta: 
-                  Dimensions.get("window").width / 
-                  Dimensions.get("window").height * 
+                  longitudeDelta:
+                  Dimensions.get("window").width /
+                  Dimensions.get("window").height *
                   0.01
                 }
               });
             }}
-      
+
             getDefaultValue={() => ''}
-      
+
             query={{
               // available options: https://developers.google.com/places/web-service/autocomplete
               key: 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg',
               language: 'en', // language of the results
               types: ['establishment','geocode'] // default: 'geocode'
             }}
-      
+
       nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
       GoogleReverseGeocodingQuery={{
         // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
@@ -108,7 +108,7 @@ export default class FindKioskScreen extends Component<Props> {
 
       </GooglePlacesAutocomplete>
       </View>
-      
+
         <MapView
         //provider={ PROVIDER_GOOGLE  }
         style={ styles.mapContainer }
@@ -119,7 +119,7 @@ export default class FindKioskScreen extends Component<Props> {
         </MapView>
       </View>
 
-      
+
     );
   }
 }

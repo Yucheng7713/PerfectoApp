@@ -1,0 +1,179 @@
+{
+  baseFlavors: ["Cappuccino", "Frappe"],
+  bases: {
+    "Cappuccino" : [
+      {
+        "Title" : "Cafe Mocha",
+        "IMG_path" :"mocha_2",
+        "Price": 4.99,
+        "Milk" : {
+          "Type" : "Whole",
+          "Portion" : 2,
+          "Temp" : "Steamed",
+          "Cream": 1
+        },
+        "Flavors" : [
+          {
+            "name" : "Chocolate",
+            "value" : 2,
+          }
+        ],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Caramel Latte",
+        "IMG_path": "latte_5",
+        "Price": 4.99,
+        "Milk": {
+          "Type" : "Whole",
+          "Portion": 2,
+          "Temp": "Steamed",
+          "Cream": 2
+        },
+        "Flavors": [
+          {
+            "name" : "Caramel",
+            "value" : 2,
+          }
+        ],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Flat White",
+        "IMG_path": "latte_2",
+        "Price": 3.99,
+        "Milk": {
+          "Type" : "Whole",
+          "Portion": 3,
+          "Temp": "Warm",
+          "Cream": 3
+        },
+        "Flavors": [],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Cinnamon",
+        "IMG_path": "cappuccino_2",
+        "Price": 4.99,
+        "Milk": {
+          "Type" : "Whole",
+          "Portion": 2,
+          "Temp": "Steamed",
+          "Cream": 3
+        },
+        "Flavors": [],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Brewed Cafe Latte",
+        "IMG_path": "latte_4",
+        "Price": 3.99,
+        "Milk": {
+          "Type" : "Whole",
+          "Portion": 1,
+          "Temp": "Warm",
+          "Cream": 2
+        },
+        "Flavors": [],
+        "Sweetners" : [],
+        "Extra" : []
+      }
+    ],
+    "Frappe" : [
+      {
+        "Title": "Mocha Frap",
+        "IMG_path": "mochafrappe",
+        "Price": 7.99,
+        "Milk": {
+          "Type" : "Skim",
+          "Portion": 2,
+          "Temp": null,
+          "Cream": 3
+        },
+        "Flavors": [
+          {
+            "name" : "Chocolate",
+            "value" : 3,
+          }
+        ],
+        "Sweetners" : [
+          {
+            "name": "Sugar",
+            "value": 3
+          }
+        ],
+        "Extra" : [
+          {
+            "name": "Cocoa",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "Title": "Caramel Frap",
+        "IMG_path": "caramelfrappe",
+        "Price": 6.99,
+        "Milk": {
+          "Type" : "Skim",
+          "Portion": 2,
+          "Temp": null,
+          "Cream": 2
+        },
+        "Flavors": [
+          {
+            "name" : "Caramel",
+            "value" : 3,
+          }
+        ],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Coffee Frap",
+        "IMG_path": "coffeefrappe",
+        "Price": 5.99,
+        "Milk": {
+          "Type" : "Skim",
+          "Portion": 3,
+          "Temp": null,
+          "Cream": 2
+        },
+        "Flavors": [],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Nutella Frap",
+        "IMG_path": "nutellafrappe",
+        "Price": 5.99,
+        "Milk": {
+          "Type" : "Whole",
+          "Portion": 3,
+          "Temp": null,
+          "Cream": 2
+        },
+        "Flavors": [],
+        "Sweetners" : [],
+        "Extra" : []
+      },
+      {
+        "Title": "Oreo Frap",
+        "IMG_path": "oreofrappe",
+        "Price": 6.99,
+        "Milk": {
+          "Type" : "Whole",
+          "Portion": 2,
+          "Temp": null,
+          "Cream": 2
+        },
+        "Flavors": [],
+        "Sweetners" : [],
+        "Extra" : []
+      }
+    ]
+  }
+};

@@ -6,7 +6,6 @@ import {createStackNavigator } from 'react-navigation';
 
 // Import all screens as classes
 import OrderList from './Ordering/OrderList';
-import FindKioskScreen from './Ordering/FindKioskScreen';
 
 // Order screen stack navigation : order list and find kiosk view
 export const OrderCoffeeNavigation = createStackNavigator({
@@ -16,16 +15,6 @@ export const OrderCoffeeNavigation = createStackNavigator({
       header: null
     }
   },
-  KioskMap: {
-    screen: FindKioskScreen,
-    navigationOptions: {
-      title: "Select a Kiosk",
-      gesturesEnabled: false,
-      headerBackImage: (
-        <Icon style={{ paddingLeft: 10 }} name='ios-arrow-down' />
-      )
-    }
-  }
 },{
     initialRouteName: 'Menu',
     mode: 'modal',

@@ -220,12 +220,14 @@ export default class MilkScreen extends Component<Props> {
                 />
               </ListItem>
             </Collapsible>
-            <ListItem
-            style={ styles.listItemStyle }
-            onPress={ () => { this.listItemCollapse('milkTemp') } }>
-              <Left><Title>Temp</Title></Left>
-              <Right><Text>{ this.state.tempLevel }</Text></Right>
-            </ListItem>
+            { this.state.tempLevel &&
+              <ListItem
+              style={ styles.listItemStyle }
+              onPress={ () => { this.listItemCollapse('milkTemp') } }>
+                <Left><Title>Temp</Title></Left>
+                <Right><Text>{ this.state.tempLevel }</Text></Right>
+              </ListItem>
+            }
             <Collapsible collapsed={ !this.state.toggleTempLevel }>
               <ListItem>
                 <Segment>
@@ -266,8 +268,8 @@ export default class MilkScreen extends Component<Props> {
                 <Slider
                  style={{ width: 340 }}
                  step={0.5}
-                 minimumValue={0.5}
-                 maximumValue={2.5}
+                 minimumValue={0}
+                 maximumValue={3}
                  value={this.state.foamValue}
                  onValueChange={val => this.setState({ foamValue: val, didEdit: true })}
                 />
