@@ -12,7 +12,7 @@
         {
             "id": "2",
             "Address": "Team05 Road, Los Angeles",
-            "Status": "OFF",
+            "Status": "ON",
             "coordinate": {
             "lat": 34.10,
             "lon": -118.26
