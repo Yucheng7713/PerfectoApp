@@ -4,27 +4,27 @@
             "id": "1",
             "Address": "Kiosk Street, Los Angeles",
             "Status": "ON",
-            "GeoLocation": {
-            "lat": 35.00,
-            "lon": -118.00
+            "coordinate": {
+            "lat": 34.025,
+            "lon": -118.27
             }
         },
         {
             "id": "2",
             "Address": "Team05 Road, Los Angeles",
-            "Status": "OFF",
-            "GeoLocation": {
-            "lat": 33.00,
-            "lon": -117.00
+            "Status": "ON",
+            "coordinate": {
+            "lat": 34.10,
+            "lon": -118.26
             }
         },
         {
             "id": "3",
             "Address": "Perfecto Blvd, Los Angeles",
             "Status": "ON",
-            "GeoLocation": {
-            "lat": 33.00,
-            "lon": -117.00
+            "coordinate": {
+            "lat": 34.03,
+            "lon": -118.29
             }
         }
     ]

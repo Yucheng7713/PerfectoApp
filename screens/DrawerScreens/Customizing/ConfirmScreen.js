@@ -24,7 +24,7 @@ export default class ConfirmScreen extends Component<Props> {
     this.state = {
       orderRecipe: recipe,
       saleTax: 0,
-      waitTime: 7,
+      awaitTime: null,
       pickupLocation: null,
       cardNum: null,
       cardExpiry: "",
@@ -58,11 +58,11 @@ export default class ConfirmScreen extends Component<Props> {
     console.log(nextProps);
     // Example : After getting the time and location value, sent it back to this screen
     // and update the state variables ( waitTime, pickupLocation )
-    // let mapInfo = nextProps.navigation.state.params;
-    // this.setState({
-    //   waitTime: mapInfo.time,
-    //   pickupLocation: mapInfo.location,
-    // });
+    let mapInfo = nextProps.navigation.state.params;
+    this.setState({
+        awaitTime: mapInfo.TIMEW,
+        pickupLocation: mapInfo.location,
+    });
   }
 
   // List item collapse functions
@@ -137,7 +137,13 @@ export default class ConfirmScreen extends Component<Props> {
               onPress={ () => { this.onPress } }
               style={ styles.listItemStyle }>
                 <Left><Title>Wait time</Title></Left>
-                <Text>{ this.state.waitTime } minutes</Text>
+                <Text>{ this.state.awaitTime }</Text>
+              </ListItem>
+              <ListItem itemDivider
+              onPress={ () => { this.onPress } }
+              style={ styles.listItemStyle }>
+                <Left><Title>Kiosk Location</Title></Left>
+                <Text>{ this.state.pickupLocation }</Text>
               </ListItem>
               <ListItem itemDivider
               onPress={ () => { this.listItemCollapse('total') } }

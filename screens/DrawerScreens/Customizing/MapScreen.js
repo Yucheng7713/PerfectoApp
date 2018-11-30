@@ -1,9 +1,15 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, Navigator, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
-import MapView, { Marker} from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker }from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import geolib from 'geolib';
+import KioskData from '../../../Kiosk.json';
+
+//import distance from 'google-distance';
+//distance.apiKey = 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg';
+
 
 // Component configuration for find kiosk screen -> layout, state data
 export default class MapScreen extends Component<Props> {
@@ -41,6 +47,22 @@ export default class MapScreen extends Component<Props> {
       alert("Fetching the Position failed, please pick one manually");
     })
   }
+
+  /*getDistanceGoogle(loc1,loc2){
+    const Location1Str = loc1;
+    const Location2Str = loc2;
+    const GOOGLE_API_KEY = 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg';
+
+    let ApiURL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+
+    let params = 'origins=${Location1Str}&destinations=${Location2Str}&key=${GOOGLE_API_KEY}'; // you need to get a key
+    let finalApiURL = '${ApiURL}${encodeURI(params)}';
+
+    let fetchResult =  await fetch(finalApiURL); // call API
+    let Result =  await fetchResult.json(); // extract json
+
+    return Result.rows[0].elements[0].distance;
+  }*/
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
@@ -110,13 +132,80 @@ export default class MapScreen extends Component<Props> {
       </View>
 
         <MapView
-        //provider={ PROVIDER_GOOGLE  }
+        provider={ PROVIDER_GOOGLE  }
         style={ styles.mapContainer }
         region={this.state.focusedLocation}
+        onRegionChange={this.onRegionChange}
+        loadingEnabled = {true}
+        showsUserLocation={true}
+        showsCompass={true}
+        showsPointsOfInterest = {false}
         ref={ref => this.map = ref}
+        onLoad={() => this.forceUpdate()}
         >
         {marker}
+        {KioskData.Kiosk.map((i) => 
+          <Marker
+          pinColor = '#0000FF'
+          title={'Kiosk'+i.id} 
+          coordinate={{latitude: i.coordinate.lat, longitude: i.coordinate.lon}}
+          />
+          )}
+        
         </MapView>
+        
+        {/*
+        <View>
+          <Text>lat: {this.state.focusedLocation.latitude}</Text>
+          <Text>lon: {this.state.focusedLocation.longitude}</Text>
+        </View>
+        */}
+        <View style={styles.Kiosk}>
+        { KioskData.Kiosk.map((index) => 
+        <View 
+        key={index} 
+        style={styles.listItem}
+        //onPress={() =>{alert("You seleted Kiosk:"+index.id);}}
+        >
+        <TouchableOpacity 
+        onPress={() =>{this.props.navigation.navigate('Confirm',
+        {
+          TIMEW: geolib.convertUnit("km",geolib.getDistance(
+            this.state.focusedLocation,
+            index.coordinate)*12,1) + " min",
+          //KioskID: index.id,
+          location: index.Address,
+        });}}
+        >
+        <View style={styles.KioskTitile}>
+        <Text style={styles.KioskName}>Kiosk: {index.id}</Text>
+        <Text style={styles.KioskName}>Status: {index.Status}</Text>
+        </View>
+        <Text style={styles.Auto}>Address: {index.Address}</Text>
+        <Text style={styles.Auto}>Distance: { 
+          //this.getDistanceGoogle(this.state,index.coordinate)
+          geolib.convertUnit("km",geolib.getDistance(
+            this.state.focusedLocation,
+            index.coordinate),2)
+            /*distance.get(
+              {
+                index: 1,
+                origin: '37.772886,-122.423771',
+                destination: '37.871601,-122.269104'
+              },
+              function(err, data) {
+                if (err) return console.log(err);
+                console.log(data);
+              })*/
+          } km
+          </Text>
+          <Text>Time: {geolib.convertUnit("km",geolib.getDistance(
+            this.state.focusedLocation,
+            index.coordinate)*12,1) } min</Text>
+          </TouchableOpacity>
+        </View>
+        )}
+        </View>
       </View>
 
 
@@ -150,4 +239,24 @@ const styles = StyleSheet.create({
     width: '100%',
     //height: '10%'
   },
+  Kiosk: {
+    width: '100%'
+  },
+  listItem: {
+    width: "100%",
+    paddingTop: 0,
+    padding: 10,
+    marginTop: 10,
+    backgroundColor: "#eee",
+  },
+  KioskTitile: {
+    width: "100%",
+    flexDirection: "row",
+  },
+  KioskName: {
+    width: "50%",
+    fontWeight: "bold",
+    fontSize: 15,
+    marginBottom: 5,
+  }
 });
