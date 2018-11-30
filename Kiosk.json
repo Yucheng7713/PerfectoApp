@@ -26,6 +26,15 @@
             "lat": 34.03,
             "lon": -118.29
             }
+        },
+        {
+            "id": "4",
+            "Address": "555 S Perfecto st, Los Angeles",
+            "Status": "ON",
+            "coordinate": {
+            "lat": 34.02051,
+            "lon": -118.28563
+            }
         }
     ]
 }
