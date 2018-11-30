@@ -13,6 +13,7 @@ import SugarScreen from './Customizing/SugarScreen';
 import ExtraScreen from './Customizing/ExtraScreen';
 import ConfirmScreen from './Customizing/ConfirmScreen';
 import MapScreen from './Customizing/MapScreen';
+import DoneScreen from './Customizing/DoneScreen';
 
 const orderConfirmation = createStackNavigator({
   Confirm: {
@@ -81,6 +82,12 @@ export const CustomizeStespNavigation = createStackNavigator({
     navigationOptions: {
       gesturesEnabled: false,
       header: null,
+    }
+  },
+  Done: {
+    screen: DoneScreen,
+    navigationOptions: {
+      gesturesEnabled: false,
     }
   }
 },{

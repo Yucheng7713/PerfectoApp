@@ -8,7 +8,6 @@ export default class SignUp extends Component<Props> {
 
   constructor(props) {
     super(props);
-    let signUpAPI = "http://18.223.142.153:1337/api/v1/entrance/signup";
     this.state = {
       email: "",
       password: "",
@@ -25,16 +24,16 @@ export default class SignUp extends Component<Props> {
        this.validPassword(this.state.password, this.state.checkPassword) &&
        this.validName(this.state.firstName, this.state.lastName)) {
       // Send request to Sails backend
-      fetch(this.loginAPI, {
+      fetch("http://18.223.142.153:1337/api/v1/entrance/signup", {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          emailAddress: this.state.userid,
+          emailAddress: this.state.email,
           password: this.state.password,
-          fullName: this.state.firstName + " " + this.state.lastName,
+          fullName: this.state.firstName + " " + this.state.lastName
         }),
       })
       .then(function(res){

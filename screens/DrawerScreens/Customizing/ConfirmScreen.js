@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem  } from 'native-base';
 import Collapsible from 'react-native-collapsible';
@@ -18,15 +18,43 @@ export default class ConfirmScreen extends Component<Props> {
     this.state = {
       orderRecipe: recipe,
       saleTax: 0,
-      awaitTime: 7,
+      waitTime: 7,
       pickupLocation: null,
+      cardNum: "",
+      cardExpiry: "",
+      cardCvc: "",
       toggleTotal: false,
       togglePayment: false
     }
   }
+  componentDidMount() {
+    // Set user payment info
+    AsyncStorage.getItem("Card", (error,res) => {
+      if (!error) {
+          //handle result
+          if (res !== null) {
+            var cardInfo = JSON.parse(res);
+            // console.log(cardInfo);
+            this.setState({
+              cardNum: cardInfo.cardNum,
+              cardExpiry: cardInfo.cardExpiry,
+              cardCvc: cardInfo.cardCvc
+            });
+          }
+      }
+    });
+  }
 
+  // Map screen callback -> set wait time and location.
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
+    // Example : After getting the time and location value, sent it back to this screen
+    // and update the state variables ( waitTime, pickupLocation )
+    // let mapInfo = nextProps.navigation.state.params;
+    // this.setState({
+    //   waitTime: mapInfo.time,
+    //   pickupLocation: mapInfo.location,
+    // });
   }
 
   // List item collapse functions
@@ -45,8 +73,37 @@ export default class ConfirmScreen extends Component<Props> {
     return this.icons['down'];
   }
 
+  // Function for calling map view
   choosePickUpLocation() {
+    // way to pass parameters to another route ( view )
+    // : this.props.navigation.navigate('Route_name', { ...params });
     this.props.navigation.navigate('Map');
+  }
+
+  placeOrder() {
+    const orderRecipe = {
+      recipe: this.state.orderRecipe,
+      location: this.state.pickupLocation,
+      placeTime: this.state.waitTime,
+      price: this.state.saleTax + this.state.orderRecipe.price
+    };
+    // Store order to history
+    // Store the customized recipe locally
+    // AsyncStorage.getItem("Orders", (error,res) => {
+    //   if (!error) {
+    //       //handle result
+    //       if (res !== null) {
+    //         var history = JSON.parse(res);
+    //         history.orderHistory.push(order);
+    //         AsyncStorage.setItem("Orders", JSON.stringify(history));
+    //         this.props.navigation.navigate("Done");
+    //       }
+    //   }
+    // });
+    // // Navigate to final confirm
+    this.props.navigation.navigate("Done", {
+      order: orderRecipe
+    });
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
@@ -61,7 +118,7 @@ export default class ConfirmScreen extends Component<Props> {
               <Icon style={{ color: '#017afe' }} name='ios-arrow-back'/>
             </TouchableOpacity>
           </Left>
-          <Body><Title style={ styles.titleStyle }>Confirm Order</Title></Body>
+          <Body><Title style={ styles.titleStyle }>Check out</Title></Body>
           <Right></Right>
         </Header>
         <Content>
@@ -79,7 +136,7 @@ export default class ConfirmScreen extends Component<Props> {
               <ListItem itemDivider
               onPress={ () => { this.onPress } }
               style={ styles.listItemStyle }>
-                <Left><Title>Await time</Title></Left>
+                <Left><Title>Wait time</Title></Left>
                 <Text>{ this.state.awaitTime } minutes</Text>
               </ListItem>
               <ListItem itemDivider
@@ -106,6 +163,7 @@ export default class ConfirmScreen extends Component<Props> {
               </ListItem>
               <Collapsible collapsed={ !this.state.togglePayment }>
                 <ListItem>
+                  <Text>{ this.state.cardNum.replace(/\d{4}(?= \d{4})/g, "****") }</Text>
                 </ListItem>
               </Collapsible>
             </List>
@@ -117,7 +175,7 @@ export default class ConfirmScreen extends Component<Props> {
           width: '100%'}}>
             <Button
               style={{ justifyContent: 'center', width: '100%', height: 50, backgroundColor: '#017afe'}}
-              onPress={ () => { this.onPress }}>
+              onPress={ () => { this.placeOrder() }}>
               <Text style={{ color: '#ffffff'}}>Place Order</Text>
             </Button>
         </View>

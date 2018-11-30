@@ -1,20 +1,31 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image , AsyncStorage, TouchableOpacity } from 'react-native';
-import { Icon, Container, Header, Content, Body, Title, Left, Right, List, ListItem  } from 'native-base'
+import { Icon, Container, Header, Content, Body, Title, Left, Right, List, ListItem, Button  } from 'native-base'
+import { LiteCreditCardInput } from "react-native-credit-card-input";
+import Collapsible from 'react-native-collapsible';
 
 // Component configuration for profile screen -> layout, state data
 export default class ProfileScreen extends Component<Props> {
   // Facebook login data status
-  state = {
-    FBInfoExisted: false,
-    FBName: "",
-    FBEmail: "",
-    FBProfileLink: ""
+  constructor(props) {
+    super(props);
+    this.state = {
+      FBInfoExisted: false,
+      FBName: "",
+      FBEmail: "",
+      FBProfileLink: "",
+      toggleCard: false,
+      cardNum: null,
+      cardExpiry: null,
+      cardCvc: null,
+      editComplete: true,
+    };
   }
   // Retrieve login info when loading this page
   componentDidMount() {
     var profileLink;
+    // Set user profile info
     AsyncStorage.getItem('USER_FB_INFO', (error,value) => {
         if (!error) { //If there are no errors
             //handle result
@@ -30,7 +41,83 @@ export default class ProfileScreen extends Component<Props> {
             }
         }
     });
+    // Set user payment info
+    AsyncStorage.getItem("Card", (error,res) => {
+      if (!error) {
+          //handle result
+          if (res !== null) {
+            var cardInfo = JSON.parse(res);
+            // console.log(cardInfo);
+            this.setState({
+              cardNum: cardInfo.cardNum,
+              cardExpiry: cardInfo.cardExpiry,
+              cardCvc: cardInfo.cardCvc
+            });
+          }
+      }
+    });
   }
+
+  // List item toggle function
+  saveCardInfo(item) {
+    this.setState({
+      toggleCard: !this.state.toggleCard,
+    });
+    if(!this.state.editComplete) {
+      this.setState({
+        cardNum: "",
+        cardExpiry: "",
+        cardCvc: ""
+      });
+    } else {
+      // Save payment info locally
+      AsyncStorage.setItem('Card', JSON.stringify({
+        cardNum: this.state.cardNum,
+        cardExpiry: this.state.cardExpiry,
+        cardCvc: this.state.cardCvc
+      }));
+    }
+  }
+
+  // Called function when credit card input get changed
+  _creditCardOnChange = (form) => {
+    console.log(form);
+    // this.refs.CCInput.setValues({ expiry: "" });
+    // this.refs.CCInput.setValues({ cvc: "" });
+    if(form.valid) {
+      console.log("Card info saved!");
+      this.setState({
+        cardNum: form.values.number,
+        cardExpiry: form.values.expiry,
+        cardCvc: form.values.cvc,
+        editComplete: true,
+      });
+    } else {
+      console.log("Card info incomplete!");
+      this.setState({
+        editComplete: false,
+      });
+    }
+  };
+
+  creditCardContent() {
+    if(this.state.toggleCard) {
+      return(
+        <Text>Enter payment info ></Text>
+      );
+    } else {
+      if(this.state.cardNum === null) {
+        return(
+          <Text>None</Text>
+        );
+      } else {
+        return(
+          <Text>{ this.state.cardNum }</Text>
+        );
+      }
+    }
+  }
+
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     // Check if Facebook profile is available
@@ -71,6 +158,38 @@ export default class ProfileScreen extends Component<Props> {
             <ListItem>
               <Text>{ this.state.FBEmail }</Text>
             </ListItem>
+            <ListItem itemDivider>
+              <Text>Payment method</Text>
+            </ListItem>
+            <ListItem>
+              <Left>
+                {
+                  this.creditCardContent()
+                }
+              </Left>
+              <Right>
+                <TouchableOpacity
+                onPress={()=>{ this.saveCardInfo() }}>
+                  { !this.state.toggleCard &&
+                    <Text style={{ color: '#017afe'}}>Edit</Text>
+                  }
+                  { this.state.toggleCard &&
+                    <Text style={{ color: '#017afe'}}>Save</Text>
+                  }
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+            <Collapsible collapsed={ !this.state.toggleCard }>
+              <ListItem>
+                <LiteCreditCardInput
+                setValues={{
+                  number: this.state.cardNum,
+                  expiry: this.state.cardExpiry,
+                  cvc: this.state.cardCvc
+                 }}
+                onChange={ this._creditCardOnChange } />
+              </ListItem>
+            </Collapsible>
           </List>
         </Content>
       </Container>

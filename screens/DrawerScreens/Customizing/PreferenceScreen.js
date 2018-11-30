@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, AlertIOS, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, AlertIOS, AsyncStorage, Share } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem } from 'native-base';
 import Collapsible from 'react-native-collapsible';
@@ -232,21 +232,8 @@ export default class PreferenceScreen extends Component<Props> {
     if(this.state.recipeName === "") {
       this.state.recipeName = baseRecipe.name;
     } else {
-      // Form the customized recipe object
-      // const customizedRecipe = {
-      //     name: this.state.recipeName,
-      //     base: baseRecipe.name,
-      //     img: baseRecipe.img,
-      //     size: this.state.cupSize,
-      //     milkChoice: this.state.milkChoice,
-      //     milkPortion: this.state.milkPortion,
-      //     milkTemp: this.state.milkTemp,
-      //     foam: this.state.foamPortion,
-      //     flavors: this.state.flavors,
-      //     sweetners: this.state.sweetners,
-      //     extra: this.state.extra
-      // };
       this.props.navigation.navigate('Order',{
+        // Form the customized recipe object
         order: {
           name: this.state.recipeName,
           base: baseRecipe.name,
@@ -383,25 +370,13 @@ export default class PreferenceScreen extends Component<Props> {
             </List>
           </Card>
         </Content>
-        <View style={{
-          flexDirection: "row",
-          justifyContent: 'center',
-          width: '100%',
-          paddingBottom: 20}}>
-            <Button
-              style={{ justifyContent: 'center', width: '50%', backgroundColor: 'rgba(22, 22, 22, 0.3)'}}
-              onPress={ () => { this.saveRecipe() }}>
-              <Text style={{ color: '#ffffff'}}>Save</Text>
-            </Button>
-            <Button
-              style={{ justifyContent: 'center', width: '50%', backgroundColor: '#3a7aff'}}
-              onPress={ () => {
-                // this.saveRecipe();
-                this.orderRecipe();
-              } }>
-              <Text style={{ color: '#ffffff'}}>Order</Text>
-            </Button>
-        </View>
+        <Footer style={ styles.bottomTabStyle }>
+          <TouchableOpacity onPress={ () => { this.orderRecipe(); }}>
+            <Body style={ styles.bottomTabBodyStyle }>
+              <Text style= { styles.instructions }>Check out</Text>
+            </Body>
+          </TouchableOpacity>
+        </Footer>
       </Container>
     );
   }

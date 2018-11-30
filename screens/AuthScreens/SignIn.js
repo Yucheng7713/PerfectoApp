@@ -16,6 +16,53 @@ export default class SignIn extends Component<Props> {
     };
   }
 
+  nativeSignIn(username, password) {
+    fetch("http://18.223.142.153:1337/api/v1/entrance/login", {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        emailAddress: username,
+        password: password
+      })
+    }).then(function (res){
+      // Server backend callback status
+      // If login success -> navigate to home page
+      // console.log(res);
+      if(res.status === 200) {
+        AsyncStorage.setItem('loggedin-status', 'true');
+        // Store recipes locally
+        AsyncStorage.setItem('Card', JSON.stringify({
+          "cardNum": null,
+          "cardType": null
+        }));
+        AsyncStorage.setItem('Recipes',JSON.stringify({
+          "customList": []
+        }));
+        // Store order history locally
+        AsyncStorage.setItem('Orders', JSON.stringify({
+          "orderHistory": []
+        }));
+        this.props.navigation.navigate("SignedIn");
+      } else {
+        console.log("Login failed!!!");
+        // Alert.alert(
+        //   'Login failed',
+        //   'Invalid login info',
+        //   [
+        //     { text: 'OK', onPress: () => this.onPress }
+        //   ],
+        //   { cancelable: false }
+        // );
+      }
+    }.bind(this)).catch((error) => {
+      // Error message
+      console.error(error);
+    });
+  }
+
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
@@ -28,11 +75,13 @@ export default class SignIn extends Component<Props> {
           <Form style={ styles.inputField }>
             <FormItem>
               <Input placeholder="Email"
+              style={{ color: '#ffffff' }}
               placeholderTextColor="#808080"
               onChangeText={ (textValue) => this.state.userid = textValue }/>
             </FormItem>
             <FormItem>
               <Input placeholder="Password"
+              style={{ color: '#ffffff' }}
               placeholderTextColor="#808080"
               onChangeText={ (textValue) => this.state.password = textValue }
               secureTextEntry={ true } />
@@ -40,21 +89,7 @@ export default class SignIn extends Component<Props> {
           </Form>
           <View style={ styles.loginButtonLayout }>
             <Button style={ styles.loginButtonStyle }
-            onPress={() => {
-                if (onSignIn(this.state.userid, this.state.password)) {
-                  this.props.navigation.navigate("SignedIn");
-                } else {
-                  Alert.alert(
-                    'Login failed',
-                    'Invalid login info',
-                    [
-                      { text: 'OK', onPress: () => this.onPress }
-                    ],
-                    { cancelable: false }
-                  )
-                }
-              }
-            }>
+            onPress={() => { this.nativeSignIn(this.state.userid, this.state.password) }}>
               <Text style={ styles.buttonTextStyle }>Login</Text>
             </Button>
           </View>
@@ -112,7 +147,7 @@ export default class SignIn extends Component<Props> {
         email: result.email,
         picture_url: result.picture.data.url
       }));
-      if (onSignIn(this.state.userid, this.state.password)) {
+      if (FBSignIn(this.state.userid, this.state.password)) {
         this.props.navigation.navigate("SignedIn");
       }
     }
