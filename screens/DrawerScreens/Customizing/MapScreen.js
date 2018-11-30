@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, Navigator } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, Navigator, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import MapView, { PROVIDER_GOOGLE, Marker }from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -12,7 +12,7 @@ import KioskData from '../../../Kiosk.json';
 
 
 // Component configuration for find kiosk screen -> layout, state data
-export default class MapScreen extends Component {
+export default class MapScreen extends Component<Props> {
   state = {
     placeName: 'Current Location',
     places: [],
@@ -165,7 +165,17 @@ export default class MapScreen extends Component {
         <View 
         key={index} 
         style={styles.listItem}
-        onPress={() =>{alert("You seleted Kiosk:"+index.id);}}
+        //onPress={() =>{alert("You seleted Kiosk:"+index.id);}}
+        >
+        <TouchableOpacity 
+        onPress={() =>{this.props.navigation.navigate('Confirm',
+        {
+          TIMEW: geolib.convertUnit("km",geolib.getDistance(
+            this.state.focusedLocation,
+            index.coordinate)*12,1) + " min",
+          //KioskID: index.id,
+          location: index.Address,
+        });}}
         >
         <View style={styles.KioskTitile}>
         <Text style={styles.KioskName}>Kiosk: {index.id}</Text>
@@ -192,6 +202,7 @@ export default class MapScreen extends Component {
           <Text>Time: {geolib.convertUnit("km",geolib.getDistance(
             this.state.focusedLocation,
             index.coordinate)*12,1) } min</Text>
+          </TouchableOpacity>
         </View>
         )}
         </View>
