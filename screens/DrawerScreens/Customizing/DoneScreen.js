@@ -8,7 +8,8 @@ import Collapsible from 'react-native-collapsible';
 export default class DoneScreen extends Component<Props> {
 
   static navigationOptions = ({ navigation, screenProps}) => ({
-    title: "Order Confirmation"
+    title: "Order Confirmation",
+    headerLeft: null
   });
 
   constructor(props) {

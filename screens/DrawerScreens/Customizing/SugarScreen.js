@@ -10,23 +10,7 @@ export default class SugarScreen extends Component<Props> {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title:  'SWEETNERS',
     headerLeft: (
-      <TouchableOpacity onPress={() => {
-        AlertIOS.alert(
-          'Discard Change',
-          null,
-          [
-            {
-              text: 'Cancel',
-              onPress: this.onPress,
-              style: 'cancel',
-            },
-            {
-              text: 'Discard',
-              onPress: () => navigation.goBack(),
-            },
-          ]
-        );
-      }}>
+      <TouchableOpacity onPress={navigation.getParam('checkEdit')}>
         <Title style={{ color: '#017afe', marginLeft: 10 }}>Cancel</Title>
       </TouchableOpacity>
     ),
@@ -43,6 +27,10 @@ export default class SugarScreen extends Component<Props> {
       honeyValue: 0,
       rawValue: 0,
       equalValue: 0,
+      prevSugarValue: 0,
+      prevHoneyValue: 0,
+      prevRawValue: 0,
+      prevEqualValue: 0,
       toggleSugar: false,
       toggleHoney: false,
       toggleRaw: false,
@@ -52,22 +40,27 @@ export default class SugarScreen extends Component<Props> {
 
   componentDidMount() {
     let sugarList = this.props.navigation.state.params.sweetners;
+    this.props.navigation.setParams({ checkEdit: this._didEditCheck });
     for(var i = 0; i < sugarList.length; i++) {
       if(sugarList[i].name === "Sugar") {
         this.setState({
-          sugarValue: sugarList[i].value
+          sugarValue: sugarList[i].value,
+          prevSugarValue: sugarList[i].value
         });
       } else if(sugarList[i].name === "Equal") {
         this.setState({
-          equalValue: sugarList[i].value
+          equalValue: sugarList[i].value,
+          prevEqualValue: sugarList[i].value
         });
       } else if(sugarList[i].name === "Raw") {
         this.setState({
-          rawValue: sugarList[i].value
+          rawValue: sugarList[i].value,
+          prevRawValue: sugarList[i].value
         });
       } else if(sugarList[i].name === "Honey"){
         this.setState({
-          honeyValue: sugarList[i].value
+          honeyValue: sugarList[i].value,
+          prevHoneyValue: sugarList[i].value
         });
       }
     }
@@ -137,6 +130,39 @@ export default class SugarScreen extends Component<Props> {
       prevScreen: this.state.prevScreen,
       sweetners: sugarList,
     });
+  }
+
+  // Check if any preference is changed or modified
+  changeDidMake() {
+    if(this.state.prevSugarValue !== this.state.sugarValue ||
+       this.state.prevEqualValue !== this.state.equalValue ||
+       this.state.prevRawValue !== this.state.rawValue ||
+       this.state.prevHoneyValue !== this.state.honeyValue) {
+         return true;
+       }
+    return false;
+  }
+
+  _didEditCheck = () => {
+    if(this.changeDidMake()) {
+      AlertIOS.alert(
+        'Discard Change',
+        null,
+        [
+          {
+            text: 'Cancel',
+            onPress: this.onPress,
+            style: 'cancel',
+          },
+          {
+            text: 'Discard',
+            onPress: () => this.props.navigation.goBack(),
+          },
+        ]
+      );
+    } else {
+      this.props.navigation.goBack();
+    }
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

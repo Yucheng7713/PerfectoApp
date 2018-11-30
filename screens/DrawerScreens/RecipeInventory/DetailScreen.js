@@ -15,8 +15,8 @@ export default class DetailScreen extends Component<Props> {
   constructor(props) {
     super(props);
     this.icons = {     //Step 2
-      'up': require('../../../assets/Icons/arrowup_myrecipes_icon.png'),
-      'down': require('../../../assets/Icons/arrowdown_myrecipes_icon.png')
+      'up': require('../../../assets/Icons/collapse_icons/arrowup_myrecipes_icon.png'),
+      'down': require('../../../assets/Icons/collapse_icons/arrowdown_myrecipes_icon.png')
     };
     // const shareLinkContent = {
     //   contentType: 'link',
@@ -38,7 +38,7 @@ export default class DetailScreen extends Component<Props> {
   }
 
   componentDidMount() {
-    
+
   }
 
   // Share the link using the share dialog.

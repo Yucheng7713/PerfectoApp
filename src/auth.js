@@ -102,6 +102,8 @@ export const FBSignIn = (username, password) => {
     // Store credit card locally
     AsyncStorage.setItem('Card', JSON.stringify({
       "cardNum": null,
+      "cardExpiry": null,
+      "cardCvc": null,
       "cardType": null
     }));
     // Store recipes locally

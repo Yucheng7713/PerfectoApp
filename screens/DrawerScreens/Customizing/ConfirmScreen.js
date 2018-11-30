@@ -10,9 +10,15 @@ export default class ConfirmScreen extends Component<Props> {
 
   constructor(props) {
     super(props);
-    this.icons = {     //Step 2
-      'up': require('../../../assets/Icons/arrowup_myrecipes_icon.png'),
-      'down': require('../../../assets/Icons/arrowdown_myrecipes_icon.png')
+    this.cardIcons = {
+      "visa": require('../../../assets/Icons/card_icons/stp_card_visa.png'),
+      "master-card": require('../../../assets/Icons/card_icons/stp_card_mastercard.png'),
+      "american-express": require('../../../assets/Icons/card_icons/stp_card_amex.png'),
+      "diners-club": require('../../../assets/Icons/card_icons/stp_card_diners.png'),
+      "discover": require('../../../assets/Icons/card_icons/stp_card_discover.png'),
+      "jcb": require('../../../assets/Icons/card_icons/stp_card_jcb.png'),
+      "unionpay": require('../../../assets/Icons/card_icons/stp_card_unknown.png'),
+      "maestro": require('../../../assets/Icons/card_icons/stp_card_unknown.png')
     };
     let recipe = props.navigation.state.params.order;
     this.state = {
@@ -20,9 +26,10 @@ export default class ConfirmScreen extends Component<Props> {
       saleTax: 0,
       waitTime: 7,
       pickupLocation: null,
-      cardNum: "",
+      cardNum: null,
       cardExpiry: "",
       cardCvc: "",
+      cardType: null,
       toggleTotal: false,
       togglePayment: false
     }
@@ -38,7 +45,8 @@ export default class ConfirmScreen extends Component<Props> {
             this.setState({
               cardNum: cardInfo.cardNum,
               cardExpiry: cardInfo.cardExpiry,
-              cardCvc: cardInfo.cardCvc
+              cardCvc: cardInfo.cardCvc,
+              cardType: cardInfo.cardType
             });
           }
       }
@@ -63,14 +71,6 @@ export default class ConfirmScreen extends Component<Props> {
       toggleTotal: ((item == "total") && !this.state.toggleTotal),
       togglePayment: ((item == "payment") && !this.state.togglePayment),
     });
-  }
-
-  // Change arrow indicators when list items get collapsed
-  toggleIndicator(toggle) {
-    if(toggle) {
-      return this.icons['up'];
-    }
-    return this.icons['down'];
   }
 
   // Function for calling map view
@@ -137,7 +137,7 @@ export default class ConfirmScreen extends Component<Props> {
               onPress={ () => { this.onPress } }
               style={ styles.listItemStyle }>
                 <Left><Title>Wait time</Title></Left>
-                <Text>{ this.state.awaitTime } minutes</Text>
+                <Text>{ this.state.waitTime } minutes</Text>
               </ListItem>
               <ListItem itemDivider
               onPress={ () => { this.listItemCollapse('total') } }
@@ -156,15 +156,25 @@ export default class ConfirmScreen extends Component<Props> {
                 </ListItem>
               </Collapsible>
               <ListItem itemDivider
-              onPress={ () => { this.listItemCollapse('payment') } }
+              onPress={ () => {
+                this.onPress
+                //this.listItemCollapse('payment')
+              }}
               style={ styles.listItemStyle }>
-                <Left><Title>Payment method</Title></Left>
-                <Text>{}</Text>
+                <Left><Title>Payment</Title></Left>
+                {  this.state.cardNum &&
+                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                    <Image style={{ height: 21, width: 32 }} source={this.cardIcons[this.state.cardType]} />
+                    <Text> { this.state.cardNum.replace(/\d{4}(?= \d{4})/g, "****") }</Text>
+                  </View>
+                }
               </ListItem>
               <Collapsible collapsed={ !this.state.togglePayment }>
-                <ListItem>
-                  <Text>{ this.state.cardNum.replace(/\d{4}(?= \d{4})/g, "****") }</Text>
-                </ListItem>
+                {  this.state.cardNum &&
+                  <ListItem>
+                    <Text>{ this.state.cardNum.replace(/\d{4}(?= \d{4})/g, "****") }</Text>
+                  </ListItem>
+                }
               </Collapsible>
             </List>
           </Card>
@@ -182,7 +192,8 @@ export default class ConfirmScreen extends Component<Props> {
         <Footer style={ styles.bottomTabStyle }>
           <TouchableOpacity onPress={ () => { this.choosePickUpLocation() }}>
             <Body style={ styles.bottomTabBodyStyle }>
-              <Text style= { styles.instructions }>Choose a kiosk to pick up</Text>
+              <Icon style={{ color: '#ffffff' }} name='ios-arrow-up'/>
+              <Text style= { styles.instructions }>  Choose Pickup Location</Text>
             </Body>
           </TouchableOpacity>
         </Footer>
@@ -225,6 +236,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,44,54,0.3)'
   },
   bottomTabBodyStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center'
   }
 });

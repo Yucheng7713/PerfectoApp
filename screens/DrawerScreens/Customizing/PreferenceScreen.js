@@ -370,13 +370,24 @@ export default class PreferenceScreen extends Component<Props> {
             </List>
           </Card>
         </Content>
-        <Footer style={ styles.bottomTabStyle }>
-          <TouchableOpacity onPress={ () => { this.orderRecipe(); }}>
-            <Body style={ styles.bottomTabBodyStyle }>
-              <Text style= { styles.instructions }>Check out</Text>
-            </Body>
-          </TouchableOpacity>
-        </Footer>
+        <View style={{
+          flexDirection: "row",
+          justifyContent: 'center',
+          width: '100%'}}>
+            <Button
+              style={{ justifyContent: 'center', width: '100%', height: 50, backgroundColor: '#017afe'}}
+              onPress={ () => { this.saveRecipe() }}>
+              <Text style={{ color: '#ffffff'}}>Save to My Recipes</Text>
+            </Button>
+        </View>
+        <TouchableOpacity onPress={ () => { this.orderRecipe() }}>
+          <Footer style={ styles.bottomTabStyle }>
+              <Body style={ styles.bottomTabBodyStyle }>
+                <Text style= { styles.instructions }>Check out  </Text>
+                <Icon style={{ color: '#ffffff' }} name='ios-arrow-forward'/>
+              </Body>
+          </Footer>
+        </TouchableOpacity>
       </Container>
     );
   }
@@ -408,10 +419,11 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   bottomTabStyle: {
-    height: 40,
     backgroundColor: 'rgba(0,44,54,0.3)'
   },
   bottomTabBodyStyle: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center'
   },
 });

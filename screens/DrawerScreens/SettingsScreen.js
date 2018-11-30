@@ -28,11 +28,11 @@ export default class SettingsScreen extends Component<Props> {
               <Text>Invite</Text>
             </ListItem>
             <ListItem>
-              <Image source={ require("../../assets/Icons/facebook_setting_icon.png") }/>
+              <Image source={ require("../../assets/Icons/social_icons/facebook_setting_icon.png") }/>
               <Text> Facebook</Text>
             </ListItem>
             <ListItem>
-              <Image source={ require("../../assets/Icons/twitter_setting_icon.png") }/>
+              <Image source={ require("../../assets/Icons/social_icons/twitter_setting_icon.png") }/>
               <Text> Twitter</Text>
             </ListItem>
             <ListItem itemDivider>

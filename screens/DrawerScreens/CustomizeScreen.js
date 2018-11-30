@@ -40,7 +40,7 @@ const orderConfirmation = createStackNavigator({
   gesturesEnabled: false,
 });
 
-export const CustomizeStespNavigation = createStackNavigator({
+export const CustomizeStepsNavigation = createStackNavigator({
   BaseCoffee: {
     screen: BaseScreen,
     navigationOptions: {
@@ -101,7 +101,7 @@ export const CustomizeStespNavigation = createStackNavigator({
 // Component configuration for customize screen -> layout, state...
 export default class CustomizeScreen extends Component<Props> {
 
-  static router = CustomizeStespNavigation.router;
+  static router = CustomizeStepsNavigation.router;
 
   componentDidMount() {
 
@@ -111,7 +111,7 @@ export default class CustomizeScreen extends Component<Props> {
     return (
       <Container>
         <Root>
-          <CustomizeStespNavigation navigation={this.props.navigation}/>
+          <CustomizeStepsNavigation navigation={this.props.navigation}/>
         </Root>
       </Container>
     );

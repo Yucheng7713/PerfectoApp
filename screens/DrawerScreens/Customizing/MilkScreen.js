@@ -10,23 +10,7 @@ export default class MilkScreen extends Component<Props> {
   static navigationOptions = ({ navigation, screenProps}) => ({
     title: "MILK",
     headerLeft: (
-      <TouchableOpacity onPress={() => {
-        AlertIOS.alert(
-          'Discard Change',
-          null,
-          [
-            {
-              text: 'Cancel',
-              onPress: this.onPress,
-              style: 'cancel',
-            },
-            {
-              text: 'Discard',
-              onPress: () => navigation.goBack(),
-            },
-          ]
-        );
-      }}>
+      <TouchableOpacity onPress={navigation.getParam('checkEdit')}>
           <Title style={{ color: '#017afe', marginLeft: 10 }}>Cancel</Title>
       </TouchableOpacity>
     ),
@@ -53,13 +37,22 @@ export default class MilkScreen extends Component<Props> {
       extraHotSelected: (params.milkTemp == 'Extra Hot'),
       steamedSelected: (params.milkTemp == 'Steamed'),
       foamValue: params.foamPortion,
+      previousMilk: {
+        milkType: params.milkChoice,
+        milkValue: params.milkPortion,
+        tempLevel: params.milkTemp,
+        foamValue: params.foamPortion
+      },
       originalMilk: params.originalMilk,
       toggleMilkChoice: false,
       toggleMilkPortion: false,
       toggleFoamPortion: false,
       toggleTempLevel: false,
-      didEdit: false,
     };
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({ checkEdit: this._didEditCheck });
   }
 
   // Function for setting milk choice
@@ -73,7 +66,6 @@ export default class MilkScreen extends Component<Props> {
       soyMilkSelected: (type == "Soy"),
       almondMilkSelected: (type == "Almond"),
       toggleMilkChoice: false,
-      didEdit: true,
     });
   }
 
@@ -85,7 +77,6 @@ export default class MilkScreen extends Component<Props> {
       extraHotSelected: (temp == "Extra Hot"),
       steamedSelected: (temp == "Steamed"),
       toggleTempLevel: false,
-      didEdit: true,
     });
   }
 
@@ -144,16 +135,38 @@ export default class MilkScreen extends Component<Props> {
       });
   }
 
-  // Check if any preference is modified
-  // changeDidMake() {
-  //   if(this.state.previousMilk.milkType !== this.state.milkType ||
-  //      this.state.previousMilk.milkValue !== this.state.milkValue ||
-  //      this.state.previousMilk.tempLevel !== this.state.tempLevel ||
-  //      this.state.previousMilk.foamValue !== this.state.foamValue) {
-  //        return true;
-  //      }
-  //   return false;
-  // }
+  // Check if any preference is changed or modified
+  changeDidMake() {
+    if(this.state.previousMilk.milkType !== this.state.milkType ||
+       this.state.previousMilk.milkValue !== this.state.milkValue ||
+       this.state.previousMilk.tempLevel !== this.state.tempLevel ||
+       this.state.previousMilk.foamValue !== this.state.foamValue) {
+         return true;
+       }
+    return false;
+  }
+
+  _didEditCheck = () => {
+    if(this.changeDidMake()) {
+      AlertIOS.alert(
+        'Discard Change',
+        null,
+        [
+          {
+            text: 'Cancel',
+            onPress: this.onPress,
+            style: 'cancel',
+          },
+          {
+            text: 'Discard',
+            onPress: () => this.props.navigation.goBack(),
+          },
+        ]
+      );
+    } else {
+      this.props.navigation.goBack();
+    }
+  }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
@@ -216,7 +229,7 @@ export default class MilkScreen extends Component<Props> {
                  minimumValue={0.5}
                  maximumValue={2.5}
                  value={this.state.milkValue}
-                 onValueChange={val => this.setState({ milkValue: val, didEdit: true })}
+                 onValueChange={val => this.setState({ milkValue: val })}
                 />
               </ListItem>
             </Collapsible>
@@ -271,7 +284,7 @@ export default class MilkScreen extends Component<Props> {
                  minimumValue={0}
                  maximumValue={3}
                  value={this.state.foamValue}
-                 onValueChange={val => this.setState({ foamValue: val, didEdit: true })}
+                 onValueChange={val => this.setState({ foamValue: val })}
                 />
               </ListItem>
             </Collapsible>

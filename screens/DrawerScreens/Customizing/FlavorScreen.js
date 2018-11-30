@@ -10,23 +10,7 @@ export default class FlavorScreen extends Component<Props> {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title:  'FLAVORS',
     headerLeft: (
-      <TouchableOpacity onPress={() => {
-        AlertIOS.alert(
-          'Discard Change',
-          null,
-          [
-            {
-              text: 'Cancel',
-              onPress: this.onPress,
-              style: 'cancel',
-            },
-            {
-              text: 'Discard',
-              onPress: () => navigation.goBack(),
-            },
-          ]
-        );
-      }}>
+      <TouchableOpacity onPress={navigation.getParam('checkEdit')}>
         <Title style={{ color: '#017afe', marginLeft: 10 }}>Cancel</Title>
       </TouchableOpacity>
     ),
@@ -46,6 +30,10 @@ export default class FlavorScreen extends Component<Props> {
       vanillaValue: 0,
       chocoValue: 0,
       pepperValue: 0,
+      prevCaramelValue: 0,
+      prevVanillaValue: 0,
+      prevChocoValue: 0,
+      prevPepperValue: 0,
       originalFlavors: params.originalFlavors,
       toggleCaramel: false,
       toggleVanilla: false,
@@ -55,23 +43,31 @@ export default class FlavorScreen extends Component<Props> {
   }
 
   componentDidMount() {
+    // Load default flavor preferences
     let flavorList = this.props.navigation.state.params.flavors;
+    console.log(flavorList);
+    this.props.navigation.setParams({ checkEdit: this._didEditCheck });
+
     for(var i = 0; i < flavorList.length; i++) {
       if(flavorList[i].name === "Caramel") {
         this.setState({
-          caramelValue: flavorList[i].value
+          caramelValue: flavorList[i].value,
+          prevCaramelValue: flavorList[i].value,
         });
       } else if(flavorList[i].name === "Vanilla") {
         this.setState({
-          vanillaValue: flavorList[i].value
+          vanillaValue: flavorList[i].value,
+          prevVanillaValue: flavorList[i].value
         });
       } else if(flavorList[i].name === "Chocolate") {
         this.setState({
-          chocoValue: flavorList[i].value
+          chocoValue: flavorList[i].value,
+          prevChocoValue: flavorList[i].value
         });
       } else if(flavorList[i].name === "Peppermint"){
         this.setState({
-          pepperValue: flavorList[i].value
+          pepperValue: flavorList[i].value,
+          prevPepperValue: flavorList[i].value
         });
       }
     }
@@ -179,6 +175,39 @@ export default class FlavorScreen extends Component<Props> {
       prevScreen: this.state.prevScreen,
       flavors: flavorList,
     });
+  }
+
+  // Check if any preference is changed or modified
+  changeDidMake() {
+    if(this.state.prevCaramelValue !== this.state.caramelValue ||
+       this.state.prevVanillaValue !== this.state.vanillaValue ||
+       this.state.prevChocoValue !== this.state.chocoValue ||
+       this.state.prevPepperValue !== this.state.pepperValue) {
+         return true;
+       }
+    return false;
+  }
+
+  _didEditCheck = () => {
+    if(this.changeDidMake()) {
+      AlertIOS.alert(
+        'Discard Change',
+        null,
+        [
+          {
+            text: 'Cancel',
+            onPress: this.onPress,
+            style: 'cancel',
+          },
+          {
+            text: 'Discard',
+            onPress: () => this.props.navigation.goBack(),
+          },
+        ]
+      );
+    } else {
+      this.props.navigation.goBack();
+    }
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

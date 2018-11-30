@@ -10,23 +10,7 @@ export default class ExtraScreen extends Component<Props> {
   static navigationOptions = ({ navigation, screenProps }) => ({
     title:  'EXTRA ADD-INS',
     headerLeft: (
-      <TouchableOpacity onPress={() => {
-        AlertIOS.alert(
-          'Discard Change',
-          null,
-          [
-            {
-              text: 'Cancel',
-              onPress: this.onPress,
-              style: 'cancel',
-            },
-            {
-              text: 'Discard',
-              onPress: () => navigation.goBack(),
-            },
-          ]
-        );
-      }}>
+      <TouchableOpacity onPress={navigation.getParam('checkEdit')}>
         <Title style={{ color: '#017afe', marginLeft: 10 }}>Cancel</Title>
       </TouchableOpacity>
     ),
@@ -42,6 +26,9 @@ export default class ExtraScreen extends Component<Props> {
        cocoaValue: 0,
        cinnamonValue: 0,
        vanillaValue: 0,
+       prevCocoaValue: 0,
+       prevCinnamonValue: 0,
+       prevVanillaValue: 0,
        originalAdds: [],
        toggleCocoa: false,
        toggleCinnamon: false,
@@ -51,18 +38,22 @@ export default class ExtraScreen extends Component<Props> {
 
   componentDidMount() {
     let extraList = this.props.navigation.state.params.extra;
+    this.props.navigation.setParams({ checkEdit: this._didEditCheck });
     for(var i = 0; i < extraList.length; i++) {
       if(extraList[i].name === "Cocoa") {
         this.setState({
-          cocoaValue: extraList[i].value
+          cocoaValue: extraList[i].value,
+          prevCocoaValue: extraList[i].value
         });
       } else if(extraList[i].name === "Cinnamon") {
         this.setState({
-          cinnamonValue: extraList[i].value
+          cinnamonValue: extraList[i].value,
+          prevCinnamonValue: extraList[i].value
         });
       } else if(extraList[i].name === "Vanilla") {
         this.setState({
-          vanillaValue: extraList[i].value
+          vanillaValue: extraList[i].value,
+          prevVanillaValue: extraList[i].value
         });
       }
     }
@@ -123,6 +114,38 @@ export default class ExtraScreen extends Component<Props> {
       prevScreen: this.state.prevScreen,
       extra: extraList,
     });
+  }
+
+  // Check if any preference is changed or modified
+  changeDidMake() {
+    if(this.state.prevCocoaValue !== this.state.cocoaValue ||
+       this.state.prevCinnamonValue !== this.state.cinnamonValue ||
+       this.state.prevVanillaValue !== this.state.vanillaValue) {
+         return true;
+       }
+    return false;
+  }
+
+  _didEditCheck = () => {
+    if(this.changeDidMake()) {
+      AlertIOS.alert(
+        'Discard Change',
+        null,
+        [
+          {
+            text: 'Cancel',
+            onPress: this.onPress,
+            style: 'cancel',
+          },
+          {
+            text: 'Discard',
+            onPress: () => this.props.navigation.goBack(),
+          },
+        ]
+      );
+    } else {
+      this.props.navigation.goBack();
+    }
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

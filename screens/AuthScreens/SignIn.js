@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ImageBackground, Alert, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Alert, AsyncStorage, Image } from 'react-native';
 import { Button, Container, Content, Form, Item as FormItem, Input, Title } from 'native-base';
 import { LoginButton, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 import { onSignIn, FBSignIn, STATIC_USERID, STATIC_PASSWORD } from "../../src/auth";
@@ -36,6 +36,8 @@ export default class SignIn extends Component<Props> {
         // Store recipes locally
         AsyncStorage.setItem('Card', JSON.stringify({
           "cardNum": null,
+          "cardExpiry": null,
+          "cardCvc": null,
           "cardType": null
         }));
         AsyncStorage.setItem('Recipes',JSON.stringify({
@@ -71,7 +73,11 @@ export default class SignIn extends Component<Props> {
         source={ require('../../assets/Background/splash-background.png') }
         style={ styles.imgBackground }>
         <Content style={ styles.contentAdjust }>
-          <Title style={ styles.welcomeBackStyle}> Welcome Back ! </Title>
+          <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+            style={{ height: 90, width: 250 }}
+            source={ require('../../assets/Background/signin_title.png') } />
+          </View>
           <Form style={ styles.inputField }>
             <FormItem>
               <Input placeholder="Email"
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   contentAdjust: {
-    paddingTop: 70
+    paddingTop: 70,
   },
   welcomeBackStyle: {
     color: 'white',

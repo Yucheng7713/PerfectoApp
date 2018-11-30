@@ -108,7 +108,11 @@ export default class BaseScreen extends Component<Props> {
               source={require('../../../assets/SideBarIcons/home-icon.png')} />
             </TouchableOpacity>
           </Left>
-          <Body><Title style={ styles.titleStyle }>PerfectoCoffee</Title></Body>
+          <Body>
+            <Image
+            style={{ height: 40, width: 120}}
+            source={require('../../../assets/Background/home_title.png')}/>
+          </Body>
           <Right></Right>
         </Header>
         <Tabs renderTabBar={()=> <ScrollableTab />}>

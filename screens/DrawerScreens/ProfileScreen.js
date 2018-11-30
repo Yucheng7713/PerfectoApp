@@ -10,6 +10,16 @@ export default class ProfileScreen extends Component<Props> {
   // Facebook login data status
   constructor(props) {
     super(props);
+    this.cardIcons = {
+      "visa": require('../../assets/Icons/card_icons/stp_card_visa.png'),
+      "master-card": require('../../assets/Icons/card_icons/stp_card_mastercard.png'),
+      "american-express": require('../../assets/Icons/card_icons/stp_card_amex.png'),
+      "diners-club": require('../../assets/Icons/card_icons/stp_card_diners.png'),
+      "discover": require('../../assets/Icons/card_icons/stp_card_discover.png'),
+      "jcb": require('../../assets/Icons/card_icons/stp_card_jcb.png'),
+      "unionpay": require('../../assets/Icons/card_icons/stp_card_unknown.png'),
+      "maestro": require('../../assets/Icons/card_icons/stp_card_unknown.png')
+    };
     this.state = {
       FBInfoExisted: false,
       FBName: "",
@@ -19,6 +29,7 @@ export default class ProfileScreen extends Component<Props> {
       cardNum: null,
       cardExpiry: null,
       cardCvc: null,
+      cardType: null,
       editComplete: true,
     };
   }
@@ -51,7 +62,8 @@ export default class ProfileScreen extends Component<Props> {
             this.setState({
               cardNum: cardInfo.cardNum,
               cardExpiry: cardInfo.cardExpiry,
-              cardCvc: cardInfo.cardCvc
+              cardCvc: cardInfo.cardCvc,
+              cardType: cardInfo.cardType
             });
           }
       }
@@ -67,33 +79,33 @@ export default class ProfileScreen extends Component<Props> {
       this.setState({
         cardNum: "",
         cardExpiry: "",
-        cardCvc: ""
+        cardCvc: "",
+        cardType: ""
       });
     } else {
       // Save payment info locally
       AsyncStorage.setItem('Card', JSON.stringify({
         cardNum: this.state.cardNum,
         cardExpiry: this.state.cardExpiry,
-        cardCvc: this.state.cardCvc
+        cardCvc: this.state.cardCvc,
+        cardType: this.state.cardType
       }));
     }
   }
 
   // Called function when credit card input get changed
   _creditCardOnChange = (form) => {
-    console.log(form);
-    // this.refs.CCInput.setValues({ expiry: "" });
-    // this.refs.CCInput.setValues({ cvc: "" });
     if(form.valid) {
-      console.log("Card info saved!");
+      //console.log("Card info saved!");
       this.setState({
         cardNum: form.values.number,
         cardExpiry: form.values.expiry,
         cardCvc: form.values.cvc,
+        cardType: form.values.type,
         editComplete: true,
       });
     } else {
-      console.log("Card info incomplete!");
+      //console.log("Card info incomplete!");
       this.setState({
         editComplete: false,
       });
@@ -111,8 +123,13 @@ export default class ProfileScreen extends Component<Props> {
           <Text>None</Text>
         );
       } else {
+        console.log(this.state.cardType);
+        console.log(this.cardIcons[this.state.cardType]);
         return(
-          <Text>{ this.state.cardNum }</Text>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+            <Image style={{ height: 21, width: 32 }} source={this.cardIcons[this.state.cardType]} />
+            <Text> { this.state.cardNum.replace(/\d{4}(?= \d{4})/g, "****") }</Text>
+          </View>
         );
       }
     }
