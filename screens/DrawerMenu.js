@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text } from 'react-native';
+import { StyleSheet, Image, View, Text } from 'react-native';
 import { Container, Content, Header, Body, Icon, Footer, Button } from 'native-base';
 import { createStackNavigator, createDrawerNavigator, DrawerItems, DrawerActions, StackActions, NavigationActions } from 'react-navigation';
 import { onSignOut } from "../src/auth";
@@ -16,6 +16,9 @@ import SettingsScreen from './DrawerScreens/SettingsScreen';
 const CustomDrawerContentComponent = (props) => (
   <Container>
     <Header style={ customDrawerStyles.sectionBackground }>
+      <Image
+      style={{ width: 170,height: 70}}
+      source={require('../assets/Background/drawer_header_logo.png')}/>
     </Header>
     <Content>
       <DrawerItems { ...props }
@@ -41,8 +44,8 @@ const CustomDrawerContentComponent = (props) => (
 // Side Drawer Navigator Layout Styling
 const customDrawerStyles = StyleSheet.create({
   sectionBackground: {
-    height: 50,
-    backgroundColor: 'white'
+    height: 100,
+    backgroundColor: '#f8f8f8'
   },
   profileStyle: {
     height: 100,
@@ -50,7 +53,9 @@ const customDrawerStyles = StyleSheet.create({
     borderRadius: 50
   },
   bodyStyle: {
-    justifyContent: 'center'
+    justifyContent: 'center',
+    height: 80,
+    backgroundColor: '#f8f8f8'
   },
   logoutButtonStyle: {
     width: '33%',

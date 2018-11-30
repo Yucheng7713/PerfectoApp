@@ -190,6 +190,7 @@ export default class SugarScreen extends Component<Props> {
               <ListItem>
                 <Slider
                  style={{ width: 340 }}
+                 thumbImage={ require('../../../assets/Icons/slider-thumb.png') }
                  step={1}
                  minimumValue={0}
                  maximumValue={4}
@@ -212,6 +213,7 @@ export default class SugarScreen extends Component<Props> {
               <ListItem>
                 <Slider
                  style={{ width: 340 }}
+                 thumbImage={ require('../../../assets/Icons/slider-thumb.png') }
                  step={1}
                  minimumValue={0}
                  maximumValue={4}
@@ -234,6 +236,7 @@ export default class SugarScreen extends Component<Props> {
               <ListItem>
                 <Slider
                  style={{ width: 340 }}
+                 thumbImage={ require('../../../assets/Icons/slider-thumb.png') }
                  step={1}
                  minimumValue={0}
                  maximumValue={4}
@@ -256,6 +259,7 @@ export default class SugarScreen extends Component<Props> {
               <ListItem>
                 <Slider
                  style={{ width: 340 }}
+                 thumbImage={ require('../../../assets/Icons/slider-thumb.png') }
                  step={1}
                  minimumValue={0}
                  maximumValue={4}

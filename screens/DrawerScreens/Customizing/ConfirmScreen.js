@@ -81,29 +81,32 @@ export default class ConfirmScreen extends Component<Props> {
   }
 
   placeOrder() {
+    let today = new Date();
     const orderRecipe = {
       recipe: this.state.orderRecipe,
       location: this.state.pickupLocation,
-      placeTime: this.state.waitTime,
-      price: this.state.saleTax + this.state.orderRecipe.price
+      price: this.state.saleTax + this.state.orderRecipe.price,
+      date: parseInt(today.getMonth()+1)+ "/"+ today.getDate()  +"/"+today.getFullYear()
     };
+    console.log(orderRecipe);
     // Store order to history
-    // Store the customized recipe locally
-    // AsyncStorage.getItem("Orders", (error,res) => {
-    //   if (!error) {
-    //       //handle result
-    //       if (res !== null) {
-    //         var history = JSON.parse(res);
-    //         history.orderHistory.push(order);
-    //         AsyncStorage.setItem("Orders", JSON.stringify(history));
-    //         this.props.navigation.navigate("Done");
-    //       }
-    //   }
-    // });
-    // // Navigate to final confirm
-    this.props.navigation.navigate("Done", {
-      order: orderRecipe
+    AsyncStorage.getItem("Orders", (error,res) => {
+      if (!error) {
+          //handle result
+          if (res !== null) {
+            var history = JSON.parse(res);
+            history.orderHistory.push(orderRecipe);
+            AsyncStorage.setItem("Orders", JSON.stringify(history));
+            this.props.navigation.navigate("Done",{
+              order: orderRecipe
+            });
+          }
+      }
     });
+    // Navigate to final confirm
+    // this.props.navigation.navigate("Done", {
+    //   order: orderRecipe
+    // });
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
@@ -195,14 +198,14 @@ export default class ConfirmScreen extends Component<Props> {
               <Text style={{ color: '#ffffff'}}>Place Order</Text>
             </Button>
         </View>
-        <Footer style={ styles.bottomTabStyle }>
-          <TouchableOpacity onPress={ () => { this.choosePickUpLocation() }}>
+        <TouchableOpacity onPress={ () => { this.choosePickUpLocation() }}>
+          <Footer style={ styles.bottomTabStyle }>
             <Body style={ styles.bottomTabBodyStyle }>
               <Icon style={{ color: '#ffffff' }} name='ios-arrow-up'/>
               <Text style= { styles.instructions }>  Choose Pickup Location</Text>
             </Body>
-          </TouchableOpacity>
-        </Footer>
+          </Footer>
+        </TouchableOpacity>
       </Container>
     );
   }

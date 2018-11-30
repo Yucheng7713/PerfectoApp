@@ -225,9 +225,10 @@ export default class MilkScreen extends Component<Props> {
               <ListItem>
                 <Slider
                  style={{ width: 340 }}
+                 thumbImage={ require('../../../assets/Icons/slider-thumb.png') }
                  step={0.5}
                  minimumValue={0.5}
-                 maximumValue={2.5}
+                 maximumValue={3}
                  value={this.state.milkValue}
                  onValueChange={val => this.setState({ milkValue: val })}
                 />
@@ -280,6 +281,7 @@ export default class MilkScreen extends Component<Props> {
               <ListItem>
                 <Slider
                  style={{ width: 340 }}
+                 thumbImage={ require('../../../assets/Icons/slider-thumb.png') }
                  step={0.5}
                  minimumValue={0}
                  maximumValue={3}

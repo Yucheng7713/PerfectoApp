@@ -56,6 +56,12 @@ export default class PreferenceScreen extends Component<Props> {
         originalMilk: chosenBase.milk
       });
     }
+
+    if(chosenBase.cusName) {
+      this.setState({
+        recipeName: chosenBase.cusName
+      });
+    }
     // Set flavor options
     this.setState({
       flavors: chosenBase.flavors,

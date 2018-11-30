@@ -15,80 +15,41 @@ export default class OrderList extends Component<Props> {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem("Recipes", (error,res) => {
+    AsyncStorage.getItem("Orders", (error,res) => {
           if (!error) {
               //handle result
               if (res !== null) {
-                var recipesList = JSON.parse(res).customList;
-                this.setState({data: recipesList});
+                var orderHistory = JSON.parse(res).orderHistory;
+                this.setState({data: orderHistory});
               }
           }
     });
   }
 
-  // postJSONRecall() {
-    // console.log("Post json to backend!");
-    // fetch("http://18.223.142.153:1337/api/v1/entrance/login", {
-    //   method: 'PUT',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     emailAddress: "test4@usc.edu",
-    //     password: "test4fae",
-    //   }),
-    // })
-    // .then(function(res){
-    //   console.log(res);
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    // });
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", "http://18.223.142.153:1337/api/v1/entrance/signup", true);
-    //
-    // //Send the proper header information along with the request
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.onreadystatechange = function() { // Call a function when the state changes.
-    //     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-    //         console.log("Request made!!!");
-    //     }
-    // }
-    // xhr.send(JSON.stringify({
-    //   "emailAddress": "test2@usc.edu",
-    //   "password": "test"
-    // }));
-    // xhr.send(new Int8Array());
-    // xhr.send(document);
-  // }
-
-  // getJSONRecall() {
-  //   console.log("Get json from backend!");
-  //   return fetch('http://18.223.142.153:1337/api/v1/entrance/signup')
-  //   .then((response) => response.json())
-  //   .then((responseJson) => {
-  //     console.log(responseJson);
-  //     // return responseJson;
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-  // }
-
-  baseMenuGenerator() {
-    // var bases = [];
-    // for(var i = 0; i < mockupData.baseFlavors.length; i ++) {
-    //   bases.push(
-    //     <ListItem key={'base_' + i} style={{flexDirection: 'row'}}>
-    //       <Image style={{ width: 40, height: 40, borderRadius: 20 }} source={ {uri : base_JSON[i]['IMG_path']} } />
-    //       <Title>   { base_JSON[i]['Title'] }</Title>
-    //     </ListItem>
-    //   );
-    // }
-    // return bases;
+  // Navigate to the detail of the chosen recipe
+  goToOrderDetail = (orderDetail) => {
+    this.props.navigation.navigate("OrderDetail", {
+      detailInfo: orderDetail
+    });
   }
+
+  // baseMenuGenerator() {
+  //   var orders = [];
+  //   for(var i = 0; i < this.state.data.length; i ++) {
+  //     orders.push(
+  //       <ListItem key={'oh_' + i}
+  //       onPress={() => { this.goToOrderDetail(this.state.data[]) } }
+  //       style={{flexDirection: 'row'}}>
+  //         <Image style={{ width: 40, height: 40, borderRadius: 20 }}
+  //         source={ { uri : this.state.data[i].recipe.img } } />
+  //         <Title>   { this.state.data[i].recipe.name }</Title>
+  //         <Text style={{ paddingLeft: 70, paddingRight: 20 }}> { this.state.data[i].date }</Text>
+  //         <Icon name='ios-arrow-forward'/>
+  //       </ListItem>
+  //     );
+  //   }
+  //   return orders;
+  // }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
@@ -107,11 +68,23 @@ export default class OrderList extends Component<Props> {
           <Body><Title style={ styles.titleStyle }>Order History</Title></Body>
           <Right></Right>
         </Header>
-        <ScrollView>
-          <List>
-            { this.baseMenuGenerator() }
-          </List>
-        </ScrollView>
+        <FlatList
+        data={ this.state.data }
+        keyExtractor={item => item.recipe.base }
+        renderItem={ ({item}) => (
+          <ListItem
+          style={{flexDirection: 'row'}}
+          button
+          onPress={() => this.goToOrderDetail(item) }>
+            <Left>
+              <Image style={{ width: 40, height: 40, borderRadius: 20 }} source={ {uri : item.recipe.img } } />
+              <Title style={{ paddingTop: 10}}>   { item.recipe.name }</Title>
+            </Left>
+            <Text style={{ paddingLeft: 70, paddingRight: 20 }}> { item.date }</Text>
+            <Icon name='ios-arrow-forward'/>
+          </ListItem>
+        ) }
+        />
       </Container>
     );
   }

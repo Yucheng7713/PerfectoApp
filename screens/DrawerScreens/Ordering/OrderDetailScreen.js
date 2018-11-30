@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem } from 'native-base';
 import Collapsible from 'react-native-collapsible';
-import { ShareDialog } from 'react-native-fbsdk';
 
 export default class DetailScreen extends Component<Props> {
 
   // Header title and back button customization
   static navigationOptions = ({ navigation, screenProps}) => ({
-    title: navigation.state.params.detailInfo.name,
+    title: "Order Detail",
   });
 
   constructor(props) {
@@ -18,10 +17,12 @@ export default class DetailScreen extends Component<Props> {
       'up': require('../../../assets/Icons/collapse_icons/arrowup_myrecipes_icon.png'),
       'down': require('../../../assets/Icons/collapse_icons/arrowdown_myrecipes_icon.png')
     };
-
-    let recipe = props.navigation.state.params.detailInfo;
+    let recipe = props.navigation.state.params.detailInfo.recipe;
     this.state = {
       chosenRecipe: recipe,
+      location: props.navigation.state.params.detailInfo.location,
+      price: props.navigation.state.params.detailInfo.price,
+      date: props.navigation.state.params.detailInfo.date,
       milkAvailable: (recipe.milkChoice !== null),
       flavorsAvailable: (recipe.flavors.length !== 0),
       sweetnersAvailable: (recipe.sweetners.length !== 0),
@@ -32,43 +33,6 @@ export default class DetailScreen extends Component<Props> {
       toggleExtra: false,
     }
   }
-
-  componentDidMount() {
-
-  }
-
-  // Share the link using the share dialog.
-  // shareLinkWithShareDialog() {
-  //   // Share using the share API.
-  //   var tmp = this;
-  //   ShareDialog.canShow(this.state.shareLinkContent).then(
-  //     function(canShow) {
-  //       if (canShow) {
-  //         return ShareDialog.show(tmp.state.shareLinkContent);
-  //       }
-  //     }
-  //   ).then(
-  //     function(result) {
-  //       if (result.isCancelled) {
-  //         console.log('Share cancelled');
-  //         Toast.show({
-  //           text: 'Share cancelled!',
-  //           buttonText: 'Okay'
-  //         });
-  //       } else {
-  //         console.log('Share success with postId: '
-  //           + result.postId);
-  //         Toast.show({
-  //           text: 'Share posted!',
-  //           buttonText: 'Okay'
-  //         });
-  //       }
-  //     },
-  //     function(error) {
-  //       console.log('Share fail with error: ' + error);
-  //     }
-  //   );
-  // }
 
   // List item collapse functions
   listItemCollapse(item) {
@@ -131,30 +95,6 @@ export default class DetailScreen extends Component<Props> {
     return(extraList);
   }
 
-  orderSavedRecipe() {
-    const savedRecipe = {
-      cusName:  this.state.chosenRecipe.name,
-      name: this.state.chosenRecipe.base,
-      img: this.state.chosenRecipe.img,
-      price: this.state.chosenRecipe.price,
-      milk: {
-        Type: this.state.chosenRecipe.milkChoice,
-        Portion: this.state.chosenRecipe.milkPortion,
-        Temp: this.state.chosenRecipe.milkTemp,
-        Cream: this.state.chosenRecipe.foam
-      },
-      flavors: this.state.chosenRecipe.flavors,
-      sweetners: this.state.chosenRecipe.sweetners,
-      extra: this.state.chosenRecipe.extra
-    };
-    // console.log(this.state.chosenRecipe);
-    // console.log(savedRecipe);
-    this.props.navigation.navigate('Preference', {
-      baseOptions: savedRecipe
-    });
-  }
-
-  // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
       <Container>
@@ -174,6 +114,21 @@ export default class DetailScreen extends Component<Props> {
               style={ styles.listItemStyle }>
                 <Left><Title>Base Flavor</Title></Left>
                 <Text>{ this.state.chosenRecipe.base }</Text>
+              </ListItem>
+              <ListItem itemDivider
+              style={ styles.listItemStyle }>
+                <Left><Title>Price</Title></Left>
+                <Text>{ this.state.price }</Text>
+              </ListItem>
+              <ListItem itemDivider
+              style={ styles.listItemStyle }>
+                <Left><Title>Date</Title></Left>
+                <Text>{ this.state.date }</Text>
+              </ListItem>
+              <ListItem itemDivider
+              style={ styles.listItemStyle }>
+                <Left><Title>Kiosk</Title></Left>
+                <Text>{ this.state.location }</Text>
               </ListItem>
               <ListItem itemDivider
               style={ styles.listItemStyle }>
@@ -250,13 +205,6 @@ export default class DetailScreen extends Component<Props> {
             </List>
           </Card>
         </Content>
-        <TouchableOpacity onPress={ () => { this.orderSavedRecipe() }}>
-          <Footer style={ styles.bottomTabStyle }>
-              <Body style={ styles.bottomTabBodyStyle }>
-                <Text style= { { color: '#ffffff', fontSize: 20 } }>  Make Order</Text>
-              </Body>
-          </Footer>
-        </TouchableOpacity>
       </Container>
     );
   }

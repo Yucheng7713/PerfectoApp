@@ -15,7 +15,7 @@
 		114B5D212187F81000CCD80B /* libreact-native-google-maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114B5D202187F81000CCD80B /* libreact-native-google-maps.a */; };
 		114B5D4A2187F81900CCD80B /* libGoogle-Maps-iOS-Utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114B5D492187F81900CCD80B /* libGoogle-Maps-iOS-Utils.a */; };
 		11BF7AF4217F9343001246BD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11BF7AF0217F9342001246BD /* Bolts.framework */; };
-		11BF7B71217F984E001246BD /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11BF7B37217F9471001246BD /* libSplashScreen.a */; };
+		11C2169821B1DDF8004C16D6 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C2169721B1DDC8004C16D6 /* libSplashScreen.a */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -105,19 +105,19 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = PerfectoApp;
 		};
-		11BF7B36217F9471001246BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 11BF7B0D217F9471001246BD /* SplashScreen.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D7682761D8E76B80014119E;
-			remoteInfo = SplashScreen;
-		};
 		11BF7B6F217F9660001246BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE3CDE6BA32947ABAB68B2C5 /* RCTFBSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
+		};
+		11C2169621B1DDC8004C16D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11C2169221B1DDC8004C16D6 /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -366,7 +366,7 @@
 		114B5D202187F81000CCD80B /* libreact-native-google-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-google-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		114B5D492187F81900CCD80B /* libGoogle-Maps-iOS-Utils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libGoogle-Maps-iOS-Utils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11BF7AF0217F9342001246BD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
-		11BF7B0D217F9471001246BD /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
+		11C2169221B1DDC8004C16D6 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PerfectoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,9 +421,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C2169821B1DDF8004C16D6 /* libSplashScreen.a in Frameworks */,
 				114B5D4A2187F81900CCD80B /* libGoogle-Maps-iOS-Utils.a in Frameworks */,
 				114B5D212187F81000CCD80B /* libreact-native-google-maps.a in Frameworks */,
-				11BF7B71217F984E001246BD /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -551,14 +551,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		11BF7B0E217F9471001246BD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				11BF7B37217F9471001246BD /* libSplashScreen.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		11BF7B45217F965F001246BD /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +564,14 @@
 			isa = PBXGroup;
 			children = (
 				11BF7B70217F9660001246BD /* libRCTFBSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11C2169321B1DDC8004C16D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11C2169721B1DDC8004C16D6 /* libSplashScreen.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -678,7 +678,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				11BF7B0D217F9471001246BD /* SplashScreen.xcodeproj */,
+				11C2169221B1DDC8004C16D6 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -912,8 +912,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 11BF7B0E217F9471001246BD /* Products */;
-					ProjectRef = 11BF7B0D217F9471001246BD /* SplashScreen.xcodeproj */;
+					ProductGroup = 11C2169321B1DDC8004C16D6 /* Products */;
+					ProjectRef = 11C2169221B1DDC8004C16D6 /* SplashScreen.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -962,18 +962,18 @@
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		11BF7B37217F9471001246BD /* libSplashScreen.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSplashScreen.a;
-			remoteRef = 11BF7B36217F9471001246BD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		11BF7B70217F9660001246BD /* libRCTFBSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTFBSDK.a;
 			remoteRef = 11BF7B6F217F9660001246BD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		11C2169721B1DDC8004C16D6 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 11C2169621B1DDC8004C16D6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {

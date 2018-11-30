@@ -69,6 +69,12 @@ export default class DoneScreen extends Component<Props> {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center'}}>
+            <Title style={{ color: '#017afe', fontSize: 25, paddingBottom: 30 }}>Your order has been placed !</Title>
+            <View style={{ paddingBottom: 50 }}>
+              <Image
+              style={{ width: 200, height: 200 }}
+              source={ require('../../../assets/Background/orderComplete.png')}/>
+            </View>
             <TouchableOpacity
             style={{ paddingBottom: 30}}
             onPress={() => { this.props.navigation.navigate('BaseCoffee') }}>

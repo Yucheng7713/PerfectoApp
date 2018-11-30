@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "adm-zip": "^0.4.11",
+    "geolib": "^2.0.24",
     "native-base": "^2.8.1",
     "plist": "^3.0.1",
     "react": "^16.6.3",
