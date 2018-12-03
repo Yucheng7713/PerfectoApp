@@ -13,16 +13,17 @@ export default class PreferenceScreen extends Component<Props> {
     title: navigation.state.params.baseOptions.name,
   });
 
-  // Parameters initialization
+  // Props ( Parameters ) initialization
   constructor(props) {
      super(props);
      this.selectCupSize = this.selectCupSize.bind(this); // Coffee cup size segment tabs
      this.listItemCollapse = this.listItemCollapse.bind(this); // Listitem collapse function
+     let recipe = this.props.navigation.state.params.baseOptions;
      this.state = {
-       recipeName: this.props.navigation.state.params.baseOptions.name,
-       price: this.props.navigation.state.params.baseOptions.price,
+       recipeName: recipe.name,
+       price: recipe.price,
        nameEditable: false,
-       cupSize: "Small",
+       cupSize: (typeof recipe.size != 'undefined')? recipe.size : "Small",
        sizeSmallSelected: true,
        sizeMediumSelected: false,
        sizeLargeSelected: false,
@@ -38,14 +39,17 @@ export default class PreferenceScreen extends Component<Props> {
        sweetners: [],
        originalSweetners: [],
        extra: [],
-       originalExtra: []
+       originalExtra: [],
+       savedRecipe: (typeof recipe.cusID != 'undefined')
      }
   }
 
   // Component initialization
   componentDidMount() {
+    console.log(this.state.savedRecipe);
     let chosenBase = this.props.navigation.state.params.baseOptions;
-    // Check if milk option is available
+    this.selectCupSize(this.state.cupSize);
+    // Check if milk preferred option is available
     if(chosenBase.milk !== null) {
       this.setState({
         milkAvailable: true,
@@ -56,7 +60,7 @@ export default class PreferenceScreen extends Component<Props> {
         originalMilk: chosenBase.milk
       });
     }
-
+    // If a user orders a customized recipe with pre-stored cup size preference
     if(chosenBase.cusName) {
       this.setState({
         recipeName: chosenBase.cusName
@@ -79,7 +83,7 @@ export default class PreferenceScreen extends Component<Props> {
     });
   }
 
-  // Rename function
+  // Rename recipe function
   recipeRename() {
     this.setState({
       recipeName: "",
@@ -87,7 +91,7 @@ export default class PreferenceScreen extends Component<Props> {
     });
   }
 
-  // Update the milk preferences state from MilkScreen, FlavorScreen, SugarScreen and ExtraScreen
+  // Update preference states from MilkScreen, FlavorScreen, SugarScreen and ExtraScreen
   componentWillReceiveProps(nextProps) {
     let modifiedRecipe = nextProps.navigation.state.params;
     if(modifiedRecipe.prevScreen == "Milk") {
@@ -112,7 +116,7 @@ export default class PreferenceScreen extends Component<Props> {
     }
   }
 
-  // Show milk preference plain text state
+  // Show & Update milk preferences in plain text under the Flavors title
   milkPreferenceContent() {
     return (
       <Body style={{ paddingTop: 5 }}>
@@ -125,7 +129,7 @@ export default class PreferenceScreen extends Component<Props> {
     );
   }
 
-  // Show flavor preference plain text state
+  // Show & Update flavor preferences in plain text under the Flavors title
   flavorPreferenceContent() {
     let flavorList = [];
     for(var i = 0; i < this.state.flavors.length; i++) {
@@ -140,7 +144,7 @@ export default class PreferenceScreen extends Component<Props> {
     );
   }
 
-  // Show sweetner preference plain text state
+  // Show & Update sweetners preferences in plain text under the Flavors title
   sweetnerPreferenceContent() {
     let sugarList = [];
     for(var i = 0; i < this.state.sweetners.length; i++) {
@@ -155,7 +159,7 @@ export default class PreferenceScreen extends Component<Props> {
     );
   }
 
-  // Show sweetner preference plain text state
+  // Show & Update extra preferences in plain text under the Flavors title
   extraPreferenceContent() {
     let extraList = [];
     for(var i = 0; i < this.state.extra.length; i++) {
@@ -207,6 +211,7 @@ export default class PreferenceScreen extends Component<Props> {
       const customRecipe = {
           name: this.state.recipeName,
           base: baseRecipe.name,
+          price: baseRecipe.price,
           img: baseRecipe.img,
           size: this.state.cupSize,
           milkChoice: this.state.milkChoice,
@@ -223,9 +228,24 @@ export default class PreferenceScreen extends Component<Props> {
             //handle result
             if (res !== null) {
               var recipesList = JSON.parse(res);
-              recipesList.customList.push(customRecipe);
+              var recipe_ID = recipesList.recipe_count++;
+              recipesList.customList.push({
+                recipeID: 'CUS_' + recipe_ID,
+                name: this.state.recipeName,
+                base: baseRecipe.name,
+                price: baseRecipe.price,
+                img: baseRecipe.img,
+                size: this.state.cupSize,
+                milkChoice: this.state.milkChoice,
+                milkPortion: this.state.milkPortion,
+                milkTemp: this.state.milkTemp,
+                foam: this.state.foamPortion,
+                flavors: this.state.flavors,
+                sweetners: this.state.sweetners,
+                extra: this.state.extra
+              });
               AsyncStorage.setItem("Recipes", JSON.stringify(recipesList));
-              this.props.navigation.navigate("Recipes");
+              this.props.navigation.navigate("RecipeList");
             }
         }
       });
@@ -252,7 +272,8 @@ export default class PreferenceScreen extends Component<Props> {
           foam: this.state.foamPortion,
           flavors: this.state.flavors,
           sweetners: this.state.sweetners,
-          extra: this.state.extra
+          extra: this.state.extra,
+          saved: this.state.savedRecipe,
         }
       });
     }
@@ -276,9 +297,11 @@ export default class PreferenceScreen extends Component<Props> {
                 />
               </Left>
               <Right>
-                <TouchableOpacity onPress={()=>{ this.recipeRename() }}>
-                  <Text style={{ color: '#017afe' }}>Rename</Text>
-                </TouchableOpacity>
+                { !this.state.savedRecipe &&
+                  <TouchableOpacity onPress={()=>{ this.recipeRename() }}>
+                    <Text style={{ color: '#017afe' }}>Rename</Text>
+                  </TouchableOpacity>
+                }
               </Right>
             </CardItem>
           </Card>
@@ -376,20 +399,22 @@ export default class PreferenceScreen extends Component<Props> {
             </List>
           </Card>
         </Content>
-        <View style={{
-          flexDirection: "row",
-          justifyContent: 'center',
-          width: '100%'}}>
-            <Button
-              style={{ justifyContent: 'center', width: '100%', height: 50, backgroundColor: '#017afe'}}
-              onPress={ () => { this.saveRecipe() }}>
-              <Text style={{ color: '#ffffff'}}>Save to My Recipes</Text>
-            </Button>
-        </View>
+        { !this.state.savedRecipe &&
+          <View style={{
+            flexDirection: "row",
+            justifyContent: 'center',
+            width: '100%'}}>
+              <Button
+                style={{ justifyContent: 'center', width: '100%', height: 50, backgroundColor: '#017afe'}}
+                onPress={ () => { this.saveRecipe() }}>
+                <Text style={{ color: '#ffffff'}}>Save to My Recipes</Text>
+              </Button>
+          </View>
+        }
         <TouchableOpacity onPress={ () => { this.orderRecipe() }}>
           <Footer style={ styles.bottomTabStyle }>
               <Body style={ styles.bottomTabBodyStyle }>
-                <Text style= { styles.instructions }>Check out  </Text>
+                <Text style= { { color: '#f5fcff', fontSize: 20 } }>Check out  </Text>
                 <Icon style={{ color: '#ffffff' }} name='ios-arrow-forward'/>
               </Body>
           </Footer>
@@ -401,10 +426,6 @@ export default class PreferenceScreen extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
-  instructions: {
-    color: "#f5fcff",
-    fontSize: 20,
-  },
   listItemStyle: {
     paddingTop: 20,
     paddingBottom: 20,
@@ -421,9 +442,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25
   },
-  text: {
-    fontSize: 50,
-  },
   bottomTabStyle: {
     backgroundColor: 'rgba(0,44,54,0.3)'
   },
@@ -431,5 +449,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  },
+  }
 });

@@ -76,7 +76,7 @@ const resetAction = StackActions.reset({
   ],
 });
 
-// Home page with drawer navgation menu
+// Side drawer menu holding all screens -> !!! As the root navigator of the app.
 export const DrawerMenuNavigation = createDrawerNavigator({
   Customize: {
     screen: CustomizeScreen,

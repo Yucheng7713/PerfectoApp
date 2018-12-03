@@ -8,7 +8,7 @@ import {createStackNavigator } from 'react-navigation';
 import OrderList from './Ordering/OrderList';
 import OrderDetailScreen from './Ordering/OrderDetailScreen';
 
-// Order screen stack navigation : order list and find kiosk view
+// Order history stack navigator : history list and order detail screen
 export const OrderCoffeeNavigation = createStackNavigator({
   Menu: {
     screen: OrderList,

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { Icon, Button, Container, Header, Content, Body, Title, Left, Right, List, ListItem } from 'native-base'
 
+// !! By now the Setting screen is working as placeholder without any functionality
 // Component configuration for settings screen -> layout, state data
 export default class SettingsScreen extends Component<Props> {
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

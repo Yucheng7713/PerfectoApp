@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from 'react-navigation';
-// Import all screens as classes
+// Import signin / signup screens as components
 import SignInScreen from './AuthScreens/SignIn';
 import SignUpScreen from './AuthScreens/SignUp';
 

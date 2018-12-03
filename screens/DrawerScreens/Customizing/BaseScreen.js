@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Icon, Button, Container, Header, Content, Body, Title, Left, Right, Tab, Tabs, ScrollableTab } from 'native-base'
 import { Col, Row, Grid } from 'react-native-easy-grid';
-// Mocked Base Flavors JSON object
-// var mockupData = require("../../../sampleBaseData.json");
-var mockupData = require("../../../mockupBaseData.json");
+import { baseGenres, baseRecipes } from '../../../src/module.js'
 
 // Component configuration for customize screen -> layout, state...
 export default class BaseScreen extends Component<Props> {
@@ -13,24 +11,24 @@ export default class BaseScreen extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      bases: mockupData['baseFlavors'],
-      base_json: mockupData['bases'],
+      bases: baseGenres,
+      base_json: baseRecipes,
       chosen_base: {
-        name: "",
-        img: "",
-        price: 0,
+        name: "Default_coffee",
+        img: null,
+        price: null,
         milk: null,
-        flavors: null,
-        sweetners: null,
-        extra: null
+        flavors: [],
+        sweetners: [],
+        extra: []
       }
     }
   }
 
-  // Record the selected base and pass it to the next step
+  // Click any base => keep the selected base recipe and pass it to the next step / screen
   chooseBase = (coffeebase) => {
-    this.state.chosen_base.name = coffeebase['Title'];
-    this.state.chosen_base.img = coffeebase['IMG_path'];
+    this.state.chosen_base.name = coffeebase['Name'];
+    this.state.chosen_base.img = coffeebase['IMG'];
     this.state.chosen_base.price = coffeebase['Price'];
     this.state.chosen_base.milk = coffeebase['Milk'];
     this.state.chosen_base.flavors = coffeebase['Flavors'];
@@ -41,40 +39,31 @@ export default class BaseScreen extends Component<Props> {
     });
   }
 
-  // Column of base flavor menu ( 2 columns per row )
-  baseMenuColumnGenerator(index, remainNums, baseFlavor) {
-    var baseColumn = [];
-    var baseArray = this.state.base_json[baseFlavor];
-    baseColumn.push(
-      <Col key={'col_' + index} style={ styles.columnStyle }>
-        <TouchableOpacity onPress={ (event) => { this.chooseBase(baseArray[index]) } }>
-          <Image style={ styles.baseImgStyle } source={ { uri: baseArray[index]['IMG_path'] } } />
-        </TouchableOpacity>
-        <Text style={ styles.baseTextStyle }>{ baseArray[index]['Title'] }</Text>
-      </Col>
-    );
-
-    if(remainNums > 1) {
-      let r_index = index + 1;
-      baseColumn.push(
-        <Col key={'col_' + r_index} style={ styles.columnStyle }>
-          <TouchableOpacity onPress={(event) => { this.chooseBase(baseArray[r_index]) } }>
-            <Image style={ styles.baseImgStyle } source={ { uri : baseArray[r_index]['IMG_path'] } } />
-          </TouchableOpacity>
-          <Text style={ styles.baseTextStyle }>{ baseArray[r_index]['Title'] }</Text>
-        </Col>
+  // Generate the base recipe genre scroll tabs ( Cappuccino, Frappe, ... )
+  baseMenuGenreTabGenerator() {
+    // Generate the base recipe genre scroll tabs ( Cappuccino, Frappe, ... )
+    var baseGenres = [];
+    for(var i = 0; i < this.state.bases.length; i++) {
+      baseGenres.push(
+        <Tab key={ 'base_' + i } heading={ this.state.bases[i] }>
+          <ScrollView>
+            <Grid style={ { paddingTop: 20 } }>
+              { this.baseMenuRowGenerator(this.state.bases[i]) }
+            </Grid>
+          </ScrollView>
+        </Tab>
       );
     }
-    return baseColumn;
+    return baseGenres;
   }
 
-  // Row of base flavor menu
+  // Generate base recipe menu by row
   baseMenuRowGenerator(baseFlavor) {
     var numOfFlavors = this.state.base_json[baseFlavor].length;
     var baseRow = [];
     for(var i = 0; i < numOfFlavors; i += 2) {
       baseRow.push(
-        <Row key={'row_' + i}>
+        <Row key={ 'row_' + i }>
           { this.baseMenuColumnGenerator(i, numOfFlavors - i, baseFlavor) }
         </Row>
       );
@@ -82,41 +71,56 @@ export default class BaseScreen extends Component<Props> {
     return baseRow;
   }
 
-  // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
-  render() {
-    var baseGenres = [];
-    for(var i = 0; i < this.state.bases.length; i++) {
-      baseGenres.push(
-        <Tab key={'base_' + i} heading={this.state.bases[i]}>
-          <ScrollView>
-            <Grid style={{ paddingTop: 20}}>
-              { this.baseMenuRowGenerator(this.state.bases[i]) }
-            </Grid>
-          </ScrollView>
-        </Tab>
+  // Generate base recipe menu by column ( 2 items per row )
+  baseMenuColumnGenerator(index, remainNums, baseFlavor) {
+    var baseColumn = [];
+    var baseArray = this.state.base_json[baseFlavor];
+    baseColumn.push(
+      <Col key={ 'col_' + index } style={ styles.columnStyle }>
+        <TouchableOpacity onPress={ (event) => { this.chooseBase(baseArray[index]) } }>
+          <Image style={ styles.baseImgStyle } source={ { uri: baseArray[index]['IMG'] } } />
+        </TouchableOpacity>
+        <Text style={ styles.baseTextStyle }>{ baseArray[index]['Name'] }</Text>
+      </Col>
+    );
+    // Make sure that the case is handled if the number of recipes is odd ( the last one would be placed in the middle of the last row)
+    if(remainNums > 1) {
+      let r_index = index + 1;
+      baseColumn.push(
+        <Col key={ 'col_' + r_index } style={ styles.columnStyle }>
+          <TouchableOpacity onPress={ (event) => { this.chooseBase(baseArray[r_index]) } }>
+            <Image style={ styles.baseImgStyle } source={ { uri : baseArray[r_index]['IMG'] } } />
+          </TouchableOpacity>
+          <Text style={ styles.baseTextStyle }>{ baseArray[r_index]['Name'] }</Text>
+        </Col>
       );
     }
+    return baseColumn;
+  }
+
+  // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
+  render() {
     return (
       <Container>
         <Header>
           <Left>
             <TouchableOpacity
-            style={{ paddingLeft: 10 }}
+            style={ styles.headerDrawerIconStyle }
             onPress={ () => { this.props.navigation.openDrawer(); } }>
               <Image
               style={ styles.homeIconStyles }
-              source={require('../../../assets/SideBarIcons/home-icon.png')} />
+              source={ require('../../../assets/SideBarIcons/home-icon.png') } />
             </TouchableOpacity>
           </Left>
           <Body>
             <Image
-            style={{ height: 40, width: 120}}
-            source={require('../../../assets/Background/home_title.png')}/>
+            style={ styles.headerTitleImgStyle }
+            source={ require('../../../assets/Background/home_title.png') }/>
           </Body>
           <Right></Right>
         </Header>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
-          { baseGenres }
+          { this.baseMenuGenreTabGenerator() }
         </Tabs>
       </Container>
     );
@@ -125,18 +129,16 @@ export default class BaseScreen extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
-  titleStyle: {
-    width: 150
+  headerDrawerIconStyle: {
+    paddingLeft: 10
+  },
+  headerTitleImgStyle: {
+    height: 40,
+    width: 120
   },
   homeIconStyles: {
     width: 25,
     height: 25
-  },
-  containerStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#4f6d7a'
   },
   columnStyle: {
     flex: 1,

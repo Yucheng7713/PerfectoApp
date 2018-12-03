@@ -1,11 +1,17 @@
 {
   baseFlavors: ["Cappuccino", "Frappe"],
+  milkOptions: ["Whole", "Skim", "Soy", "Almond"],
+  tempOptions: ["Iced", "Warm", "Extra", "Steamed"],
+  flavorOptions: ["Caramel", "Vanilla", "Chocolate", "Peppermint"],
+  sweetnerOptions: ["Sugar", "Equal®", "Sugar in the Raw®", "Honey"],
+  extraOptions: ["Cocoa", "Cinnamon", "Vanilla"],
   bases: {
     "Cappuccino" : [
       {
-        "Title" : "Cafe Mocha",
-        "IMG_path" :"mocha_2",
-        "Price": 4.99,
+        "ID": "CAP_1",
+        "Name": "Cafe Mocha",
+        "IMG": "cappuccino_1",
+        "Price": 3.99,
         "Milk" : {
           "Type" : "Whole",
           "Portion" : 2,
@@ -22,9 +28,10 @@
         "Extra" : []
       },
       {
-        "Title": "Caramel Latte",
-        "IMG_path": "latte_5",
-        "Price": 4.99,
+        "ID": "CAP_2",
+        "Name": "Caramel Latte",
+        "IMG": "cappuccino_2",
+        "Price": 3.99,
         "Milk": {
           "Type" : "Whole",
           "Portion": 2,
@@ -41,8 +48,9 @@
         "Extra" : []
       },
       {
-        "Title": "Flat White",
-        "IMG_path": "latte_2",
+        "ID": "CAP_3",
+        "Name": "Flat White",
+        "IMG": "cappuccino_3",
         "Price": 3.99,
         "Milk": {
           "Type" : "Whole",
@@ -55,9 +63,10 @@
         "Extra" : []
       },
       {
-        "Title": "Cinnamon",
-        "IMG_path": "cappuccino_2",
-        "Price": 4.99,
+        "ID": "CAP_4",
+        "Name": "Cinnamon",
+        "IMG": "cappuccino_4",
+        "Price": 3.99,
         "Milk": {
           "Type" : "Whole",
           "Portion": 2,
@@ -69,8 +78,9 @@
         "Extra" : []
       },
       {
-        "Title": "Brewed Latte",
-        "IMG_path": "latte_4",
+        "ID": "CAP_5",
+        "Name": "Brewed Latte",
+        "IMG": "cappuccino_5",
         "Price": 3.99,
         "Milk": {
           "Type" : "Whole",
@@ -85,9 +95,10 @@
     ],
     "Frappe" : [
       {
-        "Title": "Mocha Frap",
-        "IMG_path": "mochafrappe",
-        "Price": 7.99,
+        "ID": "FRAP_1",
+        "Name": "Mocha Frap",
+        "IMG": "frappe_1",
+        "Price": 4.99,
         "Milk": {
           "Type" : "Skim",
           "Portion": 2,
@@ -100,23 +111,14 @@
             "value" : 3,
           }
         ],
-        "Sweetners" : [
-          {
-            "name": "Sugar",
-            "value": 3
-          }
-        ],
-        "Extra" : [
-          {
-            "name": "Cocoa",
-            "value": 2
-          }
-        ]
+        "Sweetners" : [],
+        "Extra" : []
       },
       {
-        "Title": "Caramel Frap",
-        "IMG_path": "caramelfrappe",
-        "Price": 6.99,
+        "ID": "FRAP_2",
+        "Name": "Caramel Frap",
+        "IMG": "frappe_2",
+        "Price": 4.99,
         "Milk": {
           "Type" : "Skim",
           "Portion": 2,
@@ -133,9 +135,10 @@
         "Extra" : []
       },
       {
-        "Title": "Coffee Frap",
-        "IMG_path": "coffeefrappe",
-        "Price": 5.99,
+        "ID": "FRAP_3",
+        "Name": "Coffee Frap",
+        "IMG": "frappe_3",
+        "Price": 4.99,
         "Milk": {
           "Type" : "Skim",
           "Portion": 3,
@@ -147,9 +150,10 @@
         "Extra" : []
       },
       {
-        "Title": "Nutella Frap",
-        "IMG_path": "nutellafrappe",
-        "Price": 5.99,
+        "ID": "FRAP_4",
+        "Name": "Nutella Frap",
+        "IMG": "frappe_4",
+        "Price": 4.99,
         "Milk": {
           "Type" : "Whole",
           "Portion": 3,
@@ -161,9 +165,10 @@
         "Extra" : []
       },
       {
-        "Title": "Oreo Frap",
-        "IMG_path": "oreofrappe",
-        "Price": 6.99,
+        "ID": "FRAP_5",
+        "Name": "Oreo Frap",
+        "IMG": "frappe_5",
+        "Price": 4.99,
         "Milk": {
           "Type" : "Whole",
           "Portion": 2,

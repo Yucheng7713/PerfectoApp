@@ -9,7 +9,6 @@ export default class SignIn extends Component<Props> {
   // Login data state
   constructor(props) {
     super(props);
-    let loginAPI = "http://18.223.142.153:1337/api/v1/entrance/login";
     this.state = {
       userid: 'NEED_TO_BE_PROVIDED',
       password: 'NEED_TO_BE_PROVIDED',
@@ -41,23 +40,25 @@ export default class SignIn extends Component<Props> {
           "cardType": null
         }));
         AsyncStorage.setItem('Recipes',JSON.stringify({
-          "customList": []
+          "customList": [],
+          "recipe_count": 0
         }));
         // Store order history locally
         AsyncStorage.setItem('Orders', JSON.stringify({
-          "orderHistory": []
+          "orderHistory": [],
+          "order_count": 0
         }));
         this.props.navigation.navigate("SignedIn");
       } else {
         console.log("Login failed!!!");
-        // Alert.alert(
-        //   'Login failed',
-        //   'Invalid login info',
-        //   [
-        //     { text: 'OK', onPress: () => this.onPress }
-        //   ],
-        //   { cancelable: false }
-        // );
+        Alert.alert(
+          'Login failed',
+          'Invalid login info',
+          [
+            { text: 'OK', onPress: () => this.onPress }
+          ],
+          { cancelable: false }
+        );
       }
     }.bind(this)).catch((error) => {
       // Error message
@@ -133,7 +134,8 @@ export default class SignIn extends Component<Props> {
       </Container>
     );
   }
-  //Create Facebook profile data fetching response callback.
+
+  //Facebook login fetching response callback.
   _responseInfoCallback = (error, result) => {
     if (error) {
       console.log('Fetching Facebook profile data error: ' + error.toString());

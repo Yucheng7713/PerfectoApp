@@ -7,6 +7,7 @@ import { Root, Icon, Button, Container, Header, Content, Body, Title, Left, Righ
 import ListView from './RecipeInventory/ListScreen';
 import DetailView from './RecipeInventory/DetailScreen';
 
+// My Recipes navigator holding recipe list and recipe detail
 export const RecipeInventoryNavigation = createStackNavigator({
   RecipeList: {
     screen: ListView,

@@ -6,7 +6,7 @@ var mockupData = require("../../../sampleBaseData.json");
 
 // Component configuration for ordering screen -> layout, state...
 export default class OrderList extends Component<Props> {
-
+  // Props initialization
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +15,7 @@ export default class OrderList extends Component<Props> {
   }
 
   componentDidMount() {
+    // Get locally stored order history data
     AsyncStorage.getItem("Orders", (error,res) => {
           if (!error) {
               //handle result
@@ -26,30 +27,12 @@ export default class OrderList extends Component<Props> {
     });
   }
 
-  // Navigate to the detail of the chosen recipe
+  // Click function : Navigate to the detail of the chosen recipe
   goToOrderDetail = (orderDetail) => {
     this.props.navigation.navigate("OrderDetail", {
       detailInfo: orderDetail
     });
   }
-
-  // baseMenuGenerator() {
-  //   var orders = [];
-  //   for(var i = 0; i < this.state.data.length; i ++) {
-  //     orders.push(
-  //       <ListItem key={'oh_' + i}
-  //       onPress={() => { this.goToOrderDetail(this.state.data[]) } }
-  //       style={{flexDirection: 'row'}}>
-  //         <Image style={{ width: 40, height: 40, borderRadius: 20 }}
-  //         source={ { uri : this.state.data[i].recipe.img } } />
-  //         <Title>   { this.state.data[i].recipe.name }</Title>
-  //         <Text style={{ paddingLeft: 70, paddingRight: 20 }}> { this.state.data[i].date }</Text>
-  //         <Icon name='ios-arrow-forward'/>
-  //       </ListItem>
-  //     );
-  //   }
-  //   return orders;
-  // }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
@@ -70,7 +53,7 @@ export default class OrderList extends Component<Props> {
         </Header>
         <FlatList
         data={ this.state.data }
-        keyExtractor={item => item.recipe.base }
+        keyExtractor={item => item.orderID }
         renderItem={ ({item}) => (
           <ListItem
           style={{flexDirection: 'row'}}

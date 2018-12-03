@@ -10,6 +10,7 @@ export default class ConfirmScreen extends Component<Props> {
 
   constructor(props) {
     super(props);
+    // Credit card icons
     this.cardIcons = {
       "visa": require('../../../assets/Icons/card_icons/stp_card_visa.png'),
       "master-card": require('../../../assets/Icons/card_icons/stp_card_mastercard.png'),
@@ -31,11 +32,13 @@ export default class ConfirmScreen extends Component<Props> {
       cardCvc: "",
       cardType: null,
       toggleTotal: false,
-      togglePayment: false
+      togglePayment: false,
+      saved: recipe.saved
     }
   }
+
   componentDidMount() {
-    // Set user payment info
+    // Get user payment method
     AsyncStorage.getItem("Card", (error,res) => {
       if (!error) {
           //handle result
@@ -80,6 +83,7 @@ export default class ConfirmScreen extends Component<Props> {
     this.props.navigation.navigate('Map');
   }
 
+  // Place order drink
   placeOrder() {
     let today = new Date();
     const orderRecipe = {
@@ -95,18 +99,22 @@ export default class ConfirmScreen extends Component<Props> {
           //handle result
           if (res !== null) {
             var history = JSON.parse(res);
-            history.orderHistory.push(orderRecipe);
+            var order_ID = history['order_count'] ++;
+            history.orderHistory.push({
+              orderID: 'ORDER_' + order_ID,
+              recipe: this.state.orderRecipe,
+              location: this.state.pickupLocation,
+              price: this.state.saleTax + this.state.orderRecipe.price,
+              date: parseInt(today.getMonth()+1)+ "/"+ today.getDate()  +"/"+today.getFullYear()
+            });
             AsyncStorage.setItem("Orders", JSON.stringify(history));
             this.props.navigation.navigate("Done",{
-              order: orderRecipe
+              order: orderRecipe,
+              saved: this.state.saved
             });
           }
       }
     });
-    // Navigate to final confirm
-    // this.props.navigation.navigate("Done", {
-    //   order: orderRecipe
-    // });
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

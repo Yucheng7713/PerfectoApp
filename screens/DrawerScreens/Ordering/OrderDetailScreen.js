@@ -11,9 +11,10 @@ export default class DetailScreen extends Component<Props> {
     title: "Order Detail",
   });
 
+  // Props initialization
   constructor(props) {
     super(props);
-    this.icons = {
+    this.icons = { // List item collapse indicator icons
       'up': require('../../../assets/Icons/collapse_icons/arrowup_myrecipes_icon.png'),
       'down': require('../../../assets/Icons/collapse_icons/arrowdown_myrecipes_icon.png')
     };
@@ -95,6 +96,7 @@ export default class DetailScreen extends Component<Props> {
     return(extraList);
   }
 
+  // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
       <Container>
@@ -118,7 +120,7 @@ export default class DetailScreen extends Component<Props> {
               <ListItem itemDivider
               style={ styles.listItemStyle }>
                 <Left><Title>Price</Title></Left>
-                <Text>{ this.state.price }</Text>
+                <Text>${ this.state.price }</Text>
               </ListItem>
               <ListItem itemDivider
               style={ styles.listItemStyle }>

@@ -90,12 +90,28 @@ export default class SugarScreen extends Component<Props> {
 
   // Reset sweetner preferences back to default
   resetDefaultSweeteners() {
-    this.setState({
-      sugarValue: 0,
-      honeyValue: 0,
-      rawValue: 0,
-      equalValue: 0,
-    });
+    AlertIOS.alert(
+      'Reset to default preference',
+      null,
+      [
+        {
+          text: 'Cancel',
+          onPress: this.onPress,
+          style: 'cancel',
+        },
+        {
+          text: 'Reset',
+          onPress: () => {
+            this.setState({
+              sugarValue: 0,
+              honeyValue: 0,
+              rawValue: 0,
+              equalValue: 0,
+            });
+          },
+        },
+      ]
+    );
   }
 
   // Save sweetners and back to PreferenceScreen

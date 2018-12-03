@@ -1,9 +1,9 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Share } from 'react-native';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem } from 'native-base';
 import Collapsible from 'react-native-collapsible';
-import { ShareDialog } from 'react-native-fbsdk';
+// import { ShareDialog } from 'react-native-fbsdk';
 
 export default class DetailScreen extends Component<Props> {
 
@@ -12,9 +12,10 @@ export default class DetailScreen extends Component<Props> {
     title: navigation.state.params.detailInfo.name,
   });
 
+  // Props initialization
   constructor(props) {
     super(props);
-    this.icons = {
+    this.icons = { // Listitem collapse indicator icons
       'up': require('../../../assets/Icons/collapse_icons/arrowup_myrecipes_icon.png'),
       'down': require('../../../assets/Icons/collapse_icons/arrowdown_myrecipes_icon.png')
     };
@@ -33,42 +34,14 @@ export default class DetailScreen extends Component<Props> {
     }
   }
 
-  componentDidMount() {
-
+  // Share Recipe
+  shareRecipe() {
+    Share.share({
+      message: 'Check out my new customized coffee!!',
+      url: 'https://greenbay.usc.edu/csci577/fall2018/projects/team05/',
+      title: 'Perfecto Coffee'
+    });
   }
-
-  // Share the link using the share dialog.
-  // shareLinkWithShareDialog() {
-  //   // Share using the share API.
-  //   var tmp = this;
-  //   ShareDialog.canShow(this.state.shareLinkContent).then(
-  //     function(canShow) {
-  //       if (canShow) {
-  //         return ShareDialog.show(tmp.state.shareLinkContent);
-  //       }
-  //     }
-  //   ).then(
-  //     function(result) {
-  //       if (result.isCancelled) {
-  //         console.log('Share cancelled');
-  //         Toast.show({
-  //           text: 'Share cancelled!',
-  //           buttonText: 'Okay'
-  //         });
-  //       } else {
-  //         console.log('Share success with postId: '
-  //           + result.postId);
-  //         Toast.show({
-  //           text: 'Share posted!',
-  //           buttonText: 'Okay'
-  //         });
-  //       }
-  //     },
-  //     function(error) {
-  //       console.log('Share fail with error: ' + error);
-  //     }
-  //   );
-  // }
 
   // List item collapse functions
   listItemCollapse(item) {
@@ -88,7 +61,7 @@ export default class DetailScreen extends Component<Props> {
     return this.icons['down'];
   }
 
-  // Generate collapsed content dynamically
+  // Generate collapsed contents (flavors, sweetners, extra ingredients) dynamically
   generateFlavorContent() {
     let flavorList = [];
     let recipeFlavors = this.state.chosenRecipe.flavors;
@@ -131,10 +104,13 @@ export default class DetailScreen extends Component<Props> {
     return(extraList);
   }
 
+  // Order the customized recipe -> navigate user to customization page
   orderSavedRecipe() {
     const savedRecipe = {
+      cusID: this.state.chosenRecipe.recipeID,
       cusName:  this.state.chosenRecipe.name,
       name: this.state.chosenRecipe.base,
+      size: this.state.chosenRecipe.size,
       img: this.state.chosenRecipe.img,
       price: this.state.chosenRecipe.price,
       milk: {
@@ -147,8 +123,6 @@ export default class DetailScreen extends Component<Props> {
       sweetners: this.state.chosenRecipe.sweetners,
       extra: this.state.chosenRecipe.extra
     };
-    // console.log(this.state.chosenRecipe);
-    // console.log(savedRecipe);
     this.props.navigation.navigate('Preference', {
       baseOptions: savedRecipe
     });
@@ -165,7 +139,11 @@ export default class DetailScreen extends Component<Props> {
                 <Image style={ styles.baseImgStyle } source={ { uri : this.state.chosenRecipe.img } } />
                 <Title>{ this.state.chosenRecipe.name }</Title>
               </Left>
-              <Right></Right>
+              <Right>
+                <TouchableOpacity onPress={ () => { this.shareRecipe() } }>
+                  <Icon style={ styles.shareIconStyle } name='ios-share'/>
+                </TouchableOpacity>
+              </Right>
             </CardItem>
           </Card>
           <Card>
@@ -185,7 +163,7 @@ export default class DetailScreen extends Component<Props> {
                 style={ styles.listItemStyle }
                 onPress={ () => { this.listItemCollapse('milk') } }>
                   <Left><Title>Milk Preferences</Title></Left>
-                  <Right><Image style={{ height: 30, width: 30 }} source={ this.toggleIndicator(this.state.toggleMilk) }/></Right>
+                  <Right><Image style={ styles.listItemToggleImgStyle } source={ this.toggleIndicator(this.state.toggleMilk) }/></Right>
                 </ListItem>
               }
               <Collapsible collapsed={ !this.state.toggleMilk }>
@@ -213,7 +191,7 @@ export default class DetailScreen extends Component<Props> {
               style={ styles.listItemStyle }
               onPress={() => { this.listItemCollapse('flavors') } }>
                 <Left><Title>Flavors</Title></Left>
-                <Right><Image style={{ height: 30, width: 30 }} source={ this.toggleIndicator(this.state.toggleFlavors) }/></Right>
+                <Right><Image style={ styles.listItemToggleImgStyle } source={ this.toggleIndicator(this.state.toggleFlavors) }/></Right>
               </ListItem>
               }
               <Collapsible collapsed={ !this.state.toggleFlavors }>
@@ -226,7 +204,7 @@ export default class DetailScreen extends Component<Props> {
                 style={ styles.listItemStyle }
                 onPress={() => { this.listItemCollapse('sweetners') } }>
                   <Left><Title>Sweetners</Title></Left>
-                  <Right><Image style={{ height: 30, width: 30 }} source={ this.toggleIndicator(this.state.toggleSweetners) }/></Right>
+                  <Right><Image style={ styles.listItemToggleImgStyle } source={ this.toggleIndicator(this.state.toggleSweetners) }/></Right>
                 </ListItem>
               }
               <Collapsible collapsed={ !this.state.toggleSweetners }>
@@ -239,7 +217,7 @@ export default class DetailScreen extends Component<Props> {
                 style={ styles.listItemStyle }
                 onPress={() => { this.listItemCollapse('extra') } }>
                   <Left><Title>Extra Add-ins</Title></Left>
-                  <Right><Image style={{ height: 30, width: 30 }} source={ this.toggleIndicator(this.state.toggleExtra) }/></Right>
+                  <Right><Image style={ styles.listItemToggleImgStyle } source={ this.toggleIndicator(this.state.toggleExtra) }/></Right>
                 </ListItem>
               }
               <Collapsible collapsed={ !this.state.toggleExtra }>
@@ -264,11 +242,19 @@ export default class DetailScreen extends Component<Props> {
 
 // Styling components
 const styles = StyleSheet.create({
+  shareIconStyle : {
+    paddingRight: 10,
+    color: '#017afe'
+  },
   listItemStyle: {
     paddingTop: 20,
     paddingBottom: 20,
     borderBottomColor: '#bbb',
     borderBottomWidth: 1
+  },
+  listItemToggleImgStyle: {
+    height: 30,
+    width: 30
   },
   cupSizeTabStyle: {
     width: 110,
@@ -284,10 +270,11 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   bottomTabStyle: {
-    height: 40,
     backgroundColor: 'rgba(0,44,54,0.3)'
   },
   bottomTabBodyStyle: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center'
   },
 });

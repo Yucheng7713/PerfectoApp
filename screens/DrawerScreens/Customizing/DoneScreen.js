@@ -6,7 +6,7 @@ import Collapsible from 'react-native-collapsible';
 
 // Component configuration for ordering screen -> layout, state...
 export default class DoneScreen extends Component<Props> {
-
+  // Header configuration
   static navigationOptions = ({ navigation, screenProps}) => ({
     title: "Order Confirmation",
     headerLeft: null
@@ -14,11 +14,9 @@ export default class DoneScreen extends Component<Props> {
 
   constructor(props) {
     super(props);
-    console.log(props);
-  }
-
-  componentDidMount() {
-
+    this.state = {
+      saved: props.navigation.state.params.saved
+    };
   }
 
   // Share Recipe
@@ -30,7 +28,7 @@ export default class DoneScreen extends Component<Props> {
     });
   }
 
-  // Save function
+  // Save recipe function
   saveRecipe() {
       let baseRecipe = this.props.navigation.state.params.order.recipe;
       // Form the customized recipe object
@@ -80,11 +78,13 @@ export default class DoneScreen extends Component<Props> {
             onPress={() => { this.props.navigation.navigate('BaseCoffee') }}>
               <Text style={{ color: '#017afe', fontSize: 20 }}>Back to Home page</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-            style={{ paddingBottom: 30}}
-            onPress={() => { this.saveRecipe() }}>
-              <Text style={{ color: '#017afe', fontSize: 20 }}>Save the recipe</Text>
-            </TouchableOpacity>
+            { !this.state.saved &&
+              <TouchableOpacity
+              style={{ paddingBottom: 30}}
+              onPress={() => { this.saveRecipe() }}>
+                <Text style={{ color: '#017afe', fontSize: 20 }}>Save the recipe</Text>
+              </TouchableOpacity>
+            }
             <TouchableOpacity
             style={{ paddingBottom: 30}}
             onPress={() => { this.shareRecipe() }}>
@@ -95,8 +95,3 @@ export default class DoneScreen extends Component<Props> {
     );
   }
 }
-
-// Styling components
-const styles = StyleSheet.create({
-
-});

@@ -1,12 +1,14 @@
 import { AsyncStorage } from "react-native";
 import { LoginManager, AccessToken } from "react-native-fbsdk";
-
+// User login status 
 export const LOGGED_IN = "loggedin-status";
-// Constantly stored local username and password
-export const STATIC_USERID = "yucheng8168";
-export const STATIC_PASSWORD = "steven0824";
+// Statically stored local username and password -> (for convenient testing and developing)
+export const STATIC_USERID = "perfecto1234";
+export const STATIC_PASSWORD = "Perfecto3f";
 
-// Sign in function
+// Sign in function (!! The function is not called by any component
+// due to the lack of implementation of asynchronous function, the
+// operating sign in function is stated in SignIn.js explicitly by now.)
 export const onSignIn = (username, password) => {
   // Send sign in request to the backend (Sails)
   fetch("http://18.223.142.153:1337/api/v1/entrance/login", {
@@ -47,21 +49,12 @@ export const onSignIn = (username, password) => {
     // Error message
     console.error(error);
   });
-
-  // if(username === STATIC_USERID && password === STATIC_PASSWORD) {
-  //   AsyncStorage.setItem(LOGGED_IN, 'true');
-  //   // Store recipes locally
-  //   AsyncStorage.setItem("Recipes",JSON.stringify({
-  //     'customList': []
-  //   }));
-  //   return true;
-  // }
-
-  // return false;
 }
 
 // Facebook Log in function
 export const FBSignIn = (username, password) => {
+  // Fetching authentication from Sails backend by sending Facebook token
+  // The below code is considered a template which needs more modification before calling. ( fb_token is not declared )
   // fetch(this.loginAPI, {
   //   method: 'POST',
   //   headers: {
@@ -96,6 +89,8 @@ export const FBSignIn = (username, password) => {
   //   // Error message
   //   console.error(error);
   // });
+
+  // Statically login with hardcoded userID and password
   if(username === STATIC_USERID && password === STATIC_PASSWORD) {
     // Store login status locally
     AsyncStorage.setItem(LOGGED_IN, 'true');
@@ -119,7 +114,8 @@ export const FBSignIn = (username, password) => {
   return false;
 }
 
-// Sign out function
+// Sign out function -> When user sign out, wipe out the saved data
+// including user login info, saved recipe, order, and payment method.
 export const onSignOut = () => {
   LoginManager.logOut();
   AsyncStorage.removeItem('USER_FB_INFO');
@@ -130,7 +126,8 @@ export const onSignOut = () => {
   return AsyncStorage.removeItem(LOGGED_IN);
 };
 
-// Check if user has already signed in -> save the status
+// Check if user has already signed in -> save the login status when user close the app
+// without logging out.
 export const isSignedIn = () => {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem(LOGGED_IN)

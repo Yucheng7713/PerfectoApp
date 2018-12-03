@@ -10,7 +10,7 @@ export default class ProfileScreen extends Component<Props> {
   // Facebook login data status
   constructor(props) {
     super(props);
-    this.cardIcons = {
+    this.cardIcons = { // Credit card icons
       "visa": require('../../assets/Icons/card_icons/stp_card_visa.png'),
       "master-card": require('../../assets/Icons/card_icons/stp_card_mastercard.png'),
       "american-express": require('../../assets/Icons/card_icons/stp_card_amex.png'),
@@ -40,7 +40,6 @@ export default class ProfileScreen extends Component<Props> {
     AsyncStorage.getItem('USER_FB_INFO', (error,value) => {
         if (!error) { //If there are no errors
             //handle result
-            // console.log(value);
             if (value !== null) {
               var json = JSON.parse(value);
               this.setState({
@@ -52,13 +51,12 @@ export default class ProfileScreen extends Component<Props> {
             }
         }
     });
-    // Set user payment info
+    // Get user payment info
     AsyncStorage.getItem("Card", (error,res) => {
       if (!error) {
           //handle result
           if (res !== null) {
             var cardInfo = JSON.parse(res);
-            // console.log(cardInfo);
             this.setState({
               cardNum: cardInfo.cardNum,
               cardExpiry: cardInfo.cardExpiry,
@@ -70,7 +68,7 @@ export default class ProfileScreen extends Component<Props> {
     });
   }
 
-  // List item toggle function
+  // Save payment method ( credit card )
   saveCardInfo(item) {
     this.setState({
       toggleCard: !this.state.toggleCard,
@@ -112,6 +110,7 @@ export default class ProfileScreen extends Component<Props> {
     }
   };
 
+  // Change the content of payment method list item based on input interaction
   creditCardContent() {
     if(this.state.toggleCard) {
       return(
@@ -123,8 +122,8 @@ export default class ProfileScreen extends Component<Props> {
           <Text>None</Text>
         );
       } else {
-        console.log(this.state.cardType);
-        console.log(this.cardIcons[this.state.cardType]);
+        // console.log(this.state.cardType);
+        // console.log(this.cardIcons[this.state.cardType]);
         return(
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
             <Image style={{ height: 21, width: 32 }} source={this.cardIcons[this.state.cardType]} />
@@ -137,7 +136,7 @@ export default class ProfileScreen extends Component<Props> {
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
-    // Check if Facebook profile is available
+    // Check if Facebook profile is available -> if not, show default profile image
     var profileLink = require("../../assets/Profile/default-profile.png");
     if(this.state.FBInfoExisted) {
       profileLink = { url: this.state.FBProfileLink };

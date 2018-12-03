@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Root, Icon, Container, Header, Content, Left, Right, Body, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
+// Import all screens related to customization and ordering
 import BaseScreen from './Customizing/BaseScreen';
 import PreferenceScreen from './Customizing/PreferenceScreen';
 import MilkScreen from './Customizing/MilkScreen';
@@ -15,6 +16,7 @@ import ConfirmScreen from './Customizing/ConfirmScreen';
 import MapScreen from './Customizing/MapScreen';
 import DoneScreen from './Customizing/DoneScreen';
 
+// Stack navigator holding order confirm screen and map screen
 const orderConfirmation = createStackNavigator({
   Confirm: {
     screen: ConfirmScreen,
@@ -40,6 +42,7 @@ const orderConfirmation = createStackNavigator({
   gesturesEnabled: false,
 });
 
+// Stack navigator holding base menu screen (home screen), all customization screens
 export const CustomizeStepsNavigation = createStackNavigator({
   BaseCoffee: {
     screen: BaseScreen,
@@ -103,9 +106,6 @@ export default class CustomizeScreen extends Component<Props> {
 
   static router = CustomizeStepsNavigation.router;
 
-  componentDidMount() {
-
-  }
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
     return (
@@ -117,13 +117,3 @@ export default class CustomizeScreen extends Component<Props> {
     );
   }
 }
-
-// Styling components
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#4f6d7a'
-  }
-});

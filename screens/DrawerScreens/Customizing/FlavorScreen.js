@@ -6,7 +6,8 @@ import Collapsible from 'react-native-collapsible';
 
 // Component configuration for settings screen -> layout, state data
 export default class FlavorScreen extends Component<Props> {
-
+  
+  // Header title and back button customization
   static navigationOptions = ({ navigation, screenProps }) => ({
     title:  'FLAVORS',
     headerLeft: (

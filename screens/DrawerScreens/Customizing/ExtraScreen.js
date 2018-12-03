@@ -82,11 +82,27 @@ export default class ExtraScreen extends Component<Props> {
 
   // Reset extra preferences back to default
   resetDefaultExtra() {
-    this.setState({
-      cocoaValue: 0,
-      cinnamonValue: 0,
-      vanillaValue: 0,
-    });
+    AlertIOS.alert(
+      'Reset to default preference',
+      null,
+      [
+        {
+          text: 'Cancel',
+          onPress: this.onPress,
+          style: 'cancel',
+        },
+        {
+          text: 'Reset',
+          onPress: () => {
+            this.setState({
+              cocoaValue: 0,
+              cinnamonValue: 0,
+              vanillaValue: 0,
+            });
+          },
+        },
+      ]
+    );
   }
 
   // Save extra and go back to PreferenceScreen
