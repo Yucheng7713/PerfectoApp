@@ -10,7 +10,6 @@ import KioskData from '../../../Kiosk.json';
 //import distance from 'google-distance';
 //distance.apiKey = 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg';
 
-
 // Component configuration for find kiosk screen -> layout, state data
 export default class MapScreen extends Component<Props> {
   state = {
@@ -144,16 +143,16 @@ export default class MapScreen extends Component<Props> {
         onLoad={() => this.forceUpdate()}
         >
         {marker}
-        {KioskData.Kiosk.map((i) => 
+        {KioskData.Kiosk.map((i) =>
           <Marker
           pinColor = '#0000FF'
-          title={'Kiosk'+i.id} 
+          title={'Kiosk'+i.id}
           coordinate={{latitude: i.coordinate.lat, longitude: i.coordinate.lon}}
           />
           )}
-        
+
         </MapView>
-        
+
         {/*
         <View>
           <Text>lat: {this.state.focusedLocation.latitude}</Text>
@@ -161,13 +160,13 @@ export default class MapScreen extends Component<Props> {
         </View>
         */}
         <View style={styles.Kiosk}>
-        { KioskData.Kiosk.map((index) => 
-        <View 
-        key={index} 
+        { KioskData.Kiosk.map((index) =>
+        <View
+        key={index.id}
         style={styles.listItem}
         //onPress={() =>{alert("You seleted Kiosk:"+index.id);}}
         >
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={() =>{this.props.navigation.navigate('Confirm',
         {
           TIMEW: geolib.convertUnit("km",geolib.getDistance(
@@ -182,7 +181,7 @@ export default class MapScreen extends Component<Props> {
         <Text style={styles.KioskName}>Status: {index.Status}</Text>
         </View>
         <Text style={styles.Auto}>Address: {index.Address}</Text>
-        <Text style={styles.Auto}>Distance: { 
+        <Text style={styles.Auto}>Distance: {
           //this.getDistanceGoogle(this.state,index.coordinate)
           geolib.convertUnit("km",geolib.getDistance(
             this.state.focusedLocation,
@@ -207,8 +206,6 @@ export default class MapScreen extends Component<Props> {
         )}
         </View>
       </View>
-
-
     );
   }
 }
