@@ -7,9 +7,6 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import geolib from 'geolib';
 import KioskData from '../../../Kiosk.json';
 
-//import distance from 'google-distance';
-//distance.apiKey = 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg';
-
 // Component configuration for find kiosk screen -> layout, state data
 export default class MapScreen extends Component<Props> {
   state = {
@@ -46,22 +43,6 @@ export default class MapScreen extends Component<Props> {
       alert("Fetching the Position failed, please pick one manually");
     })
   }
-
-  /*getDistanceGoogle(loc1,loc2){
-    const Location1Str = loc1;
-    const Location2Str = loc2;
-    const GOOGLE_API_KEY = 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg';
-
-    let ApiURL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
-
-    let params = 'origins=${Location1Str}&destinations=${Location2Str}&key=${GOOGLE_API_KEY}'; // you need to get a key
-    let finalApiURL = '${ApiURL}${encodeURI(params)}';
-
-    let fetchResult =  await fetch(finalApiURL); // call API
-    let Result =  await fetchResult.json(); // extract json
-
-    return Result.rows[0].elements[0].distance;
-  }*/
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
@@ -154,12 +135,6 @@ export default class MapScreen extends Component<Props> {
 
         </MapView>
 
-        {/*
-        <View>
-          <Text>lat: {this.state.focusedLocation.latitude}</Text>
-          <Text>lon: {this.state.focusedLocation.longitude}</Text>
-        </View>
-        */}
         <View style={styles.Kiosk}>
         { KioskData.Kiosk.map((index) =>
         <View
