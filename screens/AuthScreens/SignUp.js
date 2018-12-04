@@ -40,6 +40,7 @@ export default class SignUp extends Component<Props> {
         // Server backend callback status
         // If login success -> navigate to home page
         console.log(res);
+        
       })
       .catch((error) => {
         // Error message

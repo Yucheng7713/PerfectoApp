@@ -46,7 +46,6 @@ export default class PreferenceScreen extends Component<Props> {
 
   // Component initialization
   componentDidMount() {
-    console.log(this.state.savedRecipe);
     let chosenBase = this.props.navigation.state.params.baseOptions;
     this.selectCupSize(this.state.cupSize);
     // Check if milk preferred option is available

@@ -46,6 +46,11 @@ class FlatListItem extends Component<Props> {
                   onPress: () => { // Remove the swiped list item from the list
                     console.log("Delete " + this.props.item.recipeID);
                     // Modified the local recipes storage
+                    if(this.props.data.length === 1) {
+                      this.props.data.pop();
+                    } else {
+                      this.props.data.splice(this.props.index, 1);
+                    }
                     AsyncStorage.getItem("Recipes", (error,res) => {
                       if (!error) {
                           //handle result
@@ -59,10 +64,9 @@ class FlatListItem extends Component<Props> {
                           }
                       }
                     });
-                    this.props.data.splice(this.props.index, 1);
                     this.props.parentFlatList.refreshFlatList();
-                  },
-                },
+                  }
+                }
               ]
             );
           },
@@ -146,7 +150,7 @@ export default class ListScreen extends Component<Props> {
           </Header>
           <FlatList
           data={ this.state.data }
-          keyExtractor={item => item.recipeID }
+          keyExtractor={ item => item.recipeID }
           renderItem={ ({item, index}) => (
             <FlatListItem
             item={item}

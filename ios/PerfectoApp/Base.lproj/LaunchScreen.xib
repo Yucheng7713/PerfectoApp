@@ -32,6 +32,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SplashBackground" width="562" height="1218"/>
+        <image name="SplashBackground" width="1125" height="2436"/>
     </resources>
 </document>
