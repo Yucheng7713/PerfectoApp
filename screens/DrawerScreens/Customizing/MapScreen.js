@@ -110,9 +110,9 @@ export default class MapScreen extends Component<Props> {
               language: 'en', // language of the results
               types: ['establishment','geocode'] // default: 'geocode'
             }}
-
-      nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-      GoogleReverseGeocodingQuery={{
+            
+            nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+            GoogleReverseGeocodingQuery={{
         // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
       }}
       GooglePlacesSearchQuery={{
@@ -146,6 +146,7 @@ export default class MapScreen extends Component<Props> {
         {KioskData.Kiosk.map((i) =>
           <Marker
           pinColor = '#0000FF'
+          key = {i.id}
           title={'Kiosk'+i.id}
           coordinate={{latitude: i.coordinate.lat, longitude: i.coordinate.lon}}
           />
