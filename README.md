@@ -34,17 +34,16 @@ Note : Re-run it when any new Node package is added.
 ```
 npm start
 ```
-If it a bundle error occurs, try the below command instead :
+If any bundle error occurs, try the below command instead :
 ```
 react-native start --reset-cache
 ```
 
-6. Open PerfectoApp.xcworkspace, Change the build directory :
-    1. Go to PerfectoApp -> ios -> PerfectoApp.xcodeproj.
-    2. Go to File -> Project Settings -> Click Advanced...
-    3. Select Custom -> Relative to Workspace.
-    4. Change the Products path to "build/Build/Products", Intermidates path to "build/Build/Intermediates.noindex".
-    5. Click Done -> Done.
+6. Open PerfectoApp.xcodeproj, Change the build directory :
+    1. Go to File -> Project Settings -> Click Advanced...
+    2. Select Custom -> Relative to Workspace.
+    3. Change the Products path to "build/Build/Products", Intermidates path to "build/Build/Intermediates.noindex".
+    4. Click Done -> Done.
 
 7. Install the file ios_setup.js by executing the following command in a command prompt at your project's root folder.
 ```
@@ -57,7 +56,7 @@ node ios_setup.js 273929963245701 PerfectoExpress
 ```
 !! For those who hasn't joined the Facebook app but want to run the project, please ask for invitation.
 
-9. Cd to /ios directory and install pod
+9. Cd into /ios directory and install pod
 !! Note: If pod install does not work, remove Podfile.lock.
 ```
 pod install
@@ -69,7 +68,7 @@ react-native link
 ```
 
 11. Build and run the project in PerfectoApp.xcworkspace: ( It may take couple minutes for the first execution. )
-!! You can either build and run the project in terminal, but it is recommend to build it with Xcode for first time in that way you are able to identify any possible error and solve it.
+!! You can also build and run the project with React Native CLI through the terminal console, but it is recommended to build it in Xcode for the first time since bundler errors will only be shown in Xcode console.
 For building the project in terminal, run the command below:
 ```
 react-native run-ios
