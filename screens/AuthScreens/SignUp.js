@@ -34,19 +34,20 @@ export default class SignUp extends Component<Props> {
           emailAddress: this.state.email,
           password: this.state.password,
           fullName: this.state.firstName + " " + this.state.lastName
-        }),
+        })
       })
       .then(function(res){
         // Server backend callback status
         // If login success -> navigate to home page
-        console.log(res);
-        
+        if(res.status === 200) {
+          console.log("Sign up successfully!");
+          this.props.navigation.navigate('SignIn');
+        }
       })
       .catch((error) => {
         // Error message
         console.error(error);
       });
-      console.log("Sign up successfully!");
     } else {
       console.log("Info filled-in incomplete");
     }

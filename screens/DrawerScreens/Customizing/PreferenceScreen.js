@@ -255,7 +255,16 @@ export default class PreferenceScreen extends Component<Props> {
   orderRecipe() {
     let baseRecipe = this.props.navigation.state.params.baseOptions;
     if(this.state.recipeName === "") {
-      this.state.recipeName = baseRecipe.name;
+      AlertIOS.alert(
+        'The recipe needs a name!',
+        null,
+        [
+          {
+            text: 'OK',
+            onPress: this.onPress,
+          }
+        ]
+      );
     } else {
       this.props.navigation.navigate('Order',{
         // Form the customized recipe object

@@ -1,9 +1,8 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import { SafeAreaView } from 'react-native'
 // Import root navigator and the authenticator
-import { createRootNavigator } from './src/router'
+import { createRootNavigator } from './src/router';
 import { isSignedIn } from './src/auth';
 
 export default class App extends Component<Props> {

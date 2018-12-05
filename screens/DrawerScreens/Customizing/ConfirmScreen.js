@@ -1,6 +1,6 @@
 // Required components from React, React Navigation, and Native Base
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, AsyncStorage, AlertIOS } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Container, Header, Content, Body, Footer, Title, Left, Right, Segment, Card, CardItem, List, ListItem  } from 'native-base';
 import Collapsible from 'react-native-collapsible';
@@ -85,36 +85,61 @@ export default class ConfirmScreen extends Component<Props> {
 
   // Place order drink
   placeOrder() {
-    let today = new Date();
-    const orderRecipe = {
-      recipe: this.state.orderRecipe,
-      location: this.state.pickupLocation,
-      price: this.state.saleTax + this.state.orderRecipe.price,
-      date: parseInt(today.getMonth()+1)+ "/"+ today.getDate()  +"/"+today.getFullYear()
-    };
-    console.log(orderRecipe);
-    // Store order to history
-    AsyncStorage.getItem("Orders", (error,res) => {
-      if (!error) {
-          //handle result
-          if (res !== null) {
-            var history = JSON.parse(res);
-            var order_ID = history['order_count'] ++;
-            history.orderHistory.push({
-              orderID: 'ORDER_' + order_ID,
-              recipe: this.state.orderRecipe,
-              location: this.state.pickupLocation,
-              price: this.state.saleTax + this.state.orderRecipe.price,
-              date: parseInt(today.getMonth()+1)+ "/"+ today.getDate()  +"/"+today.getFullYear()
-            });
-            AsyncStorage.setItem("Orders", JSON.stringify(history));
-            this.props.navigation.navigate("Done",{
-              order: orderRecipe,
-              saved: this.state.saved
-            });
+    if(!this.state.cardNum) {
+      AlertIOS.alert(
+        'No payment method found',
+        'Please add a payment method in User Profile page',
+        [
+          {
+            text: 'OK',
+            onPress: this.onPress,
+            style: 'cancel'
           }
-      }
-    });
+        ]
+      );
+    } else if(!this.state.pickupLocation) {
+      AlertIOS.alert(
+        'Pick up location is not set!',
+        'Please add a payment method in User Profile page',
+        [
+          {
+            text: 'OK',
+            onPress: this.onPress,
+            style: 'cancel'
+          }
+        ]
+      );
+    } else {
+      let today = new Date();
+      const orderRecipe = {
+        recipe: this.state.orderRecipe,
+        location: this.state.pickupLocation,
+        price: this.state.saleTax + this.state.orderRecipe.price,
+        date: parseInt(today.getMonth()+1)+ "/"+ today.getDate()  +"/"+today.getFullYear()
+      };
+      // Store order to history
+      AsyncStorage.getItem("Orders", (error,res) => {
+        if (!error) {
+            //handle result
+            if (res !== null) {
+              var history = JSON.parse(res);
+              var order_ID = history['order_count'] ++;
+              history.orderHistory.push({
+                orderID: 'ORDER_' + order_ID,
+                recipe: this.state.orderRecipe,
+                location: this.state.pickupLocation,
+                price: this.state.saleTax + this.state.orderRecipe.price,
+                date: parseInt(today.getMonth()+1)+ "/"+ today.getDate()  +"/"+today.getFullYear()
+              });
+              AsyncStorage.setItem("Orders", JSON.stringify(history));
+              this.props.navigation.navigate("Done",{
+                order: orderRecipe,
+                saved: this.state.saved
+              });
+            }
+        }
+      });
+    }
   }
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component

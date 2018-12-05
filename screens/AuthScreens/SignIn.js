@@ -10,61 +10,66 @@ export default class SignIn extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      userid: 'NEED_TO_BE_PROVIDED',
-      password: 'NEED_TO_BE_PROVIDED',
+      userid: "",
+      password: "",
     };
   }
 
   nativeSignIn(username, password) {
-    fetch("http://18.223.142.153:1337/api/v1/entrance/login", {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        emailAddress: username,
-        password: password
-      })
-    }).then(function (res){
-      // Server backend callback status
-      // If login success -> navigate to home page
-      // console.log(res);
-      if(res.status === 200) {
-        AsyncStorage.setItem('loggedin-status', 'true');
-        // Store recipes locally
-        AsyncStorage.setItem('Card', JSON.stringify({
-          "cardNum": null,
-          "cardExpiry": null,
-          "cardCvc": null,
-          "cardType": null
-        }));
-        AsyncStorage.setItem('Recipes',JSON.stringify({
-          "customList": [],
-          "recipe_count": 0
-        }));
-        // Store order history locally
-        AsyncStorage.setItem('Orders', JSON.stringify({
-          "orderHistory": [],
-          "order_count": 0
-        }));
-        this.props.navigation.navigate("SignedIn");
-      } else {
-        console.log("Login failed!!!");
-        Alert.alert(
-          'Login failed',
-          'Invalid login info',
-          [
-            { text: 'OK', onPress: () => this.onPress }
-          ],
-          { cancelable: false }
-        );
-      }
-    }.bind(this)).catch((error) => {
-      // Error message
-      console.error(error);
-    });
+      let api = "https://18.223.142.153:1337/api/v1/entrance/login";
+      fetch("http://18.223.142.153:1337/api/v1/entrance/login", {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          emailAddress: username,
+          password: password
+        })
+      }).then((res) => {
+        console.log(res);
+        return res.json();
+      }).then((responseJson) => {
+        // Server backend callback status
+        console.log(responseJson);
+        // If login success -> navigate to home page
+        if(responseJson.status === 200) {
+          AsyncStorage.setItem('loggedin-status', 'true');
+          // Store recipes locally
+          AsyncStorage.setItem('Card', JSON.stringify({
+            "cardNum": null,
+            "cardExpiry": null,
+            "cardCvc": null,
+            "cardType": null
+          }));
+          AsyncStorage.setItem('Recipes',JSON.stringify({
+            "customList": [],
+            "recipe_count": 0
+          }));
+          // Store order history locally
+          AsyncStorage.setItem('Orders', JSON.stringify({
+            "orderHistory": [],
+            "order_count": 0
+          }));
+          this.props.navigation.navigate("SignedIn");
+        } else {
+          console.log("Login failed!!!");
+          Alert.alert(
+            'Login failed',
+            'Invalid login info',
+            [
+              { text: 'OK', onPress: () => this.onPress }
+            ],
+            { cancelable: false }
+          );
+        }
+      }).catch((error) => {
+        // Error message
+        console.error(error);
+      });
   }
+
 
   // Layout rendering : note that do not include any comment in return(...), it will be interpreted as layout component
   render() {
