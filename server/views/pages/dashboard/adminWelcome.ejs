@@ -1,0 +1,71 @@
+<div id="welcome">
+  <div class="container">
+    <div class="logo-outer">
+      <div style="float: left; padding-top: 20px "><h1>Welcome to Perfecto Coffee!</h1></div>
+      <div class="logo" style="float: right"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+    </div>
+
+    <div style="float: left">
+      <hr/>
+      <p>This is a page that only the logged-in ADMIN can visit. Don't you feel special? Try clicking on a button below to do some things you can't do when you're logged out.</p>
+    </div>
+
+    <div class="buttons" style="float:left; padding-bottom: 20px; width: 100%">
+      <a class="btn btn-info" href="/account/profile">Update my email</a>
+      <button class="btn btn-outline-info ml-2" @click="clickOpenDashboardModalButton()">Open a modal</button>
+      <hr/>
+    </div>
+
+    <div id="greywrap">
+
+      <div class="row" style="clear: both">
+        <div class="col-lg-4 callout">
+          <span class="icon icon-stack"></span>
+          <h2>Kiosk Details</h2>
+          <p>Manage and see the information of Kiosks.</p>
+        </div><!-- col-lg-4 -->
+
+        <div class="col-lg-4 callout">
+          <span class="icon icon-eye"></span>
+          <h2>Our App</h2>
+          <p>Create a mobile application that allows users to personalize their own coffee ordering profile and easily create and submit their coffee orders to a kiosk of their choice.
+          </p>
+        </div><!-- col-lg-4 -->
+
+        <div class="col-lg-4 callout">
+          <span class="icon icon-heart"></span>
+          <h2>Our Team</h2>
+          <p>Perfecto Coffee "Xpress Consistent Perfection" </p>
+        </div><!-- col-lg-4 -->
+      </div><!-- row -->
+    </div><!-- greywrap -->
+
+    <div class="col-md-6" style="display: none">
+      <div class="card">
+        <h3 class="card-title">Bar Chart</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <modal class="example-modal" v-if="dashboardModalVisible" @close="closeDashboardModal()" v-cloak>
+    <div class="modal-header">
+      <h2 class="modal-title">Example modal</h2>
+      <p>At your leisure, please peruse this excerpt from a whale of a tale.</p>
+      <hr/>
+      <button type="button" class="modal-close-button" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <h5 class="section-heading">Chapter 1: Loomings.</h5>
+      <p>Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.</p>
+    </div>
+    <div class="modal-footer flex-row-reverse justify-content-between">
+      <button type="button" data-dismiss="modal" class="btn btn-info">Close</button>
+      <button type="button" data-dismiss="modal" class="btn btn-outline-info">Cancel</button>
+    </div>
+  </modal>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
