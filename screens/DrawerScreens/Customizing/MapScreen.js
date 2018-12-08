@@ -87,7 +87,7 @@ export default class MapScreen extends Component<Props> {
 
             query={{
               // available options: https://developers.google.com/places/web-service/autocomplete
-              key: 'AIzaSyAltHnnAydxQphvRkCVbzINhRr5G83JNrg',
+              key: 'AIzaSyA-eLptjV01wM7KslkMKJjKcaTCK6onuWU',
               language: 'en', // language of the results
               types: ['establishment','geocode'] // default: 'geocode'
             }}
